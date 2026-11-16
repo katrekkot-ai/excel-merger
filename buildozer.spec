@@ -28,7 +28,9 @@ p4a.local_recipes = ./p4a-recipes
 orientation = portrait
 fullscreen = 0
 
-android.api = 30
+# compileSdk 35: Java-код SDL2 в p4a использует API 31+ (Manifest.permission.BLUETOOTH_CONNECT).
+# minapi остаётся 24 — старые телефоны поддерживаются.
+android.api = 35
 android.minapi = 24
 android.ndk = 25b
 # Только arm64 (все телефоны с 2018 г.). Для старых моделей добавьте: arm64-v8a, armeabi-v7a

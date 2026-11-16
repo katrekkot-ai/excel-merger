@@ -16,11 +16,15 @@ version = 0.1
 # Стек по умолчанию (Python 3.14 от p4a). pandas v3.1.1 — первая ветка с официальной
 # поддержкой Python 3.14; numpy v2.3.4 — минимально требуемая для 3.14 и с фиксом
 # сборки unique.cpp. Теги указаны с "v", т.к. p4a делает `git checkout <версия>`.
-requirements = python3,kivy==2.3.1,numpy==v2.3.4,pandas==v3.1.1,openpyxl,xlrd
+requirements = python3,kivy==2.3.1,numpy==v2.3.4,pandas==v3.1.1,openpyxl,xlrd,charset-normalizer==3.3.2
 
 # Локальный рецепт pandas (p4a.local_recipes ниже): штатный рецепт p4a тянет pandas
 # v2.3.0, которая под Python 3.14 не компилируется, а его патч не применяется к 3.x.
 p4a.local_recipes = ./p4a-recipes
+
+# charset-normalizer 3.5.x поставляется скомпилированным wheel под чужие платформы,
+# p4a не может его поставить. 3.3.2 — чистый python.
+# (приезжает транзитивно через requests)
 
 orientation = portrait
 fullscreen = 0

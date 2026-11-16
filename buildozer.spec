@@ -16,7 +16,8 @@ version = 0.1
 # Зависимости. pandas тянет за собой numpy, openpyxl читает .xlsx, xlrd — .xls
 # numpy пиним на v2.3.4 (именно с "v" — p4a делает git checkout тега):
 # в 2.3.0-2.3.2 нет #include <unordered_map> в unique.cpp -> сборка под Android падает
-requirements = python3,kivy==2.3.1,numpy==v2.3.4,pandas,openpyxl,xlrd
+# pandas пиним на v2.3.3: в 2.3.0 сгенерированный Cython-код не компилируется под Python 3.14
+requirements = python3,kivy==2.3.1,numpy==v2.3.4,pandas==v2.3.3,openpyxl,xlrd
 
 orientation = portrait
 fullscreen = 0

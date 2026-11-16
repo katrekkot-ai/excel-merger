@@ -47,7 +47,10 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          yes | buildozer -v android debug 2>&1 | tee build.log
+          # p4a ставит "pure python" модули без версий и берёт charset-normalizer 3.5.2,
+          # у которой только платформенные wheel'ы -> "not a supported wheel".
+          # 3.3.2 имеет py3-none-any. Версия передаётся p4a через VERSION_<имя>.
+          yes | env "VERSION_charset-normalizer=3.3.2" buildozer -v android debug 2>&1 | tee build.log
 
       - name: Upload APK
         if: success()

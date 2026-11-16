@@ -18,7 +18,7 @@ version = 0.1
 # в 2.3.0-2.3.2 нет #include <unordered_map> в unique.cpp -> сборка под Android падает
 # Python 3.12: p4a по умолчанию берёт 3.14, под который pandas 2.3.x ещё не собирается.
 # pandas v2.3.3 и numpy v2.3.4 — версии, проверенные рецептами p4a (теги с "v" для git checkout).
-requirements = python3==3.12.10,kivy==2.3.1,numpy==v2.3.4,pandas==v2.3.3,openpyxl,xlrd
+requirements = hostpython3==3.12.10,python3==3.12.10,kivy==2.3.1,numpy==v2.3.4,pandas==v2.3.3,openpyxl,xlrd
 
 orientation = portrait
 fullscreen = 0

@@ -14,8 +14,9 @@ source.include_exts = py,png,jpg,kv,atlas,json,ttf
 version = 0.1
 
 # Зависимости. pandas тянет за собой numpy, openpyxl читает .xlsx, xlrd — .xls
-# numpy пиним на 2.3.4: в 2.3.0-2.3.2 нет #include <unordered_map> в unique.cpp -> сборка под Android падает
-requirements = python3,kivy==2.3.1,numpy==2.3.4,pandas,openpyxl,xlrd
+# numpy пиним на v2.3.4 (именно с "v" — p4a делает git checkout тега):
+# в 2.3.0-2.3.2 нет #include <unordered_map> в unique.cpp -> сборка под Android падает
+requirements = python3,kivy==2.3.1,numpy==v2.3.4,pandas,openpyxl,xlrd
 
 orientation = portrait
 fullscreen = 0

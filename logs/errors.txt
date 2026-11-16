@@ -1,60 +1,60 @@
-22466:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4939:59: error: member reference type 'int' is not a pointer
-22472:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4976:59: error: member reference type 'int' is not a pointer
-22478:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:5013:59: error: member reference type 'int' is not a pointer
-22484:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:5050:59: error: member reference type 'int' is not a pointer
-22496:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:5814:63: error: member reference base type 'int' is not a structure or union
-22499:20 warnings and 12 errors generated.
-22501:FAILED: [code=1] pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/meson-generated_dtypes.pyx.c.o 
-22524:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:5817:59: error: member reference type 'int' is not a pointer
-22530:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:5854:59: error: member reference type 'int' is not a pointer
-22536:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:5891:59: error: member reference type 'int' is not a pointer
-22542:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:5928:59: error: member reference type 'int' is not a pointer
-22548:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:5965:69: error: member reference type 'int' is not a pointer
-22554:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:6002:59: error: member reference type 'int' is not a pointer
-22560:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:6039:59: error: member reference type 'int' is not a pointer
-22566:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:6076:59: error: member reference type 'int' is not a pointer
-22572:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:6113:59: error: member reference type 'int' is not a pointer
-22578:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:6150:59: error: member reference type 'int' is not a pointer
-22584:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:6187:59: error: member reference type 'int' is not a pointer
-22596:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:6951:63: error: member reference base type 'int' is not a structure or union
-22599:20 warnings and 12 errors generated.
-22604:ninja: build stopped: subcommand failed.
-22606:[93mTIP[0m pass --env-dir and --sdist-extract-dir to keep the build environment and sources, then see https://build.pypa.io/en/stable/how-to/troubleshooting.html#debug-a-failed-build for help debugging a failed build
-22607:[91mERROR[0m Backend subprocess exited when trying to invoke build_wheel
-22612:Traceback (most recent call last):
-22664:sh.ErrorReturnCode_1: 
-22830:FAILED: [code=1] pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/meson-generated_ccalendar.pyx.c.o 
-22853:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4680:59: error: member reference type 'int' is not a pointer
-22859:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4717:59: error: member reference type 'int' is not a pointer
-22865:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4754:59: error: member reference type 'int' is not a pointer
-22871:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4791:59: error: member reference type 'int' is not a pointer
-22877:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4828:69: error: member reference type 'int' is not a pointer
-22883:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4865:59: error: member reference type 'int' is not a pointer
-22889:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4902:59: error: member reference type 'int' is not a pointer
-22895:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4939:59: error: member reference type 'int' is not a pointer
-22901:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4976:59: error: member reference type 'int' is not a pointer
-22907:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:5013:59: error: member reference type 'int' is not a pointer
-22913:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:5050:59: error: member reference type 'int' is not a pointer
-22925:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:5814:63: error: member reference base type 'int' is not a structure or union
-22928:20 warnings and 12 errors generated.
-22930:FAILED: [code=1] pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/meson-generated_dtypes.pyx.c.o 
-22953:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:5817:59: error: member reference type 'int' is not a pointer
-22959:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:5854:59: error: member reference type 'int' is not a pointer
-22965:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:5891:59: error: member reference type 'int' is not a pointer
-22971:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:5928:59: error: member reference type 'int' is not a pointer
-22977:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:5965:69: error: member reference type 'int' is not a pointer
-22983:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:6002:59: error: member reference type 'int' is not a pointer
-22989:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:6039:59: error: member reference type 'int' is not a pointer
-22995:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:6076:59: error: member reference type 'int' is not a pointer
-23001:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:6113:59: error: member reference type 'int' is not a pointer
-23007:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:6150:59: error: member reference type 'int' is not a pointer
-23013:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:6187:59: error: member reference type 'int' is not a pointer
-23025:pandas/_libs/tslibs/dtypes.cpython-314-aarch64-linux-android.so.p/dtypes.pyx.c:6951:63: error: member reference base type 'int' is not a structure or union
-23028:20 warnings and 12 errors generated.
-23033:ninja: build stopped: subcommand failed.
-23035:[93mTIP[0m pass --env-dir and --sdist-extract-dir to keep the build environment and sources, then see https://build.pypa.io/en/stable/how-to/troubleshooting.html#debug-a-failed-build for help debugging a failed build
-23036:[91mERROR[0m Backend subprocess exited when trying to invoke build_wheel
-23048:[0m[1;31m# Command failed: ('/home/user/.venv/bin/python3', '-m', 'pythonforandroid.toolchain', 'create', '--dist_name=excelmerger', '--bootstrap=sdl2', '--requirements=python3,kivy==2.3.1,numpy==v2.3.4,pandas,openpyxl,xlrd', '--arch=arm64-v8a', '--copy-libs', '--color=always', '--storage-dir=/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a', '--ndk-api=24', '--ignore-setup-py', '--debug')[0m
-23049:[0m[1;31m# Error code: 1[0m
-23119:[0m[1;31m# Buildozer failed to execute the last command[0m
-23120:[0m[1;31m# The error might be hidden in the log above this error[0m
+22009:[1m[90m[DEBUG][39m[0m:   	FAILED: [code=1] pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/meson-generated_ccalendar.pyx.c.o
+22032:[1m[90m[DEBUG][39m[0m:   	pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4680:59: error: member reference type 'int' is not a pointer
+22038:[1m[90m[DEBUG][39m[0m:   	pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4717:59: error: member reference type 'int' is not a pointer
+22044:[1m[90m[DEBUG][39m[0m:   	pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4754:59: error: member reference type 'int' is not a pointer
+22050:[1m[90m[DEBUG][39m[0m:   	pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4791:59: error: member reference type 'int' is not a pointer
+22056:[1m[90m[DEBUG][39m[0m:   	pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4828:69: error: member reference type 'int' is not a pointer
+22062:[1m[90m[DEBUG][39m[0m:   	pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4865:59: error: member reference type 'int' is not a pointer
+22068:[1m[90m[DEBUG][39m[0m:   	pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4902:59: error: member reference type 'int' is not a pointer
+22074:[1m[90m[DEBUG][39m[0m:   	pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4939:59: error: member reference type 'int' is not a pointer
+22080:[1m[90m[DEBUG][39m[0m:   	pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4976:59: error: member reference type 'int' is not a pointer
+22086:[1m[90m[DEBUG][39m[0m:   	pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:5013:59: error: member reference type 'int' is not a pointer
+22092:[1m[90m[DEBUG][39m[0m:   	pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:5050:59: error: member reference type 'int' is not a pointer
+22104:[1m[90m[DEBUG][39m[0m:   	pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:5814:63: error: member reference base type 'int' is not a structure or union
+22107:[1m[90m[DEBUG][39m[0m:   	20 warnings and 12 errors generated.
+22113:[1m[90m[DEBUG][39m[0m:   	ninja: build stopped: subcommand failed.
+22115:[1m[90m[DEBUG][39m[0m:   	[93mTIP[0m pass --env-dir and --sdist-extract-dir to keep the build environment and sources, then see https://build.pypa.io/en/stable/how-to/troubleshooting.html#debug-a-failed-build for help debugging a failed build
+22116:[1m[90m[DEBUG][39m[0m:   	[91mERROR[0m Backend subprocess exited when trying to invoke build_wheel
+22117:Exception in thread background thread for pid 67231:
+22118:Traceback (most recent call last):
+22136:sh.ErrorReturnCode_1: 
+22301:FAILED: [code=1] pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/meson-generated_ccalendar.pyx.c.o 
+22324:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4680:59: error: member reference type 'int' is not a pointer
+22330:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4717:59: error: member reference type 'int' is not a pointer
+22336:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4754:59: error: member reference type 'int' is not a pointer
+22342:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4791:59: error: member reference type 'int' is not a pointer
+22348:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4828:69: error: member reference type 'int' is not a pointer
+22354:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4865:59: error: member reference type 'int' is not a pointer
+22360:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4902:59: error: member reference type 'int' is not a pointer
+22366:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4939:59: error: member reference type 'int' is not a pointer
+22372:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4976:59: error: member reference type 'int' is not a pointer
+22378:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:5013:59: error: member reference type 'int' is not a pointer
+22384:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:5050:59: error: member reference type 'int' is not a pointer
+22396:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:5814:63: error: member reference base type 'int' is not a structure or union
+22399:20 warnings and 12 errors generated.
+22405:ninja: build stopped: subcommand failed.
+22407:[93mTIP[0m pass --env-dir and --sdist-extract-dir to keep the build environment and sources, then see https://build.pypa.io/en/stable/how-to/troubleshooting.html#debug-a-failed-build for help debugging a failed build
+22408:[91mERROR[0m Backend subprocess exited when trying to invoke build_wheel
+22413:Traceback (most recent call last):
+22465:sh.ErrorReturnCode_1: 
+22630:FAILED: [code=1] pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/meson-generated_ccalendar.pyx.c.o 
+22653:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4680:59: error: member reference type 'int' is not a pointer
+22659:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4717:59: error: member reference type 'int' is not a pointer
+22665:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4754:59: error: member reference type 'int' is not a pointer
+22671:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4791:59: error: member reference type 'int' is not a pointer
+22677:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4828:69: error: member reference type 'int' is not a pointer
+22683:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4865:59: error: member reference type 'int' is not a pointer
+22689:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4902:59: error: member reference type 'int' is not a pointer
+22695:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4939:59: error: member reference type 'int' is not a pointer
+22701:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:4976:59: error: member reference type 'int' is not a pointer
+22707:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:5013:59: error: member reference type 'int' is not a pointer
+22713:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:5050:59: error: member reference type 'int' is not a pointer
+22725:pandas/_libs/tslibs/ccalendar.cpython-314-aarch64-linux-android.so.p/ccalendar.pyx.c:5814:63: error: member reference base type 'int' is not a structure or union
+22728:20 warnings and 12 errors generated.
+22734:ninja: build stopped: subcommand failed.
+22736:[93mTIP[0m pass --env-dir and --sdist-extract-dir to keep the build environment and sources, then see https://build.pypa.io/en/stable/how-to/troubleshooting.html#debug-a-failed-build for help debugging a failed build
+22737:[91mERROR[0m Backend subprocess exited when trying to invoke build_wheel
+22749:[0m[1;31m# Command failed: ('/home/user/.venv/bin/python3', '-m', 'pythonforandroid.toolchain', 'create', '--dist_name=excelmerger', '--bootstrap=sdl2', '--requirements=python3,kivy==2.3.1,numpy==v2.3.4,pandas==v2.3.3,openpyxl,xlrd', '--arch=arm64-v8a', '--copy-libs', '--color=always', '--storage-dir=/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a', '--ndk-api=24', '--ignore-setup-py', '--debug')[0m
+22750:[0m[1;31m# Error code: 1[0m
+22820:[0m[1;31m# Buildozer failed to execute the last command[0m
+22821:[0m[1;31m# The error might be hidden in the log above this error[0m

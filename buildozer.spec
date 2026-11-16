@@ -13,14 +13,14 @@ source.include_exts = py,png,jpg,kv,atlas,json,ttf
 # Версия
 version = 0.1
 
-# Зависимости. pandas тянет за собой numpy, openpyxl читает .xlsx, xlrd — .xls
-# numpy пиним на v2.3.4 (именно с "v" — p4a делает git checkout тега):
-# в 2.3.0-2.3.2 нет #include <unordered_map> в unique.cpp -> сборка под Android падает
-# Python 3.12: p4a по умолчанию берёт 3.14, под который pandas 2.3.x ещё не собирается.
-# pandas v2.3.3 и numpy v2.3.4 — версии, проверенные рецептами p4a (теги с "v" для git checkout).
-# Стек по умолчанию (Python 3.14 от p4a). pandas 3.1.1 — первая ветка с официальной
-# поддержкой Python 3.14 (2.3.x под 3.14 не компилируется). Теги с "v" для git checkout.
+# Стек по умолчанию (Python 3.14 от p4a). pandas v3.1.1 — первая ветка с официальной
+# поддержкой Python 3.14; numpy v2.3.4 — минимально требуемая для 3.14 и с фиксом
+# сборки unique.cpp. Теги указаны с "v", т.к. p4a делает `git checkout <версия>`.
 requirements = python3,kivy==2.3.1,numpy==v2.3.4,pandas==v3.1.1,openpyxl,xlrd
+
+# Локальный рецепт pandas (p4a.local_recipes ниже): штатный рецепт p4a тянет pandas
+# v2.3.0, которая под Python 3.14 не компилируется, а его патч не применяется к 3.x.
+p4a.local_recipes = ./p4a-recipes
 
 orientation = portrait
 fullscreen = 0

@@ -39,7 +39,7 @@ jobs:
           path: |
             /github/home/.buildozer
             .buildozer
-          key: buildozer-${{ hashFiles('buildozer.spec') }}
+          key: buildozer-${{ github.run_id }}
           restore-keys: |
             buildozer-
 

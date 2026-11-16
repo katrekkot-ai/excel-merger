@@ -1,60 +1,15 @@
-24727:[1m[90m[DEBUG][39m[0m:   	 	1. Declare 'dbgUseProgram' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
-24728:[1m[90m[DEBUG][39m[0m:   	 	2. Use an 'int' return type on 'dbgUseProgram' to allow an error code to be returned.
-24729:[1m[90m[DEBUG][39m[0m:   	 performance hint: kivy/graphics/cgl_backend/cgl_debug.pyx:1182:5: Exception check on 'gil_dbgUseProgram' will always require the GIL to be acquired.
-24731:[1m[90m[DEBUG][39m[0m:   	 	1. Declare 'gil_dbgUseProgram' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
-24732:[1m[90m[DEBUG][39m[0m:   	 	2. Use an 'int' return type on 'gil_dbgUseProgram' to allow an error code to be returned.
-24733:[1m[90m[DEBUG][39m[0m:   	 performance hint: kivy/graphics/cgl_backend/cgl_debug.pyx:1187:5: Exception check on 'dbgValidateProgram' will always require the GIL to be acquired.
-24735:[1m[90m[DEBUG][39m[0m:   	 	1. Declare 'dbgValidateProgram' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
-24736:[1m[90m[DEBUG][39m[0m:   	 	2. Use an 'int' return type on 'dbgValidateProgram' to allow an error code to be returned.
-24737:[1m[90m[DEBUG][39m[0m:   	 performance hint: kivy/graphics/cgl_backend/cgl_debug.pyx:1191:5: Exception check on 'gil_dbgValidateProgram' will always require the GIL to be acquired.
-24739:[1m[90m[DEBUG][39m[0m:   	 	1. Declare 'gil_dbgValidateProgram' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
-24740:[1m[90m[DEBUG][39m[0m:   	 	2. Use an 'int' return type on 'gil_dbgValidateProgram' to allow an error code to be returned.
-24741:[1m[90m[DEBUG][39m[0m:   	 performance hint: kivy/graphics/cgl_backend/cgl_debug.pyx:1196:5: Exception check on 'dbgVertexAttrib1f' will always require the GIL to be acquired.
-24743:[1m[90m[DEBUG][39m[0m:   	 	1. Declare 'dbgVertexAttrib1f' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
-24744:[1m[90m[DEBUG][39m[0m:   	 	2. Use an 'int' return type on 'dbgVertexAttrib1f' to allow an error code to be returned.
-24745:[1m[90m[DEBUG][39m[0m:   	 performance hint: kivy/graphics/cgl_backend/cgl_debug.pyx:1200:5: Exception check on 'gil_dbgVertexAttrib1f' will always require the GIL to be acquired.
-24747:[1m[90m[DEBUG][39m[0m:   	 	1. Declare 'gil_dbgVertexAttrib1f' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
-24748:[1m[90m[DEBUG][39m[0m:   	 	2. Use an 'int' return type on 'gil_dbgVertexAttrib1f' to allow an error code to be returned.
-24749:[1m[90m[DEBUG][39m[0m:   	 performance hint: kivy/graphics/cgl_backend/cgl_debug.pyx:1215:5: Exception check on 'dbgVertexAttrib2f' will always require the GIL to be acquired.
-24751:[1m[90m[DEBUG][39m[0m:   	 	1. Declare 'dbgVertexAttrib2f' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
-24752:[1m[90m[DEBUG][39m[0m:   	 	2. Use an 'int' return type on 'dbgVertexAttrib2f' to allow an error code to be returned.
-24753:[1m[90m[DEBUG][39m[0m:   	 performance hint: kivy/graphics/cgl_backend/cgl_debug.pyx:1219:5: Exception check on 'gil_dbgVertexAttrib2f' will always require the GIL to be acquired.
-24755:[1m[90m[DEBUG][39m[0m:   	 	1. Declare 'gil_dbgVertexAttrib2f' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
-24756:[1m[90m[DEBUG][39m[0m:   	 	2. Use an 'int' return type on 'gil_dbgVertexAttrib2f' to allow an error code to be returned.
-24757:[1m[90m[DEBUG][39m[0m:   	 performance hint: kivy/graphics/cgl_backend/cgl_debug.pyx:1234:5: Exception check on 'dbgVertexAttrib3f' will always require the GIL to be acquired.
-24759:[1m[90m[DEBUG][39m[0m:   	 	1. Declare 'dbgVertexAttrib3f' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
-24760:[1m[90m[DEBUG][39m[0m:   	 	2. Use an 'int' return type on 'dbgVertexAttrib3f' to allow an error code to be returned.
-24761:[1m[90m[DEBUG][39m[0m:   	 performance hint: kivy/graphics/cgl_backend/cgl_debug.pyx:1238:5: Exception check on 'gil_dbgVertexAttrib3f' will always require the GIL to be acquired.
-24763:[1m[90m[DEBUG][39m[0m:   	 	1. Declare 'gil_dbgVertexAttrib3f' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
-24764:[1m[90m[DEBUG][39m[0m:   	 	2. Use an 'int' return type on 'gil_dbgVertexAttrib3f' to allow an error code to be returned.
-24765:[1m[90m[DEBUG][39m[0m:   	 performance hint: kivy/graphics/cgl_backend/cgl_debug.pyx:1253:5: Exception check on 'dbgVertexAttrib4f' will always require the GIL to be acquired.
-24767:[1m[90m[DEBUG][39m[0m:   	 	1. Declare 'dbgVertexAttrib4f' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
-24768:[1m[90m[DEBUG][39m[0m:   	 	2. Use an 'int' return type on 'dbgVertexAttrib4f' to allow an error code to be returned.
-24769:[1m[90m[DEBUG][39m[0m:   	 performance hint: kivy/graphics/cgl_backend/cgl_debug.pyx:1257:5: Exception check on 'gil_dbgVertexAttrib4f' will always require the GIL to be acquired.
-24771:[1m[90m[DEBUG][39m[0m:   	 	1. Declare 'gil_dbgVertexAttrib4f' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
-24772:[1m[90m[DEBUG][39m[0m:   	 	2. Use an 'int' return type on 'gil_dbgVertexAttrib4f' to allow an error code to be returned.
-24773:[1m[90m[DEBUG][39m[0m:   	 performance hint: kivy/graphics/cgl_backend/cgl_debug.pyx:1272:5: Exception check on 'dbgVertexAttribPointer' will always require the GIL to be acquired.
-24775:[1m[90m[DEBUG][39m[0m:   	 	1. Declare 'dbgVertexAttribPointer' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
-24776:[1m[90m[DEBUG][39m[0m:   	 	2. Use an 'int' return type on 'dbgVertexAttribPointer' to allow an error code to be returned.
-24777:[1m[90m[DEBUG][39m[0m:   	 performance hint: kivy/graphics/cgl_backend/cgl_debug.pyx:1276:5: Exception check on 'gil_dbgVertexAttribPointer' will always require the GIL to be acquired.
-24779:[1m[90m[DEBUG][39m[0m:   	 	1. Declare 'gil_dbgVertexAttribPointer' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
-24780:[1m[90m[DEBUG][39m[0m:   	 	2. Use an 'int' return type on 'gil_dbgVertexAttribPointer' to allow an error code to be returned.
-24781:[1m[90m[DEBUG][39m[0m:   	 performance hint: kivy/graphics/cgl_backend/cgl_debug.pyx:1281:5: Exception check on 'dbgViewport' will always require the GIL to be acquired.
-24783:[1m[90m[DEBUG][39m[0m:   	 	1. Declare 'dbgViewport' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
-24784:[1m[90m[DEBUG][39m[0m:   	 	2. Use an 'int' return type on 'dbgViewport' to allow an error code to be returned.
-24785:[1m[90m[DEBUG][39m[0m:   	 performance hint: kivy/graphics/cgl_backend/cgl_debug.pyx:1285:5: Exception check on 'gil_dbgViewport' will always require the GIL to be acquired.
-24787:[1m[90m[DEBUG][39m[0m:   	 	1. Declare 'gil_dbgViewport' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
-24788:[1m[90m[DEBUG][39m[0m:   	 	2. Use an 'int' return type on 'gil_dbgViewport' to allow an error code to be returned.
-24869:[1m[90m[DEBUG][39m[0m:   	 performance hint: kivy/core/window/_window_sdl2.pyx:822:5: Exception check on 'custom_titlebar_handler_callback' will always require the GIL to be acquired. Declare 'custom_titlebar_handler_callback' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
-26432:[1m[90m[DEBUG][39m[0m:   	[31mERROR: charset_normalizer-3.5.2-cp314-cp314-android_24_arm64_v8a.whl is not a supported wheel on this platform.[0m
-26433:Exception in thread background thread for pid 68793:
-26434:Traceback (most recent call last):
-26452:sh.ErrorReturnCode_1: 
-26458:[31mERROR: charset_normalizer-3.5.2-cp314-cp314-android_24_arm64_v8a.whl is not a supported wheel on this platform.[0m
-26463:Traceback (most recent call last):
-26519:sh.ErrorReturnCode_1: 
-26525:[31mERROR: charset_normalizer-3.5.2-cp314-cp314-android_24_arm64_v8a.whl is not a supported wheel on this platform.[0m
-26537:[0m[1;31m# Command failed: ('/home/user/.venv/bin/python3', '-m', 'pythonforandroid.toolchain', 'create', '--dist_name=excelmerger', '--bootstrap=sdl2', '--requirements=python3,kivy==2.3.1,numpy==v2.3.4,pandas==v3.1.1,openpyxl,xlrd,charset-normalizer==3.3.2', '--arch=arm64-v8a', '--copy-libs', '--local-recipes', '/__w/excel-merger/excel-merger/p4a-recipes', '--color=always', '--storage-dir=/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a', '--ndk-api=24', '--ignore-setup-py', '--debug')[0m
-26538:[0m[1;31m# Error code: 1[0m
-26609:[0m[1;31m# Buildozer failed to execute the last command[0m
-26610:[0m[1;31m# The error might be hidden in the log above this error[0m
+207:[0m[1;30m# build-tools folder not found /github/home/.buildozer/android/platform/android-sdk/build-tools[0m
+766:[1m[INFO][0m:    [1m[94mThe requirements (certifi, chardet, filetype, idna, openpyxl, python-dateutil, pytz, six, urllib3, xlrd) were not found as recipes, they will be installed with pip.[0m
+2182:[1m[90m[DEBUG][39m[0m:   	/usr/bin/patch: **** Can't open patch file /__w/excel-merger/excel-merger/p4a-recipes/kivy/use_cython.patch : No such file or directory
+2183:Exception in thread background thread for pid 2503:
+2184:Traceback (most recent call last):
+2202:sh.ErrorReturnCode_2: 
+2207:/usr/bin/patch: **** Can't open patch file /__w/excel-merger/excel-merger/p4a-recipes/kivy/use_cython.patch : No such file or directory
+2213:[33m	/usr/bin/patch: **** Can't open patch file /__w/excel-merger/excel-merger/p4a-recipes/kivy/use_cython.patch : No such file or directory[39m
+2216:Traceback (most recent call last):
+2267:sh.ErrorReturnCode_2: 
+2272:/usr/bin/patch: **** Can't open patch file /__w/excel-merger/excel-merger/p4a-recipes/kivy/use_cython.patch : No such file or directory
+2284:[0m[1;31m# Command failed: ('/home/user/.venv/bin/python3', '-m', 'pythonforandroid.toolchain', 'create', '--dist_name=excelmerger', '--bootstrap=sdl2', '--requirements=python3,kivy==2.3.1,numpy==v2.3.4,pandas==v3.1.1,openpyxl,xlrd', '--arch=arm64-v8a', '--copy-libs', '--local-recipes', '/__w/excel-merger/excel-merger/p4a-recipes', '--color=always', '--storage-dir=/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a', '--ndk-api=24', '--ignore-setup-py', '--debug')[0m
+2285:[0m[1;31m# Error code: 1[0m
+2355:[0m[1;31m# Buildozer failed to execute the last command[0m
+2356:[0m[1;31m# The error might be hidden in the log above this error[0m

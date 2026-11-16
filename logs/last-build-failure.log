@@ -1,0 +1,400 @@
+[1m[90m[DEBUG][39m[0m:   	checking for a race-free mkdir -p... /usr/bin/mkdir -p
+[1m[90m[DEBUG][39m[0m:   	checking for gawk... no
+[1m[90m[DEBUG][39m[0m:   	checking for mawk... mawk
+[1m[90m[DEBUG][39m[0m:   	checking whether make -j4 sets $(MAKE)... yes
+[1m[90m[DEBUG][39m[0m:   	checking whether make -j4 supports nested variables... yes
+[1m[90m[DEBUG][39m[0m:   	checking xargs -n works... yes
+[1m[90m[DEBUG][39m[0m:   	checking whether UID '0' is supported by ustar format... yes
+[1m[90m[DEBUG][39m[0m:   	checking whether GID '0' is supported by ustar format... yes
+[1m[90m[DEBUG][39m[0m:   	checking how to create a ustar tar archive... gnutar
+[1m[90m[DEBUG][39m[0m:   	checking for aarch64-linux-android-gcc... /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC
+[1m[90m[DEBUG][39m[0m:   	checking whether the C compiler works... yes
+[1m[90m[DEBUG][39m[0m:   	checking for C compiler default output file name... a.out
+[1m[90m[DEBUG][39m[0m:   	checking for suffix of executables...
+[1m[90m[DEBUG][39m[0m:   	checking whether we are cross compiling... yes
+[1m[90m[DEBUG][39m[0m:   	checking for suffix of object files... o
+[1m[90m[DEBUG][39m[0m:   	checking whether the compiler supports GNU C... yes
+[1m[90m[DEBUG][39m[0m:   	checking whether /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC accepts -g... yes
+[1m[90m[DEBUG][39m[0m:   	checking for /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC option to enable C11 features... none needed
+[1m[90m[DEBUG][39m[0m:   	checking whether /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC understands -c and -o together... yes
+[1m[90m[DEBUG][39m[0m:   	checking whether make -j4 supports the include directive... yes (GNU style)
+[1m[90m[DEBUG][39m[0m:   	checking dependency style of /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC... gcc3
+[1m[90m[DEBUG][39m[0m:   	checking whether the compiler supports GNU C++... yes
+[1m[90m[DEBUG][39m[0m:   	checking whether /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC accepts -g... yes
+[1m[90m[DEBUG][39m[0m:   	checking for /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC option to enable C++11 features... none needed
+[1m[90m[DEBUG][39m[0m:   	checking dependency style of /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC... gcc3
+[1m[90m[DEBUG][39m[0m:   	checking dependency style of /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC... gcc3
+[1m[90m[DEBUG][39m[0m:   	checking how to print strings... printf
+[1m[90m[DEBUG][39m[0m:   	checking for a sed that does not truncate output... /usr/bin/sed
+[1m[90m[DEBUG][39m[0m:   	checking for grep that handles long lines and -e... /usr/bin/grep
+[1m[90m[DEBUG][39m[0m:   	checking for egrep... /usr/bin/grep -E
+[1m[90m[DEBUG][39m[0m:   	checking for fgrep... /usr/bin/grep -F
+[1m[90m[DEBUG][39m[0m:   	checking for ld used by /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC... /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/ld
+[1m[90m[DEBUG][39m[0m:   	checking if the linker (/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/ld) is GNU ld... yes
+[1m[90m[DEBUG][39m[0m:   	checking for BSD- or MS-compatible name lister (nm)... no
+[1m[90m[DEBUG][39m[0m:   	checking for aarch64-linux-android-dumpbin... no
+[1m[90m[DEBUG][39m[0m:   	checking for aarch64-linux-android-link... no
+[1m[90m[DEBUG][39m[0m:   	checking for dumpbin... no
+[1m[90m[DEBUG][39m[0m:   	checking for link... link -dump
+[1m[90m[DEBUG][39m[0m:   	configure: WARNING: using cross tools not prefixed with host triplet
+[1m[90m[DEBUG][39m[0m:   	checking the name lister (nm) interface... BSD nm
+[1m[90m[DEBUG][39m[0m:   	checking whether ln -s works... yes
+[1m[90m[DEBUG][39m[0m:   	checking the maximum length of command line arguments... 3145728
+[1m[90m[DEBUG][39m[0m:   	checking how to convert x86_64-pc-linux-android file names to aarch64-unknown-linux-android format... func_convert_file_noop
+[1m[90m[DEBUG][39m[0m:   	checking how to convert x86_64-pc-linux-android file names to toolchain format... func_convert_file_noop
+[1m[90m[DEBUG][39m[0m:   	checking for /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/ld option to reload object files... -r
+[1m[90m[DEBUG][39m[0m:   	checking for file... file
+[1m[90m[DEBUG][39m[0m:   	checking for aarch64-linux-android-objdump... no
+[1m[90m[DEBUG][39m[0m:   	checking for objdump... objdump
+[1m[90m[DEBUG][39m[0m:   	checking how to recognize dependent libraries... pass_all
+[1m[90m[DEBUG][39m[0m:   	checking for aarch64-linux-android-dlltool... no
+[1m[90m[DEBUG][39m[0m:   	checking for dlltool... no
+[1m[90m[DEBUG][39m[0m:   	checking how to associate runtime and link libraries... printf %s\n
+[1m[90m[DEBUG][39m[0m:   	checking for aarch64-linux-android-ranlib... /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib
+[1m[90m[DEBUG][39m[0m:   	checking for aarch64-linux-android-ar... /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar
+[1m[90m[DEBUG][39m[0m:   	checking for archiver @FILE support... @
+[1m[90m[DEBUG][39m[0m:   	checking for aarch64-linux-android-strip... (cached) /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-strip --strip-unneeded
+[1m[90m[DEBUG][39m[0m:   	checking command to parse nm output from /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC object... ok
+[1m[90m[DEBUG][39m[0m:   	checking for sysroot... no
+[1m[90m[DEBUG][39m[0m:   	checking for a working dd... /usr/bin/dd
+[1m[90m[DEBUG][39m[0m:   	checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+[1m[90m[DEBUG][39m[0m:   	checking for aarch64-linux-android-mt... no
+[1m[90m[DEBUG][39m[0m:   	checking for mt... no
+[1m[90m[DEBUG][39m[0m:   	checking if : is a manifest tool... no
+[1m[90m[DEBUG][39m[0m:   	checking for stdio.h... yes
+[1m[90m[DEBUG][39m[0m:   	checking for stdlib.h... yes
+[1m[90m[DEBUG][39m[0m:   	checking for string.h... yes
+[1m[90m[DEBUG][39m[0m:   	checking for inttypes.h... yes
+[1m[90m[DEBUG][39m[0m:   	checking for stdint.h... yes
+[1m[90m[DEBUG][39m[0m:   	checking for strings.h... yes
+[1m[90m[DEBUG][39m[0m:   	checking for sys/stat.h... yes
+[1m[90m[DEBUG][39m[0m:   	checking for sys/types.h... yes
+[1m[90m[DEBUG][39m[0m:   	checking for unistd.h... yes
+[1m[90m[DEBUG][39m[0m:   	checking for dlfcn.h... yes
+[1m[90m[DEBUG][39m[0m:   	checking for objdir... .libs
+[1m[90m[DEBUG][39m[0m:   	checking if /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC supports -fno-rtti -fno-exceptions... yes
+[1m[90m[DEBUG][39m[0m:   	checking for /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC option to produce PIC... -fPIC -DPIC
+[1m[90m[DEBUG][39m[0m:   	checking if /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC PIC flag -fPIC -DPIC works... yes
+[1m[90m[DEBUG][39m[0m:   	checking if /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC static flag -static works... yes
+[1m[90m[DEBUG][39m[0m:   	checking if /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC supports -c -o file.o... yes
+[1m[90m[DEBUG][39m[0m:   	checking if /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC supports -c -o file.o... (cached) yes
+[1m[90m[DEBUG][39m[0m:   	checking whether the /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC linker (/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/ld) supports shared libraries... yes
+[1m[90m[DEBUG][39m[0m:   	checking whether -lc should be explicitly linked in... no
+[1m[90m[DEBUG][39m[0m:   	checking dynamic linker characteristics... Android linker
+[1m[90m[DEBUG][39m[0m:   	checking how to hardcode library paths into programs... immediate
+[1m[90m[DEBUG][39m[0m:   	checking whether stripping libraries is possible... yes
+[1m[90m[DEBUG][39m[0m:   	checking if libtool supports shared libraries... yes
+[1m[90m[DEBUG][39m[0m:   	checking whether to build shared libraries... yes
+[1m[90m[DEBUG][39m[0m:   	checking whether to build static libraries... yes
+[1m[90m[DEBUG][39m[0m:   	checking how to run the C++ preprocessor... /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -E
+[1m[90m[DEBUG][39m[0m:   	checking for ld used by /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC... /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/ld
+[1m[90m[DEBUG][39m[0m:   	checking if the linker (/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/ld) is GNU ld... yes
+[1m[90m[DEBUG][39m[0m:   	checking whether the /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC linker (/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/ld) supports shared libraries... yes
+[1m[90m[DEBUG][39m[0m:   	checking for /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC option to produce PIC... -fPIC -DPIC
+[1m[90m[DEBUG][39m[0m:   	checking if /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC PIC flag -fPIC -DPIC works... yes
+[1m[90m[DEBUG][39m[0m:   	checking if /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC static flag -static works... yes
+[1m[90m[DEBUG][39m[0m:   	checking if /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC supports -c -o file.o... yes
+[1m[90m[DEBUG][39m[0m:   	checking if /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC supports -c -o file.o... (cached) yes
+[1m[90m[DEBUG][39m[0m:   	checking whether the /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC linker (/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/ld) supports shared libraries... yes
+[1m[90m[DEBUG][39m[0m:   	checking dynamic linker characteristics... Android linker
+[1m[90m[DEBUG][39m[0m:   	checking how to hardcode library paths into programs... immediate
+[1m[90m[DEBUG][39m[0m:   	checking for aarch64-linux-android-readelf... /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-readelf
+[1m[90m[DEBUG][39m[0m:   	checking size of size_t... 8
+[1m[90m[DEBUG][39m[0m:   	checking for C compiler vendor... clang
+[1m[90m[DEBUG][39m[0m:   	checking whether C compiler accepts -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC... yes
+[1m[90m[DEBUG][39m[0m:   	checking CFLAGS for maximum warnings... -Wall
+[1m[90m[DEBUG][39m[0m:   	checking whether to enable maintainer-specific portions of Makefiles... no
+[1m[90m[DEBUG][39m[0m:   	checking for sys/memfd.h... no
+[1m[90m[DEBUG][39m[0m:   	checking for memfd_create... no
+[1m[90m[DEBUG][39m[0m:   	checking for sys/mman.h... yes
+[1m[90m[DEBUG][39m[0m:   	checking for mmap... yes
+[1m[90m[DEBUG][39m[0m:   	checking for mkostemp... yes
+[1m[90m[DEBUG][39m[0m:   	checking for mkstemp... yes
+[1m[90m[DEBUG][39m[0m:   	checking for sys/mman.h... (cached) yes
+[1m[90m[DEBUG][39m[0m:   	checking for mmap... (cached) yes
+[1m[90m[DEBUG][39m[0m:   	checking whether read-only mmap of a plain file works... yes
+[1m[90m[DEBUG][39m[0m:   	checking whether mmap from /dev/zero works... yes
+[1m[90m[DEBUG][39m[0m:   	checking for MAP_ANON(YMOUS)... yes
+[1m[90m[DEBUG][39m[0m:   	checking whether mmap with MAP_ANON(YMOUS) works... yes
+[1m[90m[DEBUG][39m[0m:   	checking for egrep... (cached) /usr/bin/grep -E
+[1m[90m[DEBUG][39m[0m:   	checking for memcpy... yes
+[1m[90m[DEBUG][39m[0m:   	checking for size_t... yes
+[1m[90m[DEBUG][39m[0m:   	checking for working alloca.h... yes
+[1m[90m[DEBUG][39m[0m:   	checking for alloca... yes
+[1m[90m[DEBUG][39m[0m:   	checking size of double... 8
+[1m[90m[DEBUG][39m[0m:   	checking size of long double... 16
+[1m[90m[DEBUG][39m[0m:   	checking whether byte ordering is bigendian... no
+[1m[90m[DEBUG][39m[0m:   	checking assembler .cfi pseudo-op support... yes
+[1m[90m[DEBUG][39m[0m:   	checking whether compiler supports pointer authentication... no
+[1m[90m[DEBUG][39m[0m:   	checking for _ prefix in compiled symbols... no
+[1m[90m[DEBUG][39m[0m:   	checking whether C compiler accepts -fno-lto... yes
+[1m[90m[DEBUG][39m[0m:   	checking whether .eh_frame section should be read-only... yes
+[1m[90m[DEBUG][39m[0m:   	checking for __attribute__((visibility("hidden")))... yes
+[1m[90m[DEBUG][39m[0m:   	clang-14: error: unsupported option '-print-multi-os-directory'
+[1m[90m[DEBUG][39m[0m:   	clang-14: error: no input files
+[1m[90m[DEBUG][39m[0m:   	checking for ld used by /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC... (cached) /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/ld
+[1m[90m[DEBUG][39m[0m:   	checking if the linker (/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/ld) is GNU ld... (cached) yes
+[1m[90m[DEBUG][39m[0m:   	checking for shared libgcc... no
+[1m[90m[DEBUG][39m[0m:   	configure: versioning on shared library symbols is gnu
+[1m[90m[DEBUG][39m[0m:   	checking that generated files are newer than configure... done
+[1m[90m[DEBUG][39m[0m:   	configure: creating ./config.status
+[1m[90m[DEBUG][39m[0m:   	config.status: creating include/Makefile
+[1m[90m[DEBUG][39m[0m:   	config.status: creating include/ffi.h
+[1m[90m[DEBUG][39m[0m:   	config.status: creating Makefile
+[1m[90m[DEBUG][39m[0m:   	config.status: creating testsuite/Makefile
+[1m[90m[DEBUG][39m[0m:   	config.status: creating man/Makefile
+[1m[90m[DEBUG][39m[0m:   	config.status: creating doc/Makefile
+[1m[90m[DEBUG][39m[0m:   	config.status: creating libffi.pc
+[1m[90m[DEBUG][39m[0m:   	config.status: creating fficonfig.h
+[1m[90m[DEBUG][39m[0m:   	config.status: executing buildir commands
+[1m[90m[DEBUG][39m[0m:   	config.status: skipping top_srcdir/Makefile - not created
+[1m[90m[DEBUG][39m[0m:   	config.status: executing depfiles commands
+[1m[90m[DEBUG][39m[0m:   	config.status: executing libtool commands
+[1m[90m[DEBUG][39m[0m:   	config.status: executing include commands
+[1m[90m[DEBUG][39m[0m:   	config.status: executing src commands
+stty: standard input: Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running make -j 4 libffi.la[0m
+[1m[90m[DEBUG][39m[0m:   	/usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I.  -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14  -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -DAARCH64 -DGENERATE_LIBFFI_MAP \
+[1m[90m[DEBUG][39m[0m:   	 -E -x assembler-with-cpp -o libffi.map ./libffi.map.in
+[1m[90m[DEBUG][39m[0m:   	depbase=`echo src/prep_cif.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+[1m[90m[DEBUG][39m[0m:   	/bin/bash ./libtool  --tag=CC   --mode=compile /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I.  -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14  -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -MT src/prep_cif.lo -MD -MP -MF $depbase.Tpo -c -o src/prep_cif.lo src/prep_cif.c &&\
+[1m[90m[DEBUG][39m[0m:   	mv -f $depbase.Tpo $depbase.Plo
+[1m[90m[DEBUG][39m[0m:   	depbase=`echo src/types.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+[1m[90m[DEBUG][39m[0m:   	/bin/bash ./libtool  --tag=CC   --mode=compile /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I.  -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14  -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -MT src/types.lo -MD -MP -MF $depbase.Tpo -c -o src/types.lo src/types.c &&\
+[1m[90m[DEBUG][39m[0m:   	mv -f $depbase.Tpo $depbase.Plo
+[1m[90m[DEBUG][39m[0m:   	depbase=`echo src/raw_api.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+[1m[90m[DEBUG][39m[0m:   	/bin/bash ./libtool  --tag=CC   --mode=compile /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I.  -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14  -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -MT src/raw_api.lo -MD -MP -MF $depbase.Tpo -c -o src/raw_api.lo src/raw_api.c &&\
+[1m[90m[DEBUG][39m[0m:   	mv -f $depbase.Tpo $depbase.Plo
+[1m[90m[DEBUG][39m[0m:   	depbase=`echo src/java_raw_api.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+[1m[90m[DEBUG][39m[0m:   	/bin/bash ./libtool  --tag=CC   --mode=compile /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I.  -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14  -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -MT src/java_raw_api.lo -MD -MP -MF $depbase.Tpo -c -o src/java_raw_api.lo src/java_raw_api.c &&\
+[1m[90m[DEBUG][39m[0m:   	mv -f $depbase.Tpo $depbase.Plo
+[1m[90m[DEBUG][39m[0m:   	libtool: compile:  /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I. -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14 -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -MT src/raw_api.lo -MD -MP -MF src/.deps/raw_api.Tpo -c src/raw_api.c  -fPIC -DPIC -o src/.libs/raw_api.o
+[1m[90m[DEBUG][39m[0m:   	libtool: compile:  /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I. -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14 -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -MT src/prep_cif.lo -MD -MP -MF src/.deps/prep_cif.Tpo -c src/prep_cif.c  -fPIC -DPIC -o src/.libs/prep_cif.o
+[1m[90m[DEBUG][39m[0m:   	libtool: compile:  /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I. -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14 -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -MT src/java_raw_api.lo -MD -MP -MF src/.deps/java_raw_api.Tpo -c src/java_raw_api.c  -fPIC -DPIC -o src/.libs/java_raw_api.o
+[1m[90m[DEBUG][39m[0m:   	libtool: compile:  /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I. -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14 -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -MT src/types.lo -MD -MP -MF src/.deps/types.Tpo -c src/types.c  -fPIC -DPIC -o src/.libs/types.o
+[1m[90m[DEBUG][39m[0m:   	src/java_raw_api.c:328:46: warning: 'ffi_java_raw_size' is deprecated [-Wdeprecated-declarations]
+[1m[90m[DEBUG][39m[0m:   	  ffi_java_raw *raw = (ffi_java_raw*)alloca (ffi_java_raw_size (cif));
+[1m[90m[DEBUG][39m[0m:   	                                             ^
+[1m[90m[DEBUG][39m[0m:   	./include/ffi.h:301:56: note: 'ffi_java_raw_size' has been explicitly marked deprecated here
+[1m[90m[DEBUG][39m[0m:   	size_t ffi_java_raw_size (ffi_cif *cif) __attribute__((deprecated));
+[1m[90m[DEBUG][39m[0m:   	                                                       ^
+[1m[90m[DEBUG][39m[0m:   	src/java_raw_api.c:331:3: warning: 'ffi_java_ptrarray_to_raw' is deprecated [-Wdeprecated-declarations]
+[1m[90m[DEBUG][39m[0m:   	  ffi_java_ptrarray_to_raw (cif, avalue, raw);
+[1m[90m[DEBUG][39m[0m:   	  ^
+[1m[90m[DEBUG][39m[0m:   	./include/ffi.h:297:93: note: 'ffi_java_ptrarray_to_raw' has been explicitly marked deprecated here
+[1m[90m[DEBUG][39m[0m:   	void ffi_java_ptrarray_to_raw (ffi_cif *cif, void **args, ffi_java_raw *raw) __attribute__((deprecated));
+[1m[90m[DEBUG][39m[0m:   	                                                                                            ^
+[1m[90m[DEBUG][39m[0m:   	2 warnings generated.
+[1m[90m[DEBUG][39m[0m:   	libtool: compile:  /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I. -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14 -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -MT src/types.lo -MD -MP -MF src/.deps/types.Tpo -c src/types.c -o src/types.o >/dev/null 2>&1
+[1m[90m[DEBUG][39m[0m:   	libtool: compile:  /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I. -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14 -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -MT src/raw_api.lo -MD -MP -MF src/.deps/raw_api.Tpo -c src/raw_api.c -o src/raw_api.o >/dev/null 2>&1
+[1m[90m[DEBUG][39m[0m:   	libtool: compile:  /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I. -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14 -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -MT src/java_raw_api.lo -MD -MP -MF src/.deps/java_raw_api.Tpo -c src/java_raw_api.c -o src/java_raw_api.o >/dev/null 2>&1
+[1m[90m[DEBUG][39m[0m:   	libtool: compile:  /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I. -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14 -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -MT src/prep_cif.lo -MD -MP -MF src/.deps/prep_cif.Tpo -c src/prep_cif.c -o src/prep_cif.o >/dev/null 2>&1
+[1m[90m[DEBUG][39m[0m:   	depbase=`echo src/closures.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+[1m[90m[DEBUG][39m[0m:   	/bin/bash ./libtool  --tag=CC   --mode=compile /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I.  -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14  -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -MT src/closures.lo -MD -MP -MF $depbase.Tpo -c -o src/closures.lo src/closures.c &&\
+[1m[90m[DEBUG][39m[0m:   	mv -f $depbase.Tpo $depbase.Plo
+[1m[90m[DEBUG][39m[0m:   	depbase=`echo src/tramp.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+[1m[90m[DEBUG][39m[0m:   	/bin/bash ./libtool  --tag=CC   --mode=compile /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I.  -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14  -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -MT src/tramp.lo -MD -MP -MF $depbase.Tpo -c -o src/tramp.lo src/tramp.c &&\
+[1m[90m[DEBUG][39m[0m:   	mv -f $depbase.Tpo $depbase.Plo
+[1m[90m[DEBUG][39m[0m:   	depbase=`echo src/aarch64/ffi.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+[1m[90m[DEBUG][39m[0m:   	/bin/bash ./libtool  --tag=CC   --mode=compile /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I.  -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14  -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -MT src/aarch64/ffi.lo -MD -MP -MF $depbase.Tpo -c -o src/aarch64/ffi.lo src/aarch64/ffi.c &&\
+[1m[90m[DEBUG][39m[0m:   	mv -f $depbase.Tpo $depbase.Plo
+[1m[90m[DEBUG][39m[0m:   	depbase=`echo src/aarch64/sysv.lo | sed 's|[^/]*$|.deps/&|;s|\.lo$||'`;\
+[1m[90m[DEBUG][39m[0m:   	/bin/bash ./libtool  --tag=CC   --mode=compile /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I.  -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14 -I. -I./include -Iinclude -I./src -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -MT src/aarch64/sysv.lo -MD -MP -MF $depbase.Tpo -c -o src/aarch64/sysv.lo src/aarch64/sysv.S &&\
+[1m[90m[DEBUG][39m[0m:   	mv -f $depbase.Tpo $depbase.Plo
+[1m[90m[DEBUG][39m[0m:   	libtool: compile:  /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I. -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14 -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -MT src/closures.lo -MD -MP -MF src/.deps/closures.Tpo -c src/closures.c  -fPIC -DPIC -o src/.libs/closures.o
+[1m[90m[DEBUG][39m[0m:   	libtool: compile:  /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I. -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14 -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -MT src/tramp.lo -MD -MP -MF src/.deps/tramp.Tpo -c src/tramp.c  -fPIC -DPIC -o src/.libs/tramp.o
+[1m[90m[DEBUG][39m[0m:   	libtool: compile:  /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I. -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14 -I. -I./include -Iinclude -I./src -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -MT src/aarch64/sysv.lo -MD -MP -MF src/aarch64/.deps/sysv.Tpo -c src/aarch64/sysv.S  -fPIC -DPIC -o src/aarch64/.libs/sysv.o
+[1m[90m[DEBUG][39m[0m:   	libtool: compile:  /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I. -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14 -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -MT src/aarch64/ffi.lo -MD -MP -MF src/aarch64/.deps/ffi.Tpo -c src/aarch64/ffi.c  -fPIC -DPIC -o src/aarch64/.libs/ffi.o
+[1m[90m[DEBUG][39m[0m:   	libtool: compile:  /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I. -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14 -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -MT src/tramp.lo -MD -MP -MF src/.deps/tramp.Tpo -c src/tramp.c -o src/tramp.o >/dev/null 2>&1
+[1m[90m[DEBUG][39m[0m:   	libtool: compile:  /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I. -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14 -I. -I./include -Iinclude -I./src -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -MT src/aarch64/sysv.lo -MD -MP -MF src/aarch64/.deps/sysv.Tpo -c src/aarch64/sysv.S -o src/aarch64/sysv.o >/dev/null 2>&1
+[1m[90m[DEBUG][39m[0m:   	libtool: compile:  /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I. -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14 -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -MT src/aarch64/ffi.lo -MD -MP -MF src/aarch64/.deps/ffi.Tpo -c src/aarch64/ffi.c -o src/aarch64/ffi.o >/dev/null 2>&1
+[1m[90m[DEBUG][39m[0m:   	libtool: compile:  /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -DHAVE_CONFIG_H -I. -I. -I./include -Iinclude -I./src -DANDROID -I/github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -I/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/python3-libbz2-liblzma/arm64-v8a__ndk_target_24/python3/android-build/android-root/include/python3.14 -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -MT src/closures.lo -MD -MP -MF src/.deps/closures.Tpo -c src/closures.c -o src/closures.o >/dev/null 2>&1
+[1m[90m[DEBUG][39m[0m:   	/bin/bash ./libtool  --tag=CC   --mode=link /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC  -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -Wall -fexceptions -no-undefined -avoid-version  '-L/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/libs_collections/excelmerger/arm64-v8a'  -L/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/libs_collections/excelmerger/arm64-v8a -o libffi.la -rpath /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/libffi/arm64-v8a__ndk_target_24/libffi/lib src/prep_cif.lo src/types.lo src/raw_api.lo src/java_raw_api.lo src/closures.lo src/tramp.lo  src/aarch64/ffi.lo src/aarch64/sysv.lo
+[1m[90m[DEBUG][39m[0m:   	libtool: link: /usr/bin/ccache /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -target aarch64-linux-android24 -fomit-frame-pointer -march=armv8-a -fPIC -shared  -fPIC -DPIC  src/.libs/prep_cif.o src/.libs/types.o src/.libs/raw_api.o src/.libs/java_raw_api.o src/.libs/closures.o src/.libs/tramp.o src/aarch64/.libs/ffi.o src/aarch64/.libs/sysv.o   -L/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/libs_collections/excelmerger/arm64-v8a  -march=armv8-a -march=armv8-a   -Wl,-soname -Wl,libffi.so -o .libs/libffi.so
+[1m[90m[DEBUG][39m[0m:   	libtool: link: /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar cr .libs/libffi.a  src/prep_cif.o src/types.o src/raw_api.o src/java_raw_api.o src/closures.o src/tramp.o src/aarch64/ffi.o src/aarch64/sysv.o
+[1m[90m[DEBUG][39m[0m:   	libtool: link: /github/home/.buildozer/android/platform/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib .libs/libffi.a
+[1m[90m[DEBUG][39m[0m:   	libtool: link: ( cd ".libs" && rm -f "libffi.la" && ln -s "../libffi.la" "libffi.la" )
+[1m[INFO][0m:    [36m<- directory context /__w/excel-merger/excel-merger/.buildozer/android/platform/python-for-android[39m
+stty: standard input: Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running cp /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/libffi/arm64-v8a__ndk_target_24/libffi/.libs/libffi.so /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/libs_collections/excelmerger/arm64-v8a[0m
+[1m[INFO][0m:    [1m[32mBuilding liblzma for arm64-v8a[0m[39m
+[1m[INFO][0m:    [36m-> directory context /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/other_builds/liblzma/arm64-v8a__ndk_target_24/liblzma[39m
+stty: standard input: Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running autoreconf -vif[0m
+[1m[90m[DEBUG][39m[0m:   	autoreconf: export WARNINGS=
+[1m[90m[DEBUG][39m[0m:   	autoreconf: Entering directory '.'
+[1m[90m[DEBUG][39m[0m:   	autoreconf: running: autopoint --force
+[1m[90m[DEBUG][39m[0m:   	Can't exec "autopoint": No such file or directory at /usr/share/autoconf/Autom4te/FileUtils.pm line 318.
+[1m[90m[DEBUG][39m[0m:   	autoreconf: error: autopoint failed with exit status: 2
+Exception in thread background thread for pid 20038:
+Traceback (most recent call last):
+  File "/usr/lib/python3.14/threading.py", line 1082, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/usr/lib/python3.14/threading.py", line 1024, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/.venv/lib/python3.14/site-packages/sh/__init__.py", line 1709, in wrap
+    fn(*rgs, **kwargs)
+    ~~^^^^^^^^^^^^^^^^
+  File "/home/user/.venv/lib/python3.14/site-packages/sh/__init__.py", line 2720, in background_thread
+    handle_exit_code(exit_code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/user/.venv/lib/python3.14/site-packages/sh/__init__.py", line 2411, in fn
+    return self.command.handle_command_exit_code(exit_code)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/user/.venv/lib/python3.14/site-packages/sh/__init__.py", line 820, in handle_command_exit_code
+    raise exc
+sh.ErrorReturnCode_2: 
+
+  RAN: /usr/bin/autoreconf -vif
+
+  STDOUT:
+autoreconf: export WARNINGS=
+autoreconf: Entering directory '.'
+autoreconf: running: autopoint --force
+Can't exec "autopoint": No such file or directory at /usr/share/autoconf/Autom4te/FileUtils.pm line 318.
+autoreconf: error: autopoint failed with exit status: 2
+
+
+  STDERR:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/__w/excel-merger/excel-merger/.buildozer/android/platform/python-for-android/pythonforandroid/toolchain.py", line 1290, in <module>
+    main()
+    ~~~~^^
+  File "/__w/excel-merger/excel-merger/.buildozer/android/platform/python-for-android/pythonforandroid/entrypoints.py", line 18, in main
+    ToolchainCL()
+    ~~~~~~~~~~~^^
+  File "/__w/excel-merger/excel-merger/.buildozer/android/platform/python-for-android/pythonforandroid/toolchain.py", line 721, in __init__
+    getattr(self, command)(args)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/__w/excel-merger/excel-merger/.buildozer/android/platform/python-for-android/pythonforandroid/toolchain.py", line 104, in wrapper_func
+    build_dist_from_args(ctx, dist, args)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/__w/excel-merger/excel-merger/.buildozer/android/platform/python-for-android/pythonforandroid/toolchain.py", line 163, in build_dist_from_args
+    build_recipes(build_order, python_modules, ctx,
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                  getattr(args, "private", None),
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+                  ),
+                  ^^
+                 )
+                 ^
+  File "/__w/excel-merger/excel-merger/.buildozer/android/platform/python-for-android/pythonforandroid/build.py", line 530, in build_recipes
+    recipe.build_arch(arch)
+    ~~~~~~~~~~~~~~~~~^^^^^^
+  File "/__w/excel-merger/excel-merger/.buildozer/android/platform/python-for-android/pythonforandroid/recipes/liblzma/__init__.py", line 24, in build_arch
+    shprint(sh.Command('autoreconf'), '-vif', _env=env)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/__w/excel-merger/excel-merger/.buildozer/android/platform/python-for-android/pythonforandroid/logger.py", line 174, in shprint
+    for line in output:
+                ^^^^^^
+  File "/home/user/.venv/lib/python3.14/site-packages/sh/__init__.py", line 876, in __next__
+    self.wait()
+    ~~~~~~~~~^^
+  File "/home/user/.venv/lib/python3.14/site-packages/sh/__init__.py", line 793, in wait
+    self.handle_command_exit_code(exit_code)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/user/.venv/lib/python3.14/site-packages/sh/__init__.py", line 820, in handle_command_exit_code
+    raise exc
+sh.ErrorReturnCode_2: 
+
+  RAN: /usr/bin/autoreconf -vif
+
+  STDOUT:
+autoreconf: export WARNINGS=
+autoreconf: Entering directory '.'
+autoreconf: running: autopoint --force
+Can't exec "autopoint": No such file or directory at /usr/share/autoconf/Autom4te/FileUtils.pm line 318.
+autoreconf: error: autopoint failed with exit status: 2
+
+
+  STDERR:
+
+[0m[1;34m# Android packages installation done.[0m
+[0m[1;30m# Run '/home/user/.venv/bin/python3 -m pythonforandroid.toolchain aab -h --color=always --storage-dir=/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a --ndk-api=24 --ignore-setup-py --debug' ...[0m
+[0m[1;30m# Cwd /__w/excel-merger/excel-merger/.buildozer/android/platform/python-for-android[0m
+[0m[1;34m# Check application requirements[0m
+[0m[1;34m# Compile platform[0m
+[0m[1;30m# Run '/home/user/.venv/bin/python3 -m pythonforandroid.toolchain create --dist_name=excelmerger --bootstrap=sdl2 --requirements=python3,kivy==2.3.1,pandas,openpyxl,xlrd --arch=arm64-v8a --copy-libs --color=always --storage-dir=/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a --ndk-api=24 --ignore-setup-py --debug' ...[0m
+[0m[1;30m# Cwd /__w/excel-merger/excel-merger/.buildozer/android/platform/python-for-android[0m
+[0m[1;31m# Command failed: ('/home/user/.venv/bin/python3', '-m', 'pythonforandroid.toolchain', 'create', '--dist_name=excelmerger', '--bootstrap=sdl2', '--requirements=python3,kivy==2.3.1,pandas,openpyxl,xlrd', '--arch=arm64-v8a', '--copy-libs', '--color=always', '--storage-dir=/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a', '--ndk-api=24', '--ignore-setup-py', '--debug')[0m
+[0m[1;31m# Error code: 1[0m
+[0m[1;31m# ENVIRONMENT:[0m
+[0m[1;31m#     GITHUB_WORKSPACE = '/__w/excel-merger/excel-merger'[0m
+[0m[1;31m#     HOSTNAME = '7ac71ecff7fc'[0m
+[0m[1;31m#     LANGUAGE = 'en_US.UTF-8'[0m
+[0m[1;31m#     GITHUB_PATH = '/__w/_temp/_runner_file_commands/add_path_38eac55e-e969-4660-87c7-91ddbdec7ee7'[0m
+[0m[1;31m#     GITHUB_ACTION = '__run'[0m
+[0m[1;31m#     GITHUB_RUN_NUMBER = '3'[0m
+[0m[1;31m#     RUNNER_NAME = 'GitHub Actions 1000000002'[0m
+[0m[1;31m#     GITHUB_REPOSITORY_OWNER_ID = '357370425'[0m
+[0m[1;31m#     GITHUB_TRIGGERING_ACTOR = 'katrekkot-ai'[0m
+[0m[1;31m#     GITHUB_REF_TYPE = 'branch'[0m
+[0m[1;31m#     PWD = '/__w/excel-merger/excel-merger'[0m
+[0m[1;31m#     GITHUB_ARTIFACTS_LIST = '/__w/_temp/_runner_file_commands/artifacts_list_38eac55e-e969-4660-87c7-91ddbdec7ee7'[0m
+[0m[1;31m#     GITHUB_REPOSITORY_ID = '1460004026'[0m
+[0m[1;31m#     GITHUB_ACTIONS = 'true'[0m
+[0m[1;31m#     GITHUB_SHA = 'f0c11a0390f3ea7fd6ece92349721283360d63d6'[0m
+[0m[1;31m#     GITHUB_WORKFLOW_REF = 'katrekkot-ai/excel-merger/.github/workflows/build-apk.yml@refs/heads/main'[0m
+[0m[1;31m#     RUNNER_ENVIRONMENT = 'github-hosted'[0m
+[0m[1;31m#     GITHUB_REF = 'refs/heads/main'[0m
+[0m[1;31m#     RUNNER_OS = 'Linux'[0m
+[0m[1;31m#     GITHUB_REF_PROTECTED = 'false'[0m
+[0m[1;31m#     WORK_DIR = '/home/user/hostcwd'[0m
+[0m[1;31m#     HOME = '/github/home'[0m
+[0m[1;31m#     GITHUB_API_URL = 'https://api.github.com'[0m
+[0m[1;31m#     LANG = 'en_US.UTF-8'[0m
+[0m[1;31m#     RUNNER_ARCH = 'X64'[0m
+[0m[1;31m#     VIRTUAL_ENV = '/home/user/.venv'[0m
+[0m[1;31m#     RUNNER_TEMP = '/__w/_temp'[0m
+[0m[1;31m#     GITHUB_STATE = '/__w/_temp/_runner_file_commands/save_state_38eac55e-e969-4660-87c7-91ddbdec7ee7'[0m
+[0m[1;31m#     GITHUB_ENV = '/__w/_temp/_runner_file_commands/set_env_38eac55e-e969-4660-87c7-91ddbdec7ee7'[0m
+[0m[1;31m#     GITHUB_EVENT_PATH = '/github/workflow/event.json'[0m
+[0m[1;31m#     GITHUB_EVENT_NAME = 'push'[0m
+[0m[1;31m#     GITHUB_RUN_ID = '43870989649'[0m
+[0m[1;31m#     GITHUB_STEP_SUMMARY = '/__w/_temp/_runner_file_commands/step_summary_38eac55e-e969-4660-87c7-91ddbdec7ee7'[0m
+[0m[1;31m#     GITHUB_ACTOR = 'katrekkot-ai'[0m
+[0m[1;31m#     GITHUB_RUN_ATTEMPT = '1'[0m
+[0m[1;31m#     GITHUB_GRAPHQL_URL = 'https://api.github.com/graphql'[0m
+[0m[1;31m#     HOME_DIR = '/home/user'[0m
+[0m[1;31m#     USER = 'user'[0m
+[0m[1;31m#     GITHUB_SERVER_URL = 'https://github.com'[0m
+[0m[1;31m#     SHLVL = '1'[0m
+[0m[1;31m#     GITHUB_ACTOR_ID = '357370425'[0m
+[0m[1;31m#     ACTIONS_ORCHESTRATION_ID = '2fc7bf71-1a0e-8335-a37c-b3c403525be7.build-android.__default'[0m
+[0m[1;31m#     RUNNER_TOOL_CACHE = '/__t'[0m
+[0m[1;31m#     GITHUB_ARTIFACTS = '/__w/_temp/_runner_file_commands/artifacts_38eac55e-e969-4660-87c7-91ddbdec7ee7'[0m
+[0m[1;31m#     GITHUB_WORKFLOW_SHA = 'f0c11a0390f3ea7fd6ece92349721283360d63d6'[0m
+[0m[1;31m#     GITHUB_REF_NAME = 'main'[0m
+[0m[1;31m#     SRC_DIR = '/home/user/src'[0m
+[0m[1;31m#     GITHUB_JOB = 'build-android'[0m
+[0m[1;31m#     GITHUB_REPOSITORY = 'katrekkot-ai/excel-merger'[0m
+[0m[1;31m#     LC_ALL = 'en_US.UTF-8'[0m
+[0m[1;31m#     GITHUB_RETENTION_DAYS = '90'[0m
+[0m[1;31m#     RUNNER_WORKSPACE = '/__w/excel-merger'[0m
+[0m[1;31m#     GITHUB_ACTION_REPOSITORY = ''[0m
+[0m[1;31m#     PATH = '/github/home/.buildozer/android/platform/apache-ant-1.9.4/bin:/home/user/.venv/bin:/home/user/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'[0m
+[0m[1;31m#     GITHUB_BASE_REF = ''[0m
+[0m[1;31m#     CI = 'true'[0m
+[0m[1;31m#     GITHUB_REPOSITORY_OWNER = 'katrekkot-ai'[0m
+[0m[1;31m#     GITHUB_HEAD_REF = ''[0m
+[0m[1;31m#     GITHUB_ACTION_REF = ''[0m
+[0m[1;31m#     GITHUB_WORKFLOW = 'Build APK'[0m
+[0m[1;31m#     GITHUB_OUTPUT = '/__w/_temp/_runner_file_commands/set_output_38eac55e-e969-4660-87c7-91ddbdec7ee7'[0m
+[0m[1;31m#     _ = '/home/user/.venv/bin/buildozer'[0m
+[0m[1;31m#     PACKAGES_PATH = '/github/home/.buildozer/android/packages'[0m
+[0m[1;31m#     ANDROIDSDK = '/github/home/.buildozer/android/platform/android-sdk'[0m
+[0m[1;31m#     ANDROIDNDK = '/github/home/.buildozer/android/platform/android-ndk-r25b'[0m
+[0m[1;31m#     ANDROIDAPI = '30'[0m
+[0m[1;31m#     ANDROIDMINAPI = '24'[0m
+[0m[1;31m# [0m
+[0m[1;31m# Buildozer failed to execute the last command[0m
+[0m[1;31m# The error might be hidden in the log above this error[0m
+[0m[1;31m# Please read the full log, and search for it before[0m
+[0m[1;31m# raising an issue with buildozer itself.[0m
+[0m[1;31m# In case of a bug report, please add a full log with log_level = 2[0m

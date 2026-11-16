@@ -1,398 +1,3 @@
-[1m[INFO][0m:     - copy ./setuptools/command/install.pyc
-[1m[INFO][0m:     - copy ./setuptools/command/develop.pyc
-[1m[INFO][0m:     - copy ./setuptools/command/dist_info.pyc
-[1m[INFO][0m:     - copy ./setuptools/command/egg_info.pyc
-[1m[INFO][0m:     - copy ./setuptools/command/bdist_wheel.pyc
-[1m[INFO][0m:     - copy ./setuptools/command/easy_install.pyc
-[1m[INFO][0m:     - copy ./setuptools/command/install_egg_info.pyc
-[1m[INFO][0m:     - copy ./setuptools/command/setopt.pyc
-[1m[INFO][0m:     - copy ./setuptools/command/test.pyc
-[1m[INFO][0m:     - copy ./setuptools/command/install_scripts.pyc
-[1m[INFO][0m:     - copy ./setuptools/command/rotate.pyc
-[1m[INFO][0m:     - copy ./setuptools/command/bdist_rpm.pyc
-[1m[INFO][0m:     - copy ./setuptools/command/__init__.pyc
-[1m[INFO][0m:     - copy ./setuptools/command/build_ext.pyc
-[1m[INFO][0m:     - copy ./setuptools/command/build.pyc
-[1m[INFO][0m:     - copy ./setuptools/command/alias.pyc
-[1m[INFO][0m:     - copy ./setuptools/command/bdist_egg.pyc
-[1m[INFO][0m:     - copy ./setuptools/command/editable_wheel.pyc
-[1m[INFO][0m:     - copy ./setuptools/command/sdist.pyc
-[1m[INFO][0m:     - copy ./setuptools/command/build_py.pyc
-[1m[INFO][0m:     - copy ./setuptools/command/install_lib.pyc
-[1m[INFO][0m:     - copy ./setuptools/config/_apply_pyprojecttoml.pyc
-[1m[90m[DEBUG][39m[0m:   Create directory /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/_python_bundle__arm64-v8a/_python_bundle/site-packages/./setuptools/config
-[1m[INFO][0m:     - copy ./setuptools/config/setuptools.schema.json
-[1m[INFO][0m:     - copy ./setuptools/config/expand.pyc
-[1m[INFO][0m:     - copy ./setuptools/config/setupcfg.pyc
-[1m[INFO][0m:     - copy ./setuptools/config/__init__.pyc
-[1m[INFO][0m:     - copy ./setuptools/config/pyprojecttoml.pyc
-[1m[INFO][0m:     - copy ./setuptools/config/distutils.schema.json
-[1m[INFO][0m:     - copy ./setuptools/config/NOTICE
-[1m[INFO][0m:     - copy ./setuptools/config/_validate_pyproject/error_reporting.pyc
-[1m[90m[DEBUG][39m[0m:   Create directory /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/_python_bundle__arm64-v8a/_python_bundle/site-packages/./setuptools/config/_validate_pyproject
-[1m[INFO][0m:     - copy ./setuptools/config/_validate_pyproject/__init__.pyc
-[1m[INFO][0m:     - copy ./setuptools/config/_validate_pyproject/formats.pyc
-[1m[INFO][0m:     - copy ./setuptools/config/_validate_pyproject/fastjsonschema_exceptions.pyc
-[1m[INFO][0m:     - copy ./setuptools/config/_validate_pyproject/extra_validations.pyc
-[1m[INFO][0m:     - copy ./setuptools/config/_validate_pyproject/NOTICE
-[1m[INFO][0m:     - copy ./setuptools/config/_validate_pyproject/fastjsonschema_validations.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/_dataclass.pyc
-[1m[90m[DEBUG][39m[0m:   Create directory /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/_python_bundle__arm64-v8a/_python_bundle/site-packages/./setuptools/_distutils
-[1m[INFO][0m:     - copy ./setuptools/_distutils/debug.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/util.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/_modified.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/extension.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/_msvccompiler.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/text_file.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/file_util.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/dist.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/cmd.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/_macos_compat.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/version.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/dep_util.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/core.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/errors.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/spawn.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/filelist.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/fancy_getopt.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/archive_util.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/sysconfig.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/zosccompiler.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/__init__.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/ccompiler.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/versionpredicate.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/cygwinccompiler.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/_log.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/dir_util.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/log.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/unixccompiler.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/py.typed
-[1m[INFO][0m:     - copy ./setuptools/_distutils/command/clean.pyc
-[1m[90m[DEBUG][39m[0m:   Create directory /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/_python_bundle__arm64-v8a/_python_bundle/site-packages/./setuptools/_distutils/command
-[1m[INFO][0m:     - copy ./setuptools/_distutils/command/build_scripts.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/command/build_clib.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/command/bdist.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/command/install.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/command/install_egg_info.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/command/bdist_dumb.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/command/install_scripts.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/command/bdist_rpm.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/command/__init__.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/command/config.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/command/build_ext.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/command/check.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/command/build.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/command/install_headers.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/command/sdist.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/command/install_data.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/command/build_py.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/command/_framework_compat.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/command/install_lib.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/compilers/logging.pyc
-[1m[90m[DEBUG][39m[0m:   Create directory /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/_python_bundle__arm64-v8a/_python_bundle/site-packages/./setuptools/_distutils/compilers
-[1m[INFO][0m:     - copy ./setuptools/_distutils/compilers/_modified.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/compilers/errors.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/compilers/_util.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/compilers/C/cygwin.pyc
-[1m[90m[DEBUG][39m[0m:   Create directory /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/_python_bundle__arm64-v8a/_python_bundle/site-packages/./setuptools/_distutils/compilers/C
-[1m[INFO][0m:     - copy ./setuptools/_distutils/compilers/C/zos.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/compilers/C/unix.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/compilers/C/errors.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/compilers/C/msvc.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/compilers/C/base.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/compilers/C/py.typed
-[1m[INFO][0m:     - copy ./setuptools/_distutils/compilers/platform/detect.pyc
-[1m[90m[DEBUG][39m[0m:   Create directory /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/_python_bundle__arm64-v8a/_python_bundle/site-packages/./setuptools/_distutils/compilers/platform
-[1m[INFO][0m:     - copy ./setuptools/_distutils/compilers/platform/macos.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/compat/numpy.pyc
-[1m[90m[DEBUG][39m[0m:   Create directory /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/_python_bundle__arm64-v8a/_python_bundle/site-packages/./setuptools/_distutils/compat
-[1m[INFO][0m:     - copy ./setuptools/_distutils/compat/__init__.pyc
-[1m[INFO][0m:     - copy ./setuptools/_distutils/compat/py310.pyc
-[1m[INFO][0m:     - copy ./setuptools/compat/py312.pyc
-[1m[90m[DEBUG][39m[0m:   Create directory /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/_python_bundle__arm64-v8a/_python_bundle/site-packages/./setuptools/compat
-[1m[INFO][0m:     - copy ./setuptools/compat/py39.pyc
-[1m[INFO][0m:     - copy ./setuptools/compat/__init__.pyc
-[1m[INFO][0m:     - copy ./setuptools/compat/py311.pyc
-[1m[INFO][0m:     - copy ./setuptools/compat/py310.pyc
-[1m[INFO][0m:     - copy ./xlrd/book.pyc
-[1m[90m[DEBUG][39m[0m:   Create directory /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/_python_bundle__arm64-v8a/_python_bundle/site-packages/./xlrd
-[1m[INFO][0m:     - copy ./xlrd/sheet.pyc
-[1m[INFO][0m:     - copy ./xlrd/biffh.pyc
-[1m[INFO][0m:     - copy ./xlrd/xldate.pyc
-[1m[INFO][0m:     - copy ./xlrd/compdoc.pyc
-[1m[INFO][0m:     - copy ./xlrd/__init__.pyc
-[1m[INFO][0m:     - copy ./xlrd/formula.pyc
-[1m[INFO][0m:     - copy ./xlrd/info.pyc
-[1m[INFO][0m:     - copy ./xlrd/timemachine.pyc
-[1m[INFO][0m:     - copy ./xlrd/formatting.pyc
-[1m[INFO][0m:     - copy ./bin/idna
-[1m[90m[DEBUG][39m[0m:   Create directory /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/_python_bundle__arm64-v8a/_python_bundle/site-packages/./bin
-[1m[INFO][0m:     - copy ./bin/runxlrd.pyc
-[1m[INFO][0m:     - copy ./bin/filetype
-[1m[INFO][0m:     - copy ./bin/chardetect
-[1m[INFO][0m:     - copy ./certifi-2026.10.23.dist-info/REQUESTED
-[1m[90m[DEBUG][39m[0m:   Create directory /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/_python_bundle__arm64-v8a/_python_bundle/site-packages/./certifi-2026.10.23.dist-info
-[1m[INFO][0m:     - copy ./certifi-2026.10.23.dist-info/INSTALLER
-[1m[INFO][0m:     - copy ./certifi-2026.10.23.dist-info/METADATA
-[1m[INFO][0m:     - copy ./certifi-2026.10.23.dist-info/RECORD
-[1m[INFO][0m:     - copy ./certifi-2026.10.23.dist-info/WHEEL
-[1m[INFO][0m:     - copy ./certifi-2026.10.23.dist-info/top_level.txt
-[1m[INFO][0m:     - copy ./certifi-2026.10.23.dist-info/licenses/LICENSE
-[1m[90m[DEBUG][39m[0m:   Create directory /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/_python_bundle__arm64-v8a/_python_bundle/site-packages/./certifi-2026.10.23.dist-info/licenses
-[1m[INFO][0m:     - copy ./pytz/tzinfo.pyc
-[1m[90m[DEBUG][39m[0m:   Create directory /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/_python_bundle__arm64-v8a/_python_bundle/site-packages/./pytz
-[1m[INFO][0m:     - copy ./pytz/lazy.pyc
-[1m[INFO][0m:     - copy ./pytz/reference.pyc
-[1m[INFO][0m:     - copy ./pytz/tzfile.pyc
-[1m[INFO][0m:     - copy ./pytz/__init__.pyc
-[1m[INFO][0m:     - copy ./pytz/exceptions.pyc
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Jamaica
-[1m[90m[DEBUG][39m[0m:   Create directory /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/_python_bundle__arm64-v8a/_python_bundle/site-packages/./pytz/zoneinfo
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Egypt
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/zone.tab
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/GMT0
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/NZ
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/leapseconds
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/GMT-0
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Iceland
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Iran
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Factory
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/GB-Eire
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/GB
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/zone1970.tab
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/iso3166.tab
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/MET
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Greenwich
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Hongkong
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Japan
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/MST
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/PST8PDT
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/CST6CDT
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/zonenow.tab
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/WET
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Singapore
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/PRC
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/W-SU
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/ROC
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/EET
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/MST7MDT
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Turkey
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Portugal
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Israel
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/UCT
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/NZ-CHAT
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/UTC
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Poland
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Kwajalein
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Navajo
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/GMT
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/CET
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/EST
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/tzdata.zi
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Universal
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Libya
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/ROK
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/GMT+0
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Cuba
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/EST5EDT
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/HST
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Zulu
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Eire
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Atlantic/Jan_Mayen
-[1m[90m[DEBUG][39m[0m:   Create directory /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/_python_bundle__arm64-v8a/_python_bundle/site-packages/./pytz/zoneinfo/Atlantic
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Atlantic/Faroe
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Atlantic/Faeroe
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Atlantic/Canary
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Atlantic/Madeira
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Atlantic/Stanley
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Atlantic/South_Georgia
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Atlantic/Bermuda
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Atlantic/Cape_Verde
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Atlantic/Azores
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Atlantic/Reykjavik
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Atlantic/St_Helena
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Canada/Atlantic
-[1m[90m[DEBUG][39m[0m:   Create directory /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/_python_bundle__arm64-v8a/_python_bundle/site-packages/./pytz/zoneinfo/Canada
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Canada/Central
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Canada/Saskatchewan
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Canada/Pacific
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Canada/Yukon
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Canada/Mountain
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Canada/Newfoundland
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Canada/Eastern
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Asmara
-[1m[90m[DEBUG][39m[0m:   Create directory /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/_python_bundle__arm64-v8a/_python_bundle/site-packages/./pytz/zoneinfo/Africa
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Dar_es_Salaam
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Tripoli
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Cairo
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Monrovia
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Khartoum
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Ceuta
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Maseru
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Porto-Novo
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Harare
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Kigali
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Freetown
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Bamako
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/El_Aaiun
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Niamey
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Dakar
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Juba
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Bujumbura
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Djibouti
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Bissau
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Asmera
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Nairobi
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Conakry
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Nouakchott
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Timbuktu
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Ouagadougou
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Kinshasa
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Lome
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Lagos
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Algiers
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Libreville
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Lusaka
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Mogadishu
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Kampala
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Casablanca
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Abidjan
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Luanda
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Maputo
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Ndjamena
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Accra
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Malabo
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Sao_Tome
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Addis_Ababa
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Gaborone
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Lubumbashi
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Johannesburg
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Mbabane
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Brazzaville
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Banjul
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Windhoek
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Tunis
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Blantyre
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Douala
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Africa/Bangui
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Nauru
-[1m[90m[DEBUG][39m[0m:   Create directory /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/_python_bundle__arm64-v8a/_python_bundle/site-packages/./pytz/zoneinfo/Pacific
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Yap
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Wake
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Fakaofo
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Chatham
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Kanton
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Bougainville
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Pitcairn
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Gambier
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Johnston
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Pago_Pago
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Majuro
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Efate
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Kiritimati
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Ponape
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Guadalcanal
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Guam
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Wallis
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Niue
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Palau
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Tahiti
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Honolulu
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Easter
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Marquesas
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Galapagos
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Rarotonga
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Kosrae
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Noumea
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Enderbury
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Auckland
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Port_Moresby
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Kwajalein
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Funafuti
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Apia
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Midway
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Samoa
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Truk
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Pohnpei
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Tarawa
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Fiji
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Norfolk
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Saipan
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Tongatapu
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Pacific/Chuuk
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/Arctic/Longyearbyen
-[1m[90m[DEBUG][39m[0m:   Create directory /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/_python_bundle__arm64-v8a/_python_bundle/site-packages/./pytz/zoneinfo/Arctic
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Jamaica
-[1m[90m[DEBUG][39m[0m:   Create directory /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/_python_bundle__arm64-v8a/_python_bundle/site-packages/./pytz/zoneinfo/America
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Cambridge_Bay
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Boa_Vista
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Rosario
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Dawson
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Dawson_Creek
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Punta_Arenas
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Inuvik
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Coral_Harbour
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Port_of_Spain
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Catamarca
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Port-au-Prince
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Yellowknife
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Guatemala
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Dominica
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/El_Salvador
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Tortola
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/New_York
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/St_Barthelemy
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/St_Johns
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Blanc-Sablon
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Thunder_Bay
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Swift_Current
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Managua
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Adak
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Halifax
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Monterrey
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Fort_Nelson
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Phoenix
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Nome
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Porto_Acre
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Juneau
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Campo_Grande
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Asuncion
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Regina
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Anguilla
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Los_Angeles
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Creston
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Thule
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Miquelon
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Buenos_Aires
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Shiprock
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Guadeloupe
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Marigot
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Kralendijk
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/St_Kitts
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/La_Paz
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Chicago
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Mazatlan
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Edmonton
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Menominee
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Sitka
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Noronha
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Hermosillo
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Bogota
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Atka
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Costa_Rica
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Vancouver
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Cancun
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Caracas
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Winnipeg
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Lower_Princes
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Belize
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Rio_Branco
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Maceio
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Sao_Paulo
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Guyana
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Goose_Bay
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/St_Vincent
-[1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Santa_Isabel
 [1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Jujuy
 [1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Metlakatla
 [1m[INFO][0m:     - copy ./pytz/zoneinfo/America/Santo_Domingo
@@ -2956,6 +2561,34 @@ stty: standard input: Inappropriate ioctl for device
 [1m[INFO][0m:    [36m<- directory context /__w/excel-merger/excel-merger/.buildozer/android/platform/python-for-android[39m
 [1m[INFO][0m:    [1m[32m# Your distribution was created successfully, exiting.[0m[39m
 [1m[INFO][0m:    Dist can be found at (for now) /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger
+[WARNING]: prerequisites.py is experimental and does not support all prerequisites yet.
+[WARNING]: Please report any issues to the python-for-android issue tracker.
+[WARNING]: prerequisites.py is experimental and does not support all prerequisites yet.
+[WARNING]: Please report any issues to the python-for-android issue tracker.
+[1m[INFO][0m:    Will compile for the following archs: arm64-v8a
+[1m[INFO][0m:    Found Android API target in $ANDROIDAPI: 30
+[1m[INFO][0m:    Available Android APIs are (30)
+[1m[INFO][0m:    Requested API target 30 is available, continuing.
+[1m[INFO][0m:    Found NDK dir in $ANDROIDNDK: /github/home/.buildozer/android/platform/android-ndk-r25b
+[1m[INFO][0m:    Found NDK version 25b
+[1m[INFO][0m:    Getting NDK API version (i.e. minimum supported API) from user argument
+[1m[90m[DEBUG][39m[0m:   All possible dists: [<Distribution: name excelmerger with recipes (hostpython3, libbz2, libffi, liblzma, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, numpy, pyjnius, setuptools, android, pandas, kivy, python-dateutil, openpyxl, pytz, urllib3, filetype, six, certifi, chardet, idna, xlrd)>]
+[1m[90m[DEBUG][39m[0m:   Dist matching name and arch: [<Distribution: name excelmerger with recipes (hostpython3, libbz2, libffi, liblzma, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, numpy, pyjnius, setuptools, android, pandas, kivy, python-dateutil, openpyxl, pytz, urllib3, filetype, six, certifi, chardet, idna, xlrd)>]
+[1m[90m[DEBUG][39m[0m:   Dist matching ndk_api and recipe: [<Distribution: name excelmerger with recipes (hostpython3, libbz2, libffi, liblzma, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, numpy, pyjnius, setuptools, android, pandas, kivy, python-dateutil, openpyxl, pytz, urllib3, filetype, six, certifi, chardet, idna, xlrd)>]
+[1m[INFO][0m:    Of the existing distributions, the following meet the given requirements:
+[1m[INFO][0m:    	[32m[1mexcelmerger[0m: min API 24, includes recipes ([32mhostpython3, libbz2, libffi, liblzma, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, numpy, pyjnius, setuptools, android, pandas, kivy, python-dateutil, openpyxl, pytz, urllib3, filetype, six, certifi, chardet, idna, xlrd[0m), built for archs ([34marm64-v8a[0m)
+[1m[INFO][0m:    [1m[94mexcelmerger has compatible recipes, using this one[0m
+[1m[90m[DEBUG][39m[0m:   All possible dists: [<Distribution: name excelmerger with recipes (hostpython3, libbz2, libffi, liblzma, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, numpy, pyjnius, setuptools, android, pandas, kivy, python-dateutil, openpyxl, pytz, urllib3, filetype, six, certifi, chardet, idna, xlrd)>]
+[1m[90m[DEBUG][39m[0m:   Dist matching name and arch: [<Distribution: name excelmerger with recipes (hostpython3, libbz2, libffi, liblzma, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, numpy, pyjnius, setuptools, android, pandas, kivy, python-dateutil, openpyxl, pytz, urllib3, filetype, six, certifi, chardet, idna, xlrd)>]
+[1m[90m[DEBUG][39m[0m:   Dist matching ndk_api and recipe: [<Distribution: name excelmerger with recipes (hostpython3, libbz2, libffi, liblzma, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, numpy, pyjnius, setuptools, android, pandas, kivy, python-dateutil, openpyxl, pytz, urllib3, filetype, six, certifi, chardet, idna, xlrd)>]
+[1m[INFO][0m:    Of the existing distributions, the following meet the given requirements:
+[1m[INFO][0m:    	[32m[1mexcelmerger[0m: min API 24, includes recipes ([32mhostpython3, libbz2, libffi, liblzma, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, numpy, pyjnius, setuptools, android, pandas, kivy, python-dateutil, openpyxl, pytz, urllib3, filetype, six, certifi, chardet, idna, xlrd[0m), built for archs ([34marm64-v8a[0m)
+[1m[INFO][0m:    [1m[94mexcelmerger has compatible recipes, using this one[0m
+[1m[INFO][0m:    [36m-> directory context /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/build/bootstrap_builds/sdl2[39m
+[1m[INFO][0m:    [36m<- directory context /__w/excel-merger/excel-merger/.buildozer/android/platform/python-for-android[39m
+[1m[INFO][0m:    [36m-> directory context /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger[39m
+[1m[90m[DEBUG][39m[0m:   Remove directory and subdirectory src/main/assets
+[1m[90m[DEBUG][39m[0m:   Create directory src/main/assets
 [0m[1;34m# Build the application #1[0m
 [0m[1;30m# Copy application source from /__w/excel-merger/excel-merger[0m
 [0m[1;30m# Remove directory and subdirectory /__w/excel-merger/excel-merger/.buildozer/android/app[0m
@@ -2969,32 +2602,399 @@ stty: standard input: Inappropriate ioctl for device
 [0m[1;30m# Copy /home/user/.venv/lib/python3.14/site-packages/buildozer/sitecustomize.py to /__w/excel-merger/excel-merger/.buildozer/android/app/sitecustomize.py[0m
 [0m[1;34m# Package the application[0m
 [0m[1;30m# project.properties updated[0m
+[0m[1;30m# Run '/home/user/.venv/bin/python3 -m pythonforandroid.toolchain apk --bootstrap sdl2 --dist_name excelmerger --name Excel Merger --version 0.1 --package org.test.excelmerger --minsdk 24 --ndk-api 24 --private /__w/excel-merger/excel-merger/.buildozer/android/app --permission READ_EXTERNAL_STORAGE --permission WRITE_EXTERNAL_STORAGE --permission MANAGE_EXTERNAL_STORAGE --android-entrypoint org.kivy.android.PythonActivity --android-apptheme @android:style/Theme.NoTitleBar --orientation portrait --window --enable-androidx --copy-libs --local-recipes /__w/excel-merger/excel-merger/p4a-recipes --extra-manifest-application-arguments android:requestLegacyExternalStorage="true"\n --arch arm64-v8a --color=always --storage-dir=/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a --ndk-api=24 --ignore-setup-py --debug' ...[0m
+[0m[1;30m# Cwd /__w/excel-merger/excel-merger/.buildozer/android/platform/python-for-android[0m
+Compiling '/__w/excel-merger/excel-merger/.buildozer/android/app/sitecustomize.py'...
+Compiling '/__w/excel-merger/excel-merger/.buildozer/android/app/main.py'...
+Compiling '/__w/excel-merger/excel-merger/.buildozer/android/app/p4a-recipes/kivy/__init__.py'...
+Compiling '/__w/excel-merger/excel-merger/.buildozer/android/app/p4a-recipes/pandas/__init__.py'...
+[1m[90m[DEBUG][39m[0m:   Remove directory and subdirectory /tmp/p4a-extra-env-ndil8vxs
+[1m[INFO][0m:    Detected highest available build tools version to be 37.0.0
+stty: standard input: Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running gradlew clean assembleDebug[0m
+[1m[90m[DEBUG][39m[0m:   	Downloading https://services.gradle.org/distributions/gradle-8.14.3-all.zip
+[1m[90m[DEBUG][39m[0m:   	.............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+[1m[90m[DEBUG][39m[0m:   	Unzipping /root/.gradle/wrapper/dists/gradle-8.14.3-all/h9bud5ffjflfoe91ghcb596uv/gradle-8.14.3-all.zip to /root/.gradle/wrapper/dists/gradle-8.14.3-all/h9bud5ffjflfoe91ghcb596uv
+[1m[90m[DEBUG][39m[0m:   	Set executable permissions for: /root/.gradle/wrapper/dists/gradle-8.14.3-all/h9bud5ffjflfoe91ghcb596uv/gradle-8.14.3/bin/gradle
+[1m[90m[DEBUG][39m[0m:   	
+[1m[90m[DEBUG][39m[0m:   	Welcome to Gradle 8.14.3!
+[1m[90m[DEBUG][39m[0m:   	
+[1m[90m[DEBUG][39m[0m:   	Here are the highlights of this release:
+[1m[90m[DEBUG][39m[0m:   	 - Java 24 support
+[1m[90m[DEBUG][39m[0m:   	 - GraalVM Native Image toolchain selection
+[1m[90m[DEBUG][39m[0m:   	 - Enhancements to test reporting
+[1m[90m[DEBUG][39m[0m:   	 - Build Authoring improvements
+[1m[90m[DEBUG][39m[0m:   	
+[1m[90m[DEBUG][39m[0m:   	For more details see https://docs.gradle.org/8.14.3/release-notes.html
+[1m[90m[DEBUG][39m[0m:   	
+[1m[90m[DEBUG][39m[0m:   	Starting a Gradle Daemon (subsequent builds will be faster)
+[1m[90m[DEBUG][39m[0m:   	> Task :clean UP-TO-DATE
+[1m[90m[DEBUG][39m[0m:   	> Task :preBuild UP-TO-DATE
+[1m[90m[DEBUG][39m[0m:   	> Task :preDebugBuild UP-TO-DATE
+[1m[90m[DEBUG][39m[0m:   	> Task :mergeDebugNativeDebugMetadata NO-SOURCE
+[1m[90m[DEBUG][39m[0m:   	> Task :javaPreCompileDebug
+[1m[90m[DEBUG][39m[0m:   	> Task :generateDebugResValues
+[1m[90m[DEBUG][39m[0m:   	> Task :checkDebugAarMetadata
+[1m[90m[DEBUG][39m[0m:   	> Task :mapDebugSourceSetPaths
+[1m[90m[DEBUG][39m[0m:   	> Task :generateDebugResources
+[1m[90m[DEBUG][39m[0m:   	> Task :packageDebugResources
+[1m[90m[DEBUG][39m[0m:   	> Task :mergeDebugResources
+[1m[90m[DEBUG][39m[0m:   	> Task :createDebugCompatibleScreenManifests
+[1m[90m[DEBUG][39m[0m:   	> Task :extractDeepLinksDebug
+[1m[90m[DEBUG][39m[0m:   	> Task :parseDebugLocalResources
+[1m[90m[DEBUG][39m[0m:   	
+[1m[90m[DEBUG][39m[0m:   	> Task :processDebugMainManifest
+[1m[90m[DEBUG][39m[0m:   	/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/src/main/AndroidManifest.xml:60:18-50 Warning:
+[1m[90m[DEBUG][39m[0m:   		android:extractNativeLibs should not be specified in this source AndroidManifest.xml file. See https://d.android.com/guide/topics/manifest/application-element#extractNativeLibs for more information.
+[1m[90m[DEBUG][39m[0m:   	The AGP Upgrade Assistant can remove the attribute from the AndroidManifest.xml file and update the build file accordingly. See https://d.android.com/studio/build/agp-upgrade-assistant for more information.
+[1m[90m[DEBUG][39m[0m:   	
+[1m[90m[DEBUG][39m[0m:   	> Task :processDebugManifest
+[1m[90m[DEBUG][39m[0m:   	> Task :mergeDebugShaders
+[1m[90m[DEBUG][39m[0m:   	> Task :compileDebugShaders NO-SOURCE
+[1m[90m[DEBUG][39m[0m:   	> Task :processDebugManifestForPackage
+[1m[90m[DEBUG][39m[0m:   	> Task :generateDebugAssets UP-TO-DATE
+[1m[90m[DEBUG][39m[0m:   	> Task :mergeDebugAssets
+[1m[90m[DEBUG][39m[0m:   	> Task :processDebugJavaRes NO-SOURCE
+[1m[90m[DEBUG][39m[0m:   	> Task :compressDebugAssets
+[1m[90m[DEBUG][39m[0m:   	> Task :checkDebugDuplicateClasses
+[1m[90m[DEBUG][39m[0m:   	> Task :desugarDebugFileDependencies
+[1m[90m[DEBUG][39m[0m:   	> Task :mergeExtDexDebug
+[1m[90m[DEBUG][39m[0m:   	> Task :mergeLibDexDebug
+[1m[90m[DEBUG][39m[0m:   	> Task :mergeDebugJavaResource
+[1m[90m[DEBUG][39m[0m:   	> Task :processDebugResources
+[1m[90m[DEBUG][39m[0m:   	> Task :mergeDebugJniLibFolders
+[1m[90m[DEBUG][39m[0m:   	
+[1m[90m[DEBUG][39m[0m:   	> Task :compileDebugJavaWithJavac FAILED
+[1m[90m[DEBUG][39m[0m:   	/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/src/main/java/org/libsdl/app/HIDDeviceManager.java:364: error: cannot find symbol
+[1m[90m[DEBUG][39m[0m:   	            mContext.getPackageManager().checkPermission(android.Manifest.permission.BLUETOOTH_CONNECT, mContext.getPackageName()) != PackageManager.PERMISSION_GRANTED) {
+[1m[90m[DEBUG][39m[0m:   	                                                                                    ^
+[1m[90m[DEBUG][39m[0m:   	  symbol:   variable BLUETOOTH_CONNECT
+[1m[90m[DEBUG][39m[0m:   	  location: class permission
+[1m[90m[DEBUG][39m[0m:   	Note: Some input files use or override a deprecated API.
+[1m[90m[DEBUG][39m[0m:   	Note: Recompile with -Xlint:deprecation for details.
+[1m[90m[DEBUG][39m[0m:   	1 error
+[1m[90m[DEBUG][39m[0m:   	
+[1m[90m[DEBUG][39m[0m:   	[Incubating] Problems report is available at: file:///__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/build/reports/problems/problems-report.html
+[1m[90m[DEBUG][39m[0m:   	
+[1m[90m[DEBUG][39m[0m:   	FAILURE: Build failed with an exception.
+[1m[90m[DEBUG][39m[0m:   	
+[1m[90m[DEBUG][39m[0m:   	* What went wrong:
+[1m[90m[DEBUG][39m[0m:   	Execution failed for task ':compileDebugJavaWithJavac'.
+[1m[90m[DEBUG][39m[0m:   	> Compilation failed; see the compiler output below.
+[1m[90m[DEBUG][39m[0m:   	  Note: Recompile with -Xlint:deprecation for details.
+[1m[90m[DEBUG][39m[0m:   	  /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/src/main/java/org/libsdl/app/HIDDeviceManager.java:364: error: cannot find symbol
+[1m[90m[DEBUG][39m[0m:   	              mContext.getPackageManager().checkPermission(android.Manifest.permission.BLUETOOTH_CONNECT, mContext.getPackageName()) != PackageManager.PERMISSION_GRANTED) {
+[1m[90m[DEBUG][39m[0m:   	                                                                                      ^
+[1m[90m[DEBUG][39m[0m:   	    symbol:   variable BLUETOOTH_CONNECT
+[1m[90m[DEBUG][39m[0m:   	    location: class permission
+[1m[90m[DEBUG][39m[0m:   	  Note: Some input files use or override a deprecated API.
+[1m[90m[DEBUG][39m[0m:   	  1 error
+[1m[90m[DEBUG][39m[0m:   	
+[1m[90m[DEBUG][39m[0m:   	* Try:
+[1m[90m[DEBUG][39m[0m:   	> Check your code and dependencies to fix the compilation error(s)
+[1m[90m[DEBUG][39m[0m:   	> Run with --scan to get full insights.
+[1m[90m[DEBUG][39m[0m:   	
+[1m[90m[DEBUG][39m[0m:   	Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+[1m[90m[DEBUG][39m[0m:   	
+[1m[90m[DEBUG][39m[0m:   	You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+[1m[90m[DEBUG][39m[0m:   	
+[1m[90m[DEBUG][39m[0m:   	For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+[1m[90m[DEBUG][39m[0m:   	
+[1m[90m[DEBUG][39m[0m:   	BUILD FAILED in 26s
+[1m[90m[DEBUG][39m[0m:   	25 actionable tasks: 24 executed, 1 up-to-date
+Exception in thread background thread for pid 70701:
 Traceback (most recent call last):
-  File "/home/user/.venv/bin/buildozer", line 8, in <module>
-    sys.exit(main())
-             ~~~~^^
-  File "/home/user/.venv/lib/python3.14/site-packages/buildozer/scripts/client.py", line 16, in main
-    Buildozer().run_command(sys.argv[1:])
-    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
-  File "/home/user/.venv/lib/python3.14/site-packages/buildozer/__init__.py", line 686, in run_command
-    self.target.run_commands(args)
-    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
-  File "/home/user/.venv/lib/python3.14/site-packages/buildozer/target.py", line 96, in run_commands
-    func(args)
-    ~~~~^^^^^^
-  File "/home/user/.venv/lib/python3.14/site-packages/buildozer/targets/android.py", line 1011, in cmd_debug
-    super().cmd_debug(*args)
-    ~~~~~~~~~~~~~~~~~^^^^^^^
-  File "/home/user/.venv/lib/python3.14/site-packages/buildozer/target.py", line 108, in cmd_debug
-    self.buildozer.build()
-    ~~~~~~~~~~~~~~~~~~~~^^
-  File "/home/user/.venv/lib/python3.14/site-packages/buildozer/__init__.py", line 126, in build
-    self.target.build_package()
-    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "/home/user/.venv/lib/python3.14/site-packages/buildozer/targets/android.py", line 1313, in build_package
-    self.execute_build_package(build_cmd)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
-  File "/home/user/.venv/lib/python3.14/site-packages/buildozer/targets/android.py", line 965, in execute_build_package
-    cmd.append('{}'.format(open(extra_manifest_application_arguments, 'rt').read()))
-                           ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-FileNotFoundError: [Errno 2] No such file or directory: 'android:requestLegacyExternalStorage="true"'
+  File "/usr/lib/python3.14/threading.py", line 1082, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/usr/lib/python3.14/threading.py", line 1024, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/.venv/lib/python3.14/site-packages/sh/__init__.py", line 1709, in wrap
+    fn(*rgs, **kwargs)
+    ~~^^^^^^^^^^^^^^^^
+  File "/home/user/.venv/lib/python3.14/site-packages/sh/__init__.py", line 2720, in background_thread
+    handle_exit_code(exit_code)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/user/.venv/lib/python3.14/site-packages/sh/__init__.py", line 2411, in fn
+    return self.command.handle_command_exit_code(exit_code)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/user/.venv/lib/python3.14/site-packages/sh/__init__.py", line 820, in handle_command_exit_code
+    raise exc
+sh.ErrorReturnCode_1: 
+
+  RAN: /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/gradlew clean assembleDebug
+
+  STDOUT:
+Downloading https://services.gradle.org/distributions/gradle-8.14.3-all.zip
+.............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+Unzipping /root/.gradle/wrapper/dists/gradle-8.14.3-all/h9bud5ffjflfoe91ghcb596uv/gradle-8.14.3-all.zip to /root/.gradle/wrapper/dists/gradle-8.14.3-all/h9bud5ffjflfoe91ghcb596uv
+Set executable permissions for: /root/.gradle/wrapper/dists/gradle-8.14.3-all/h9bud5ffjflfoe91ghcb596uv/gradle-8.14.3/bin/gradle
+
+Welcome to Gradle 8.14.3!
+
+Here are the highlights of this release:
+ - Java 24 support
+ - GraalVM Native Image toolchain selection
+ - Enhancements to test reporting
+ - Build Authoring improvements
+
+For more details see https://docs.gradle.org/8.14.3/release-notes.html
+
+Starting a Gradle Daemon (subsequent builds will be faster)
+> Task :clean UP-TO-DATE
+> Task :preBuild UP-TO-DATE
+> Task :preDebugBuild UP-TO-DATE
+> Task :mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :javaPreCompileDebug
+> Task :generateDebugResValues
+> Task :checkDebugAarMetadata
+> Task :mapDebugSourceSetPaths
+> Task :generateDebugResources
+> Task :packageDebugResources
+> Task :mergeDebugResources
+> Task :createDebugCompatibleScreenManifests
+> Task :extractDeepLinksDebug
+> Task :parseDebugLocalResources
+
+> Task :processDebugMainManifest
+/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/src/main/AndroidManifest.xml:60:18-50 Warning:
+	android:extractNativeLibs should not be specified in this source AndroidManifest.xml file. See https://d.android.com/guide/topics/manifest/application-element#extractNativeLibs for more information.
+The AGP Upgrade Assistant can remove the attribute from the AndroidManifest.xml file and update the build file accordingly. See https://d.android.com/studio/build/agp-upgrade-assistant for more information.
+
+> Task :processDebugManifest
+> Task :mergeDebugShaders
+> Task :compileDebugShaders NO-SOURCE
+> Task :processDebugManifestForPackage
+> Task :generateDebugAssets UP-TO-DATE
+> Task :mergeDebugAssets
+> Task :processDebugJavaRes NO-SOURCE
+> Task :compressDebugAssets
+> Task :checkDebugDuplicateClasses
+> Task :desugarDebugFileDependencies
+> Task :mergeExtDexDebug
+> Task :mergeLibDexDebug
+> Task :mergeDebugJavaResource
+> Task :processDebugResources
+> Task :mergeDebugJniLibFolders
+
+> Task :compileDebugJavaWithJavac FAILED
+/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/src/main/java/org/libsdl/app/HIDDeviceManager.java:364: error: cannot find symbol
+            mContext.getPackageManager().checkPermission(android.Manifest.permission.BLUETOOTH_CONNECT, mContext.getPackageName()) != PackageManager.PERMISSION_GRANTED) {
+                                                                                    ^
+  symbol:   variable BLUETOOTH_CONNECT
+  location: class permission
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+1 error
+
+[Incubating] Problems report is available at: file:///__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileDebugJavaWithJavac'.
+> Compilation failed; see the compiler output below.
+  Note: Recompile with -Xlint:deprecation for details.
+  /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/src/main/java/org/libsdl/app/HIDDeviceManager.java:364: error: cannot find symbol
+              mContext.getPackageManager().checkPermission(android.Manifest.permission.BLUETOOTH_CONNECT, mContext.getPackageName()) != PackageManager.PERMISSION_GRANTED) {
+                                                                                      ^
+    symbol:   variable BLUETOOTH_CONNECT
+    location: class permission
+  Note: Some input files use or override a deprecated API.
+  1 error
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to get full insights.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 26s
+25 actionable tasks: 24 executed, 1 up-to-date
+
+
+  STDERR:
+
+[1m[INFO][0m:    STDOUT (last 20 lines of 90):
+[33m	  /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/src/main/java/org/libsdl/app/HIDDeviceManager.java:364: error: cannot find symbol	
+              mContext.getPackageManager().checkPermission(android.Manifest.permission.BLUETOOTH_CONNECT, mContext.getPackageName()) != PackageManager.PERMISSION_GRANTED) {	
+                                                                                      ^	
+    symbol:   variable BLUETOOTH_CONNECT	
+    location: class permission	
+  Note: Some input files use or override a deprecated API.	
+  1 error	
+	
+* Try:	
+> Check your code and dependencies to fix the compilation error(s)	
+> Run with --scan to get full insights.	
+	
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.	
+	
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.	
+	
+For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.	
+	
+BUILD FAILED in 26s	
+25 actionable tasks: 24 executed, 1 up-to-date[39m
+[1m[INFO][0m:    STDERR:
+[31m	[39m
+[1m[INFO][0m:    [33mENV:[39m
+export GITHUB_WORKSPACE='/__w/excel-merger/excel-merger'
+export HOSTNAME='e1faedb1d0b9'
+export LANGUAGE='en_US.UTF-8'
+export GITHUB_PATH='/__w/_temp/_runner_file_commands/add_path_346ade12-4e92-46ae-9727-275b4a0a4c2c'
+export GITHUB_ACTION='__run_3'
+export GITHUB_RUN_NUMBER='18'
+export RUNNER_NAME='GitHub Actions 1000000017'
+export GITHUB_REPOSITORY_OWNER_ID='357370425'
+export GITHUB_TRIGGERING_ACTOR='katrekkot-ai'
+export GITHUB_REF_TYPE='branch'
+export PWD='/__w/excel-merger/excel-merger'
+export GITHUB_ARTIFACTS_LIST='/__w/_temp/_runner_file_commands/artifacts_list_346ade12-4e92-46ae-9727-275b4a0a4c2c'
+export GITHUB_REPOSITORY_ID='1460004026'
+export GITHUB_ACTIONS='true'
+export GITHUB_SHA='a5c190aa62bdc6eeb9f0f6be2b6b1ef9b2cee6fb'
+export GITHUB_WORKFLOW_REF='katrekkot-ai/excel-merger/.github/workflows/build-apk.yml@refs/heads/main'
+export RUNNER_ENVIRONMENT='github-hosted'
+export GITHUB_REF='refs/heads/main'
+export RUNNER_OS='Linux'
+export GITHUB_REF_PROTECTED='false'
+export WORK_DIR='/home/user/hostcwd'
+export HOME='/github/home'
+export GITHUB_API_URL='https://api.github.com'
+export LANG='en_US.UTF-8'
+export RUNNER_ARCH='X64'
+export VIRTUAL_ENV='/home/user/.venv'
+export RUNNER_TEMP='/__w/_temp'
+export GITHUB_STATE='/__w/_temp/_runner_file_commands/save_state_346ade12-4e92-46ae-9727-275b4a0a4c2c'
+export GITHUB_ENV='/__w/_temp/_runner_file_commands/set_env_346ade12-4e92-46ae-9727-275b4a0a4c2c'
+export GITHUB_EVENT_PATH='/github/workflow/event.json'
+export GITHUB_EVENT_NAME='push'
+export GITHUB_RUN_ID='43910535342'
+export GITHUB_STEP_SUMMARY='/__w/_temp/_runner_file_commands/step_summary_346ade12-4e92-46ae-9727-275b4a0a4c2c'
+export GITHUB_ACTOR='katrekkot-ai'
+export GITHUB_RUN_ATTEMPT='1'
+export GITHUB_GRAPHQL_URL='https://api.github.com/graphql'
+export HOME_DIR='/home/user'
+export USER='user'
+export GITHUB_SERVER_URL='https://github.com'
+export SHLVL='1'
+export GITHUB_ACTOR_ID='357370425'
+export ACTIONS_ORCHESTRATION_ID='61f4dd7d-65e1-8ec4-b67c-bc0f439df28e.build-android.__default'
+export RUNNER_TOOL_CACHE='/__t'
+export GITHUB_ARTIFACTS='/__w/_temp/_runner_file_commands/artifacts_346ade12-4e92-46ae-9727-275b4a0a4c2c'
+export GITHUB_WORKFLOW_SHA='a5c190aa62bdc6eeb9f0f6be2b6b1ef9b2cee6fb'
+export GITHUB_REF_NAME='main'
+export SRC_DIR='/home/user/src'
+export GITHUB_JOB='build-android'
+export GITHUB_REPOSITORY='katrekkot-ai/excel-merger'
+export LC_ALL='en_US.UTF-8'
+export GITHUB_RETENTION_DAYS='90'
+export RUNNER_WORKSPACE='/__w/excel-merger'
+export GITHUB_ACTION_REPOSITORY=''
+export PATH='/github/home/.buildozer/android/platform/apache-ant-1.9.4/bin:/home/user/.venv/bin:/home/user/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+export GITHUB_BASE_REF=''
+export CI='true'
+export GITHUB_REPOSITORY_OWNER='katrekkot-ai'
+export GITHUB_HEAD_REF=''
+export GITHUB_ACTION_REF=''
+export GITHUB_WORKFLOW='Build APK'
+export GITHUB_OUTPUT='/__w/_temp/_runner_file_commands/set_output_346ade12-4e92-46ae-9727-275b4a0a4c2c'
+export _='/home/user/.venv/bin/buildozer'
+export PACKAGES_PATH='/github/home/.buildozer/android/packages'
+export ANDROIDSDK='/github/home/.buildozer/android/platform/android-sdk'
+export ANDROIDNDK='/github/home/.buildozer/android/platform/android-ndk-r25b'
+export ANDROIDAPI='30'
+export ANDROIDMINAPI='24'
+export ANDROID_NDK_HOME='/github/home/.buildozer/android/platform/android-ndk-r25b'
+export ANDROID_HOME='/github/home/.buildozer/android/platform/android-sdk'
+
+[1m[INFO][0m:    [33mCOMMAND:[39m
+cd /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger && /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/gradlew clean assembleDebug
+
+[1m[31m[WARNING][39m[0m: [31mERROR: /__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a/dists/excelmerger/gradlew failed![39m
+No setup.py/pyproject.toml used, copying full private data into .apk.
+Applying Java source code patches...
+Applying patch: src/patches/SDLSurface.java.patch
+Applying patch: src/patches/SDLActivity.java.patch
+[0m[1;31m# Command failed: ('/home/user/.venv/bin/python3', '-m', 'pythonforandroid.toolchain', 'apk', '--bootstrap', 'sdl2', '--dist_name', 'excelmerger', '--name', 'Excel Merger', '--version', '0.1', '--package', 'org.test.excelmerger', '--minsdk', '24', '--ndk-api', '24', '--private', '/__w/excel-merger/excel-merger/.buildozer/android/app', '--permission', 'READ_EXTERNAL_STORAGE', '--permission', 'WRITE_EXTERNAL_STORAGE', '--permission', 'MANAGE_EXTERNAL_STORAGE', '--android-entrypoint', 'org.kivy.android.PythonActivity', '--android-apptheme', '@android:style/Theme.NoTitleBar', '--orientation', 'portrait', '--window', '--enable-androidx', '--copy-libs', '--local-recipes', '/__w/excel-merger/excel-merger/p4a-recipes', '--extra-manifest-application-arguments', 'android:requestLegacyExternalStorage="true"\n', '--arch', 'arm64-v8a', '--color=always', '--storage-dir=/__w/excel-merger/excel-merger/.buildozer/android/platform/build-arm64-v8a', '--ndk-api=24', '--ignore-setup-py', '--debug')[0m
+[0m[1;31m# Error code: 1[0m
+[0m[1;31m# ENVIRONMENT:[0m
+[0m[1;31m#     GITHUB_WORKSPACE = '/__w/excel-merger/excel-merger'[0m
+[0m[1;31m#     HOSTNAME = 'e1faedb1d0b9'[0m
+[0m[1;31m#     LANGUAGE = 'en_US.UTF-8'[0m
+[0m[1;31m#     GITHUB_PATH = '/__w/_temp/_runner_file_commands/add_path_346ade12-4e92-46ae-9727-275b4a0a4c2c'[0m
+[0m[1;31m#     GITHUB_ACTION = '__run_3'[0m
+[0m[1;31m#     GITHUB_RUN_NUMBER = '18'[0m
+[0m[1;31m#     RUNNER_NAME = 'GitHub Actions 1000000017'[0m
+[0m[1;31m#     GITHUB_REPOSITORY_OWNER_ID = '357370425'[0m
+[0m[1;31m#     GITHUB_TRIGGERING_ACTOR = 'katrekkot-ai'[0m
+[0m[1;31m#     GITHUB_REF_TYPE = 'branch'[0m
+[0m[1;31m#     PWD = '/__w/excel-merger/excel-merger'[0m
+[0m[1;31m#     GITHUB_ARTIFACTS_LIST = '/__w/_temp/_runner_file_commands/artifacts_list_346ade12-4e92-46ae-9727-275b4a0a4c2c'[0m
+[0m[1;31m#     GITHUB_REPOSITORY_ID = '1460004026'[0m
+[0m[1;31m#     GITHUB_ACTIONS = 'true'[0m
+[0m[1;31m#     GITHUB_SHA = 'a5c190aa62bdc6eeb9f0f6be2b6b1ef9b2cee6fb'[0m
+[0m[1;31m#     GITHUB_WORKFLOW_REF = 'katrekkot-ai/excel-merger/.github/workflows/build-apk.yml@refs/heads/main'[0m
+[0m[1;31m#     RUNNER_ENVIRONMENT = 'github-hosted'[0m
+[0m[1;31m#     GITHUB_REF = 'refs/heads/main'[0m
+[0m[1;31m#     RUNNER_OS = 'Linux'[0m
+[0m[1;31m#     GITHUB_REF_PROTECTED = 'false'[0m
+[0m[1;31m#     WORK_DIR = '/home/user/hostcwd'[0m
+[0m[1;31m#     HOME = '/github/home'[0m
+[0m[1;31m#     GITHUB_API_URL = 'https://api.github.com'[0m
+[0m[1;31m#     LANG = 'en_US.UTF-8'[0m
+[0m[1;31m#     RUNNER_ARCH = 'X64'[0m
+[0m[1;31m#     VIRTUAL_ENV = '/home/user/.venv'[0m
+[0m[1;31m#     RUNNER_TEMP = '/__w/_temp'[0m
+[0m[1;31m#     GITHUB_STATE = '/__w/_temp/_runner_file_commands/save_state_346ade12-4e92-46ae-9727-275b4a0a4c2c'[0m
+[0m[1;31m#     GITHUB_ENV = '/__w/_temp/_runner_file_commands/set_env_346ade12-4e92-46ae-9727-275b4a0a4c2c'[0m
+[0m[1;31m#     GITHUB_EVENT_PATH = '/github/workflow/event.json'[0m
+[0m[1;31m#     GITHUB_EVENT_NAME = 'push'[0m
+[0m[1;31m#     GITHUB_RUN_ID = '43910535342'[0m
+[0m[1;31m#     GITHUB_STEP_SUMMARY = '/__w/_temp/_runner_file_commands/step_summary_346ade12-4e92-46ae-9727-275b4a0a4c2c'[0m
+[0m[1;31m#     GITHUB_ACTOR = 'katrekkot-ai'[0m
+[0m[1;31m#     GITHUB_RUN_ATTEMPT = '1'[0m
+[0m[1;31m#     GITHUB_GRAPHQL_URL = 'https://api.github.com/graphql'[0m
+[0m[1;31m#     HOME_DIR = '/home/user'[0m
+[0m[1;31m#     USER = 'user'[0m
+[0m[1;31m#     GITHUB_SERVER_URL = 'https://github.com'[0m
+[0m[1;31m#     SHLVL = '1'[0m
+[0m[1;31m#     GITHUB_ACTOR_ID = '357370425'[0m
+[0m[1;31m#     ACTIONS_ORCHESTRATION_ID = '61f4dd7d-65e1-8ec4-b67c-bc0f439df28e.build-android.__default'[0m
+[0m[1;31m#     RUNNER_TOOL_CACHE = '/__t'[0m
+[0m[1;31m#     GITHUB_ARTIFACTS = '/__w/_temp/_runner_file_commands/artifacts_346ade12-4e92-46ae-9727-275b4a0a4c2c'[0m
+[0m[1;31m#     GITHUB_WORKFLOW_SHA = 'a5c190aa62bdc6eeb9f0f6be2b6b1ef9b2cee6fb'[0m
+[0m[1;31m#     GITHUB_REF_NAME = 'main'[0m
+[0m[1;31m#     SRC_DIR = '/home/user/src'[0m
+[0m[1;31m#     GITHUB_JOB = 'build-android'[0m
+[0m[1;31m#     GITHUB_REPOSITORY = 'katrekkot-ai/excel-merger'[0m
+[0m[1;31m#     LC_ALL = 'en_US.UTF-8'[0m
+[0m[1;31m#     GITHUB_RETENTION_DAYS = '90'[0m
+[0m[1;31m#     RUNNER_WORKSPACE = '/__w/excel-merger'[0m
+[0m[1;31m#     GITHUB_ACTION_REPOSITORY = ''[0m
+[0m[1;31m#     PATH = '/github/home/.buildozer/android/platform/apache-ant-1.9.4/bin:/home/user/.venv/bin:/home/user/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'[0m
+[0m[1;31m#     GITHUB_BASE_REF = ''[0m
+[0m[1;31m#     CI = 'true'[0m
+[0m[1;31m#     GITHUB_REPOSITORY_OWNER = 'katrekkot-ai'[0m
+[0m[1;31m#     GITHUB_HEAD_REF = ''[0m
+[0m[1;31m#     GITHUB_ACTION_REF = ''[0m
+[0m[1;31m#     GITHUB_WORKFLOW = 'Build APK'[0m
+[0m[1;31m#     GITHUB_OUTPUT = '/__w/_temp/_runner_file_commands/set_output_346ade12-4e92-46ae-9727-275b4a0a4c2c'[0m
+[0m[1;31m#     _ = '/home/user/.venv/bin/buildozer'[0m
+[0m[1;31m#     PACKAGES_PATH = '/github/home/.buildozer/android/packages'[0m
+[0m[1;31m#     ANDROIDSDK = '/github/home/.buildozer/android/platform/android-sdk'[0m
+[0m[1;31m#     ANDROIDNDK = '/github/home/.buildozer/android/platform/android-ndk-r25b'[0m
+[0m[1;31m#     ANDROIDAPI = '30'[0m
+[0m[1;31m#     ANDROIDMINAPI = '24'[0m
+[0m[1;31m# [0m
+[0m[1;31m# Buildozer failed to execute the last command[0m
+[0m[1;31m# The error might be hidden in the log above this error[0m
+[0m[1;31m# Please read the full log, and search for it before[0m
+[0m[1;31m# raising an issue with buildozer itself.[0m
+[0m[1;31m# In case of a bug report, please add a full log with log_level = 2[0m

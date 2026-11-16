@@ -65,8 +65,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           mkdir -p logs
-          tail -n 400 build.log > logs/last-build-failure.log || echo "no build.log" > logs/last-build-failure.log
-          git add logs/last-build-failure.log
+          tail -n 3000 build.log > logs/last-build-failure.log || echo "no build.log" > logs/last-build-failure.log
+          { grep -n -i -E "error|Traceback|No such file|not found|failed|Exception" build.log | tail -n 60; } > logs/errors.txt 2>&1 || true
+          git add logs
           git commit -m "ci: build log tail [skip ci]" || exit 0
           git pull --rebase -q origin main || true
           git push

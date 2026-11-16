@@ -4,6 +4,9 @@ on:
   push:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build-android:
     runs-on: ubuntu-latest
@@ -15,11 +18,28 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build APK
-        run: yes | buildozer -v android debug
+        shell: bash
+        run: |
+          set -o pipefail
+          yes | buildozer -v android debug 2>&1 | tee build.log
 
       - name: Upload APK
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: excelmerger-apk
           path: bin/*.apk
           if-no-files-found: error
+
+      - name: Save build log on failure
+        if: failure()
+        shell: bash
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          mkdir -p logs
+          tail -n 400 build.log > logs/last-build-failure.log || echo "no build.log" > logs/last-build-failure.log
+          git add logs/last-build-failure.log
+          git commit -m "ci: build log tail [skip ci]" || exit 0
+          git push

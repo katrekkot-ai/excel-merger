@@ -39,7 +39,8 @@ android.accept_sdk_license = True
 android.permissions = READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE,MANAGE_EXTERNAL_STORAGE
 
 # Разрешаем старый режим доступа к памяти (нужно для записи в /storage/emulated/0/Download)
-android.extra_manifest_application_arguments = android:requestLegacyExternalStorage="true"
+# ВАЖНО: buildozer читает значение как ПУТЬ К ФАЙЛУ с атрибутами <application>, а не как строку.
+android.extra_manifest_application_arguments = android-manifest-app-args.txt
 
 android.allow_backup = True
 

@@ -8,18 +8,18 @@ jobs:
   build-android:
     runs-on: ubuntu-latest
     timeout-minutes: 350
+    container:
+      image: kivy/buildozer:latest
+      options: --user root
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build with Buildozer
-        uses: ArtemSBulgakov/buildozer-action@v1
-        id: buildozer
-        with:
-          command: buildozer android debug
-          buildozer_version: master
+      - name: Build APK
+        run: yes | buildozer -v android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: excelmerger-apk
-          path: ${{ steps.buildozer.outputs.files }}
+          path: bin/*.apk
+          if-no-files-found: error

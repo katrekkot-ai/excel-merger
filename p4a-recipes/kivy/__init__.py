@@ -10,6 +10,9 @@
 wheel -> "charset_normalizer-...-android_24_arm64_v8a.whl is not a supported wheel".
 
 Этому приложению сеть не нужна, поэтому requests (и его зависимости) просто убираем.
+
+Патчи штатного рецепта (use_cython, no-ast-str, sdl-gl-swapwindow-nogil) скопированы
+в эту папку: p4a ищет файлы патчей рядом с локальным `__init__.py`.
 Подключается через `p4a.local_recipes = ./p4a-recipes` в buildozer.spec.
 """
 

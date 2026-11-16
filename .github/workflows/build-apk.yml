@@ -17,6 +17,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install system deps
+        run: |
+          apt-get update -qq
+          DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends \
+            gettext autoconf automake libtool libtool-bin pkg-config ninja-build
+
+      - name: Cache buildozer
+        uses: actions/cache@v4
+        with:
+          path: |
+            /github/home/.buildozer
+            .buildozer
+          key: buildozer-${{ hashFiles('buildozer.spec') }}
+          restore-keys: |
+            buildozer-
+
       - name: Build APK
         shell: bash
         run: |
@@ -42,4 +58,5 @@ jobs:
           tail -n 400 build.log > logs/last-build-failure.log || echo "no build.log" > logs/last-build-failure.log
           git add logs/last-build-failure.log
           git commit -m "ci: build log tail [skip ci]" || exit 0
+          git pull --rebase -q origin main || true
           git push

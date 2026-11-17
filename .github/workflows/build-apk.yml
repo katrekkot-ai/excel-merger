@@ -46,8 +46,14 @@ jobs:
       - name: Build APK
         shell: bash
         run: |
-          set -o pipefail
+          # `yes |` нужен для автопринятия лицензий SDK, но когда buildozer
+          # завершается, yes получает SIGPIPE (141) и с pipefail валит шаг.
+          # Поэтому отключаем -e/pipefail и берём код возврата самого buildozer.
+          set +e +o pipefail
           yes | buildozer -v android debug 2>&1 | tee build.log
+          status=${PIPESTATUS[1]}
+          echo "buildozer exit code: $status"
+          exit $status
 
       - name: Upload APK
         if: success()

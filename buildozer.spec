@@ -1,48 +1,48 @@
-[app]
+﻿[app]
 
-# Название приложения (видно на телефоне)
+# РќР°Р·РІР°РЅРёРµ РїСЂРёР»РѕР¶РµРЅРёСЏ (РІРёРґРЅРѕ РЅР° С‚РµР»РµС„РѕРЅРµ)
 title = Excel Merger
 
-# Имя пакета: org.test.excelmerger -> org.test.excelmerger-0.1-armeabi-v7a-debug.apk
+# РРјСЏ РїР°РєРµС‚Р°: org.test.excelmerger -> org.test.excelmerger-0.1-armeabi-v7a-debug.apk
 package.name = excelmerger
 package.domain = org.test
 
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,json,ttf
 
-# Версия
-version = 0.7
+# Р’РµСЂСЃРёСЏ
+version = 0.8
 
-# Стек по умолчанию (Python 3.14 от p4a). pandas v3.1.1 — первая ветка с официальной
-# поддержкой Python 3.14; numpy v2.3.4 — минимально требуемая для 3.14 и с фиксом
-# сборки unique.cpp. Теги указаны с "v", т.к. p4a делает `git checkout <версия>`.
+# РЎС‚РµРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ (Python 3.14 РѕС‚ p4a). pandas v3.1.1 вЂ” РїРµСЂРІР°СЏ РІРµС‚РєР° СЃ РѕС„РёС†РёР°Р»СЊРЅРѕР№
+# РїРѕРґРґРµСЂР¶РєРѕР№ Python 3.14; numpy v2.3.4 вЂ” РјРёРЅРёРјР°Р»СЊРЅРѕ С‚СЂРµР±СѓРµРјР°СЏ РґР»СЏ 3.14 Рё СЃ С„РёРєСЃРѕРј
+# СЃР±РѕСЂРєРё unique.cpp. РўРµРіРё СѓРєР°Р·Р°РЅС‹ СЃ "v", С‚.Рє. p4a РґРµР»Р°РµС‚ `git checkout <РІРµСЂСЃРёСЏ>`.
 requirements = python3,kivy==2.3.1,numpy==v2.3.4,pandas==v3.1.1,openpyxl,xlrd,android
 
-# Локальные рецепты (p4a.local_recipes):
-#   pandas — штатный рецепт p4a тянет v2.3.0, которая под Python 3.14 не компилируется,
-#            а его патч не применяется к 3.x;
-#   kivy   — штатный рецепт тянет requests -> charset-normalizer, у которого нет
-#            универсального wheel (сборка падает на "not a supported wheel").
+# Р›РѕРєР°Р»СЊРЅС‹Рµ СЂРµС†РµРїС‚С‹ (p4a.local_recipes):
+#   pandas вЂ” С€С‚Р°С‚РЅС‹Р№ СЂРµС†РµРїС‚ p4a С‚СЏРЅРµС‚ v2.3.0, РєРѕС‚РѕСЂР°СЏ РїРѕРґ Python 3.14 РЅРµ РєРѕРјРїРёР»РёСЂСѓРµС‚СЃСЏ,
+#            Р° РµРіРѕ РїР°С‚С‡ РЅРµ РїСЂРёРјРµРЅСЏРµС‚СЃСЏ Рє 3.x;
+#   kivy   вЂ” С€С‚Р°С‚РЅС‹Р№ СЂРµС†РµРїС‚ С‚СЏРЅРµС‚ requests -> charset-normalizer, Сѓ РєРѕС‚РѕСЂРѕРіРѕ РЅРµС‚
+#            СѓРЅРёРІРµСЂСЃР°Р»СЊРЅРѕРіРѕ wheel (СЃР±РѕСЂРєР° РїР°РґР°РµС‚ РЅР° "not a supported wheel").
 p4a.local_recipes = ./p4a-recipes
 
 orientation = portrait
-# Полноэкранный режим: без него SDL-окно может оказаться меньше экрана
+# РџРѕР»РЅРѕСЌРєСЂР°РЅРЅС‹Р№ СЂРµР¶РёРј: Р±РµР· РЅРµРіРѕ SDL-РѕРєРЅРѕ РјРѕР¶РµС‚ РѕРєР°Р·Р°С‚СЊСЃСЏ РјРµРЅСЊС€Рµ СЌРєСЂР°РЅР°
 fullscreen = 1
 
-# compileSdk 35: Java-код SDL2 в p4a использует API 31+ (Manifest.permission.BLUETOOTH_CONNECT).
-# minapi остаётся 24 — старые телефоны поддерживаются.
+# compileSdk 35: Java-РєРѕРґ SDL2 РІ p4a РёСЃРїРѕР»СЊР·СѓРµС‚ API 31+ (Manifest.permission.BLUETOOTH_CONNECT).
+# minapi РѕСЃС‚Р°С‘С‚СЃСЏ 24 вЂ” СЃС‚Р°СЂС‹Рµ С‚РµР»РµС„РѕРЅС‹ РїРѕРґРґРµСЂР¶РёРІР°СЋС‚СЃСЏ.
 android.api = 35
 android.minapi = 24
 android.ndk = 25b
-# Только arm64 (все телефоны с 2018 г.). Для старых моделей добавьте: arm64-v8a, armeabi-v7a
+# РўРѕР»СЊРєРѕ arm64 (РІСЃРµ С‚РµР»РµС„РѕРЅС‹ СЃ 2018 Рі.). Р”Р»СЏ СЃС‚Р°СЂС‹С… РјРѕРґРµР»РµР№ РґРѕР±Р°РІСЊС‚Рµ: arm64-v8a, armeabi-v7a
 android.archs = arm64-v8a
 android.accept_sdk_license = True
 
-# Доступ к файлам на телефоне
+# Р”РѕСЃС‚СѓРї Рє С„Р°Р№Р»Р°Рј РЅР° С‚РµР»РµС„РѕРЅРµ
 android.permissions = READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE,MANAGE_EXTERNAL_STORAGE
 
-# Разрешаем старый режим доступа к памяти (нужно для записи в /storage/emulated/0/Download)
-# ВАЖНО: buildozer читает значение как ПУТЬ К ФАЙЛУ с атрибутами <application>, а не как строку.
+# Р Р°Р·СЂРµС€Р°РµРј СЃС‚Р°СЂС‹Р№ СЂРµР¶РёРј РґРѕСЃС‚СѓРїР° Рє РїР°РјСЏС‚Рё (РЅСѓР¶РЅРѕ РґР»СЏ Р·Р°РїРёСЃРё РІ /storage/emulated/0/Download)
+# Р’РђР–РќРћ: buildozer С‡РёС‚Р°РµС‚ Р·РЅР°С‡РµРЅРёРµ РєР°Рє РџРЈРўР¬ Рљ Р¤РђР™Р›РЈ СЃ Р°С‚СЂРёР±СѓС‚Р°РјРё <application>, Р° РЅРµ РєР°Рє СЃС‚СЂРѕРєСѓ.
 android.extra_manifest_application_arguments = android-manifest-app-args.txt
 
 android.allow_backup = True

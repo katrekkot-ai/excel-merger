@@ -1,6 +1,11 @@
+"""Excel Merger — перенос остатков из выгрузки 1С в материальный отчёт (форма М-19)."""
+
 import os
 import re
+from collections import defaultdict
+from copy import copy
 
+import openpyxl
 import pandas as pd
 from kivy.app import App
 from kivy.clock import Clock
@@ -24,26 +29,38 @@ if platform == 'android':
 REQUEST_OPEN_DOCUMENT = 1001
 RESULT_OK = -1
 
-# Признаки строки шапки: ищем не по точному имени листа/строки, а по содержимому,
-# иначе любое переименование листа («Сентябрь_table_4») ломает всё приложение.
-MATERIAL_HEADER_PREFIXES = ('материал', 'наименование', 'краткий текст',
-                            'название', 'номенклатура')
-DATA_HEADER_PREFIXES = ('остаток', 'приход', 'расход', 'цена', 'количество', 'кол-во', 'ед.')
+# ---------- правила разбора таблиц ----------
 
-# Что переносим из эталона в отчёт. Ключи идут по приоритету: сначала точные
-# названия из эталона, потом «человеческие» из отчёта.
+# Название материала: в выгрузках 1С колонка «Материал» — это код,
+# а человекочитаемое название лежит в «Краткий текст материала».
+MATERIAL_NAME_KEYWORDS = ('краткий текст материала', 'наименование',
+                          'название', 'номенклатура')
+
+# Что переносим из эталона в отчёт. Ключи проверяются по порядку:
+# сначала точные имена из выгрузки 1С, потом «человеческие» из формы.
 METRIC_KEYWORDS = {
     'остаток': ('остзапнп', 'остаток на начало', 'остаток'),
     'приход': ('постматер', 'приход'),
     'расход': ('отпуск мат', 'расход'),
+    'конец': ('остзапкп', 'остаток на конец', 'конец'),
 }
+
+# Слова, по которым узнаём строку с подзаголовками («наименование», «код»...).
+HEADER_WORDS = ('наименование', 'материал', 'код', 'кол-во', 'кол- во',
+                'количество', 'сумма', 'остаток', 'остзап', 'приход',
+                'постматер', 'расход', 'отпуск', 'цена', 'единица',
+                'номер по порядку')
+
+# Слова, по которым узнаём строку-группу над подзаголовками
+# («Остаток на начало отчетного периода» и т.п.).
+GROUP_WORDS = ('товарно', 'остаток', 'приход', 'расход', 'единица',
+               'цена', 'номер по порядку')
 
 # Колонка-единица измерения: «Ед.», «Ед. Unnamed: 2_level_1» и т.п.
 UNIT_TOKENS = {'ед', 'шт', 'кг', 'т', 'л', 'мл', 'м', 'уп', 'пач', 'рул'}
 
-# Как называется колонка с названием материала (по приоритету).
-MATERIAL_NAME_KEYWORDS = ('краткий текст материала', 'наименование',
-                          'название', 'номенклатура')
+# Ссылка на ячейку внутри формулы: H170, $H$170, H$170.
+FORMULA_REF = re.compile(r'(\$?[A-Z]{1,3})(\$?)(\d+)')
 
 
 def _is_unit_column(name):
@@ -52,6 +69,28 @@ def _is_unit_column(name):
     tokens = [t for t in tokens
               if not t.isdigit() and t not in ('unnamed', 'level', 'уровень')]
     return bool(tokens) and all(t in UNIT_TOKENS for t in tokens)
+
+
+def _norm_code(value):
+    """Код материала -> строка из 18 цифр (в 1С ведущие нули теряются)."""
+    if value is None:
+        return ''
+    if isinstance(value, float):
+        if pd.isna(value):
+            return ''
+        if value.is_integer():
+            value = int(value)
+    text = str(value).strip()
+    text = re.sub(r'\.0+$', '', text)
+    if text.isdigit():
+        return text.zfill(18)
+    return text
+
+
+def _norm_name(value):
+    """Название материала для сравнения: без лишних пробелов, в нижнем регистре."""
+    return re.sub(r'\s+', ' ', str(value or '')).strip().lower()
+
 
 # ВАЖНО: размеры только в dp/sp. В пикселях (height=44) на телефоне с плотностью 3
 # кнопка получается ~15 dp и текст в неё не влезает.
@@ -68,6 +107,7 @@ class ExcelMergerApp(App):
     def build(self):
         self.etalon_path = None
         self.edit_path = None
+        self._diag = []
 
         # Запрашиваем разрешения при запуске
         if platform == 'android':
@@ -117,35 +157,31 @@ class ExcelMergerApp(App):
         instance.height = min(STATUS_MAX_HEIGHT, max(STATUS_MIN_HEIGHT, height))
 
     def _clean_number(self, value):
-        """Очистка чисел."""
-        if pd.isna(value):
+        """Очистка чисел: «1 000,50 ₽» -> 1000.5."""
+        if value is None:
+            return 0
+        if isinstance(value, float) and pd.isna(value):
             return 0
         if isinstance(value, (int, float)):
             return value
-        s = re.sub(r'[^\d.,]', '', str(value).replace(',', '.'))
+        s = re.sub(r'[^\d.,-]', '', str(value)).replace(',', '.')
         try:
             return float(s)
         except ValueError:
             return 0
 
-    def _find_columns(self, df, keywords):
-        """Гибкий поиск колонок."""
-        df_columns = [str(col).lower() for col in df.columns]
-        found = {}
-        for key in keywords:
-            for i, col in enumerate(df_columns):
-                if key in col:
-                    found[key] = df.columns[i]
-                    break
-        return found
-
-    def _find_metric_column(self, df, keywords):
-        """Колонка метрики (остаток/приход/расход) с учётом приоритета ключей.
-
-        Ключи проверяются по очереди, поэтому 'остзапнп' важнее простого
-        'остаток'. Колонки-единицы измерения («Ед.») пропускаются.
-        """
-        return self._find_first_column(df, keywords)
+    @staticmethod
+    def _to_number(value):
+        """Значение ячейки -> число (или None, если это не число)."""
+        if value is None or isinstance(value, bool):
+            return None
+        if isinstance(value, (int, float)):
+            return float(value)
+        text = str(value).replace(' ', '').replace('\xa0', '').replace(',', '.')
+        try:
+            return float(text)
+        except ValueError:
+            return None
 
     def _find_first_column(self, df, keywords):
         """Первая колонка, в заголовке которой есть один из ключей (по порядку)."""
@@ -158,13 +194,10 @@ class ExcelMergerApp(App):
                     return col
         return None
 
-    def _find_material_column(self, df):
-        """Колонка с наименованием материала.
+    def _find_metric_column(self, df, keywords):
+        return self._find_first_column(df, keywords)
 
-        В выгрузках 1С колонка «Материал» — это код (000000000011316154),
-        а название лежит в «Краткий текст материала». Поэтому сначала ищем
-        человекочитаемое название и только потом падаем на код.
-        """
+    def _find_material_column(self, df):
         col = self._find_first_column(df, MATERIAL_NAME_KEYWORDS)
         if col is not None:
             return col
@@ -299,7 +332,7 @@ class ExcelMergerApp(App):
         edit = os.path.basename(self.edit_path) if self.edit_path else 'не выбран'
         self.status.text = f'Эталон: {etalon}\nФайл: {edit}'
 
-    # ---------- чтение Excel ----------
+    # ---------- чтение эталона (pandas) ----------
 
     @staticmethod
     def _flatten_columns(df):
@@ -324,34 +357,28 @@ class ExcelMergerApp(App):
 
     @staticmethod
     def _detect_header(raw):
-        """Находим строку шапки по ключевым словам (лист мог быть переименован)."""
-        limit = min(20, len(raw))
-        for row in range(limit):
-            values = [str(v).strip().lower() for v in raw.iloc[row].tolist()]
-            if not any(v.startswith(MATERIAL_HEADER_PREFIXES) for v in values):
-                continue
-            if row + 1 < len(raw):
-                next_values = [str(v).strip().lower() for v in raw.iloc[row + 1].tolist()]
-                if any(v.startswith(DATA_HEADER_PREFIXES) for v in next_values):
-                    return [row, row + 1]
-            return row
-        return 0
+        """Строка шапки = та, где больше всего «шапочных» слов."""
+        best_row, best_score = 0, 0
+        for row in range(min(40, len(raw))):
+            values = [str(v).strip().lower() for v in raw.iloc[row].tolist()
+                      if pd.notna(v)]
+            score = sum(1 for v in values
+                        if any(word in v for word in HEADER_WORDS))
+            if score > best_score:
+                best_row, best_score = row, score
 
-    def _read_sheet(self, path, sheet):
-        """Читаем один лист, определяя строку шапки по содержимому."""
-        try:
-            raw = pd.read_excel(path, sheet_name=sheet, header=None)
-        except Exception:
-            return None
-        if raw.empty:
-            return None
+        if best_score < 3:
+            return 0
 
-        header = self._detect_header(raw)
-        try:
-            df = pd.read_excel(path, sheet_name=sheet, header=header)
-        except Exception:
-            df = raw
-        return self._flatten_columns(df)
+        # над подзаголовками может быть строка-группа («Остаток на начало» ...)
+        if best_row > 0:
+            values = [str(v).strip().lower() for v in raw.iloc[best_row - 1].tolist()
+                      if pd.notna(v)]
+            score = sum(1 for v in values if any(word in v for word in GROUP_WORDS))
+            if score >= 2:
+                return [best_row - 1, best_row]
+
+        return best_row
 
     @staticmethod
     def _sheet_order(sheets, exact=(), contains=()):
@@ -370,9 +397,20 @@ class ExcelMergerApp(App):
 
         fallback = None
         for sheet in self._sheet_order(sheets, exact, contains):
-            df = self._read_sheet(path, sheet)
-            if df is None:
+            try:
+                raw = pd.read_excel(path, sheet_name=sheet, header=None)
+            except Exception:
                 continue
+            if raw.empty:
+                continue
+
+            header = self._detect_header(raw)
+            try:
+                df = pd.read_excel(path, sheet_name=sheet, header=header)
+            except Exception:
+                df = raw
+            df = self._flatten_columns(df)
+
             if fallback is None:
                 fallback = (df, sheet)
             # берём первый лист, где вообще есть колонка материала
@@ -384,135 +422,477 @@ class ExcelMergerApp(App):
                              + ', '.join(str(s) for s in sheets))
         return fallback
 
-    def _read_edit(self, path):
-        return self._read_table(path, exact=('Сентябрь_table_4',),
-                                contains=('сентябр',))
+    def _load_etalon(self, path):
+        """Эталон -> таблица с колонками code/name/unit/price/остаток/приход/расход/конец."""
+        df, sheet = self._read_table(path)
+        self._diag = [
+            'Excel Merger — диагностика',
+            '',
+            '=== ЭТАЛОН ===',
+            f'Файл: {path}',
+            f'Лист: {sheet}',
+            f'Колонок: {len(df.columns)}',
+        ]
+        for i, col in enumerate(df.columns):
+            self._diag.append(f'  [{i}] {col}')
+        self._diag.append('')
 
-    def _read_etalon(self, path):
-        return self._read_table(path)
+        code_col = self._find_first_column(df, ('код', 'материал'))
+        name_col = self._find_first_column(df, MATERIAL_NAME_KEYWORDS)
+        price_col = self._find_first_column(df, ('цена',))
+        unit_col = self._find_first_column(df, ('беи', 'ед. изм', 'ед.изм', 'единица'))
+        warehouse_col = self._find_first_column(df, ('склд', 'склад'))
+        plant_col = self._find_first_column(df, ('з-д', 'завод'))
+
+        metrics = {name: self._find_metric_column(df, keys)
+                   for name, keys in METRIC_KEYWORDS.items()}
+        missing = [name for name in ('остаток', 'приход', 'расход')
+                   if metrics.get(name) is None]
+        if missing:
+            raise ValueError('в эталоне нет колонок: ' + ', '.join(missing))
+
+        if name_col is None:
+            name_col = code_col
+        if name_col is None:
+            raise ValueError('в эталоне не найдена колонка с материалом')
+
+        data = pd.DataFrame(index=df.index)
+        data['code'] = df[code_col].apply(_norm_code) if code_col else ''
+        data['code_text'] = data['code']
+        data['name'] = df[name_col].apply(_norm_name)
+        data['raw_name'] = df[name_col]
+        data['unit'] = df[unit_col] if unit_col else ''
+        data['price'] = df[price_col].apply(self._clean_number) if price_col else 0
+        for name in METRIC_KEYWORDS:
+            column = metrics.get(name)
+            data[name] = df[column].apply(self._clean_number) if column else 0
+        data['warehouse'] = df[warehouse_col] if warehouse_col else None
+        data['plant'] = df[plant_col] if plant_col else None
+
+        # строки без кода и названия не нужны
+        data = data[(data['code'] != '') | (data['name'] != '')]
+        if data.empty:
+            raise ValueError('в эталоне нет строк с материалами')
+        return data
+
+    # ---------- разбор формы отчёта (openpyxl) ----------
+
+    @staticmethod
+    def _row_values(ws, row, max_col):
+        values = []
+        for column in range(1, max_col + 1):
+            value = ws.cell(row, column).value
+            if value is None:
+                continue
+            values.append(re.sub(r'\s+', ' ', str(value)).strip().lower())
+        return values
+
+    def _report_layout(self, ws):
+        """Определяет шапку, колонки и строки данных формы. None, если это не таблица."""
+        max_row = ws.max_row
+        max_col = ws.max_column
+        if max_row < 3 or max_col < 3:
+            return None
+
+        best_score, best_row = 0, 0
+        for row in range(1, min(max_row, 60) + 1):
+            values = self._row_values(ws, row, max_col)
+            score = sum(1 for v in values if any(w in v for w in HEADER_WORDS))
+            if score > best_score:
+                best_score, best_row = score, row
+
+        if best_score < 3:
+            return None
+
+        # строка-группа над подзаголовками может быть через пустую строку
+        header_rows = [best_row]
+        for row in range(max(1, best_row - 4), best_row):
+            values = self._row_values(ws, row, max_col)
+            score = sum(1 for v in values if any(w in v for w in GROUP_WORDS))
+            if score >= 2:
+                header_rows.append(row)
+        header_rows.sort()
+
+        labels = {}
+        for column in range(1, max_col + 1):
+            parts = []
+            for row in header_rows:
+                value = ws.cell(row, column).value
+                if value is None:
+                    continue
+                text = re.sub(r'\s+', ' ', str(value)).strip().lower()
+                if text and (not parts or parts[-1] != text):
+                    parts.append(text)
+            labels[column] = ' '.join(parts)
+
+        def find(keys):
+            for key in keys:
+                for column in range(1, max_col + 1):
+                    if _is_unit_column(labels[column]):
+                        continue
+                    if key in labels[column]:
+                        return column
+            return None
+
+        name_col = find(MATERIAL_NAME_KEYWORDS) or find(('материал',))
+        if name_col is None:
+            return None
+
+        columns = {
+            'name': name_col,
+            'code': find(('код',)),
+            'unit': find(('ед. изм', 'ед.изм', 'единица измерения', 'единица')),
+            'okei': find(('океи',)),
+            'price': find(('цена',)),
+            'seq': find(('номер по порядку',)),
+            'plant': find(('з-д', 'завод')),
+            'osn': find(METRIC_KEYWORDS['остаток']),
+            'pri': find(METRIC_KEYWORDS['приход']),
+            'ras': find(METRIC_KEYWORDS['расход']),
+            'konec': find(METRIC_KEYWORDS['конец']),
+        }
+        for required in ('osn', 'pri', 'ras'):
+            if columns[required] is None:
+                return None
+
+        rows = []
+        started = False
+        for row in range(best_row + 1, max_row + 1):
+            value = ws.cell(row, name_col).value
+            text = str(value).strip() if value is not None else ''
+            if text.lower().startswith(('итого', 'всего')):
+                break
+            # «1», «2» — это строка нумерации колонок, а не материал
+            numeric = bool(text) and re.sub(r'[.,\s]', '', text).isdigit()
+            if text and not numeric:
+                started = True
+                rows.append(row)
+            elif started:
+                break
+
+        if not rows:
+            return None
+
+        return {'header_rows': header_rows, 'rows': rows, 'col': columns,
+                'labels': labels}
+
+    @staticmethod
+    def _report_warehouse(ws):
+        """Склад из шапки формы («склад | 7720»)."""
+        limit_row = min(ws.max_row, 40)
+        for row in range(1, limit_row + 1):
+            for column in range(1, ws.max_column + 1):
+                value = ws.cell(row, column).value
+                if isinstance(value, str) and value.strip().lower() in ('склад', 'склд'):
+                    for shift in range(1, 4):
+                        if column + shift > ws.max_column:
+                            break
+                        neighbour = ws.cell(row, column + shift).value
+                        number = ExcelMergerApp._to_number(neighbour)
+                        if number is not None and float(number).is_integer():
+                            return int(number)
+        return None
+
+    # ---------- запись результата ----------
+
+    @staticmethod
+    def _insert_rows(ws, at, count):
+        """Вставляет count строк перед строкой at, сохраняя стили и объединения.
+
+        openpyxl.insert_rows не переносит объединённые ячейки и высоты строк,
+        поэтому сдвигаем блок вниз вручную.
+        """
+        max_row = ws.max_row
+        max_col = ws.max_column
+
+        merges = [(m.min_col, m.min_row, m.max_col, m.max_row)
+                  for m in ws.merged_cells.ranges if m.min_row >= at]
+        for merge in list(ws.merged_cells.ranges):
+            if merge.min_row >= at:
+                ws.unmerge_cells(str(merge))
+
+        for row in range(max_row, at - 1, -1):
+            for column in range(1, max_col + 1):
+                source = ws.cell(row, column)
+                target = ws.cell(row + count, column)
+                target.value = source.value
+                if source.has_style:
+                    target._style = copy(source._style)
+                source.value = None
+            height = ws.row_dimensions[row].height
+            ws.row_dimensions[row + count].height = height
+            ws.row_dimensions[row].height = None
+
+        for min_col, min_row, max_col_, max_row_ in merges:
+            ws.merge_cells(start_row=min_row + count, start_column=min_col,
+                           end_row=max_row_ + count, end_column=max_col_)
+
+    @staticmethod
+    def _shift_formula_rows(formula, at, count):
+        def replace(match):
+            column, dollar, row = match.group(1), match.group(2), int(match.group(3))
+            if row >= at:
+                row += count
+            return f'{column}{dollar}{row}'
+        return FORMULA_REF.sub(replace, formula)
+
+    def _fix_formulas(self, ws, at, count):
+        """После вставки строк: сдвигаем ссылки и расширяем диапазоны SUM."""
+        last_data = at - 1
+        for row in range(at, ws.max_row + 1):
+            for cell in ws[row]:
+                if isinstance(cell.value, str) and cell.value.startswith('='):
+                    cell.value = self._shift_formula_rows(cell.value, at, count)
+
+        # строка итогов теперь ниже вставленных строк
+        pattern = re.compile(r'(\$?[A-Z]{1,3}\$?)%d(?!\d)' % last_data)
+        for row in range(at + count, min(at + count + 5, ws.max_row + 1)):
+            for cell in ws[row]:
+                if isinstance(cell.value, str) and cell.value.startswith('='):
+                    cell.value = pattern.sub(
+                        lambda m: f'{m.group(1)}{last_data + count}', cell.value)
+
+    @staticmethod
+    def _copy_row_style(ws, source_row, target_row, max_col):
+        for column in range(1, max_col + 1):
+            source = ws.cell(source_row, column)
+            if source.has_style:
+                ws.cell(target_row, column)._style = copy(source._style)
+        height = ws.row_dimensions[source_row].height
+        if height:
+            ws.row_dimensions[target_row].height = height
+
+    @staticmethod
+    def _retarget_formula(formula, old_row, new_row):
+        def replace(match):
+            column, dollar, row = match.group(1), match.group(2), int(match.group(3))
+            if row == old_row:
+                row = new_row
+            return f'{column}{dollar}{row}'
+        return FORMULA_REF.sub(replace, formula)
+
+    def _append_rows(self, ws, layout, records):
+        """Добавляет строки новых материалов перед строкой итогов."""
+        rows = layout['rows']
+        columns = layout['col']
+        max_col = ws.max_column
+        style_row = rows[-1]
+        at = style_row + 1
+        count = len(records)
+
+        self._insert_rows(ws, at, count)
+        self._fix_formulas(ws, at, count)
+
+        # продолжаем нумерацию строк
+        numbers = [self._to_number(ws.cell(row, columns['seq']).value)
+                   for row in rows if columns.get('seq')]
+        numbers = [number for number in numbers if number is not None]
+        next_number = int(max(numbers)) + 1 if numbers else 1
+
+        # ОКЕИ по единице измерения — из уже заполненных строк формы
+        okei = {}
+        if columns.get('okei') and columns.get('unit'):
+            for row in rows:
+                unit = ws.cell(row, columns['unit']).value
+                code = ws.cell(row, columns['okei']).value
+                key = str(unit).strip().upper() if unit is not None else ''
+                if key and code is not None and key not in okei:
+                    okei[key] = code
+
+        plant = None
+        plant_col = columns.get('plant')
+        if plant_col is None and columns.get('seq'):
+            # в форме М-19 завод идёт сразу после номера строки
+            plant_col = columns['seq'] + 1
+        if plant_col:
+            plant = ws.cell(style_row, plant_col).value
+
+        for index, record in enumerate(records):
+            row = at + index
+            self._copy_row_style(ws, style_row, row, max_col)
+
+            if columns.get('seq'):
+                ws.cell(row, columns['seq']).value = next_number + index
+            if plant_col:
+                ws.cell(row, plant_col).value = record.get('plant') or plant
+
+            ws.cell(row, columns['name']).value = record['raw_name']
+            if columns.get('code'):
+                cell = ws.cell(row, columns['code'])
+                cell.value = record['code_text']
+                cell.number_format = '@'
+            if columns.get('unit'):
+                ws.cell(row, columns['unit']).value = record['unit']
+            if columns.get('okei'):
+                key = str(record.get('unit') or '').strip().upper()
+                ws.cell(row, columns['okei']).value = okei.get(key)
+            if columns.get('price'):
+                ws.cell(row, columns['price']).value = record['price']
+
+            ws.cell(row, columns['osn']).value = record['остаток']
+            ws.cell(row, columns['pri']).value = record['приход']
+            ws.cell(row, columns['ras']).value = record['расход']
+
+            # формулы (суммы, «остаток на конец») копируем из последней строки
+            for column in range(1, max_col + 1):
+                formula = ws.cell(style_row, column).value
+                if isinstance(formula, str) and formula.startswith('='):
+                    ws.cell(row, column).value = self._retarget_formula(
+                        formula, style_row, row)
+
+    def _merge_into_report(self, etalon):
+        path = self.edit_path
+        if not str(path).lower().endswith(('.xlsx', '.xlsm')):
+            raise ValueError('чтобы сохранить оформление, отчёт должен быть '
+                             'в формате .xlsx — пересохраните его из Excel')
+        workbook = openpyxl.load_workbook(path)
+
+        worksheet = layout = None
+        for sheet in workbook.worksheets:
+            found = self._report_layout(sheet)
+            if found:
+                worksheet, layout = sheet, found
+                break
+        if worksheet is None:
+            raise ValueError('в файле для редактирования не найдена таблица '
+                             'с материалами (нужны колонки «наименование», '
+                             '«остаток», «приход», «расход»)')
+
+        columns = layout['col']
+        rows = layout['rows']
+
+        self._diag += [
+            '=== ФАЙЛ ДЛЯ РЕДАКТИРОВАНИЯ ===',
+            f'Файл: {path}',
+            f'Лист: {worksheet.title}',
+            f'Строки шапки: {layout["header_rows"]}',
+            f'Строк с материалами: {len(rows)} ({rows[0]}..{rows[-1]})',
+            'Колонки: ' + ', '.join(
+                f'{key}={value}' for key, value in columns.items() if value),
+            '',
+        ]
+
+        warehouse = self._report_warehouse(worksheet)
+        if warehouse is not None and 'warehouse' in etalon.columns:
+            subset = etalon[etalon['warehouse'] == warehouse]
+            if not subset.empty:
+                etalon = subset
+        self._diag.append(f'Склад формы: {warehouse}; '
+                          f'строк эталона после фильтра: {len(etalon)}')
+        self._diag.append('')
+
+        records = []
+        for _, row in etalon.iterrows():
+            records.append({
+                'code': row['code'],
+                'code_text': row['code_text'],
+                'name': row['name'],
+                'raw_name': row['raw_name'],
+                'unit': row['unit'],
+                'price': row['price'],
+                'plant': row['plant'],
+                'остаток': row['остаток'],
+                'приход': row['приход'],
+                'расход': row['расход'],
+                'конец': row['конец'],
+                'used': False,
+            })
+
+        index_code = defaultdict(list)
+        index_name = defaultdict(list)
+        for position, record in enumerate(records):
+            if record['code']:
+                index_code[record['code']].append(position)
+            if record['name']:
+                index_name[record['name']].append(position)
+
+        def take(key, index):
+            for position in index.get(key, ()):
+                if not records[position]['used']:
+                    records[position]['used'] = True
+                    return records[position]
+            return None
+
+        updated = 0
+        untouched = 0
+        matched = 0
+        for row in rows:
+            code = _norm_code(worksheet.cell(row, columns['code']).value) \
+                if columns.get('code') else ''
+            name = _norm_name(worksheet.cell(row, columns['name']).value)
+
+            record = take(code, index_code) if code else None
+            if record is None and name:
+                record = take(name, index_name)
+            if record is None:
+                untouched += 1
+                continue
+
+            matched += 1
+            changed = False
+            for key, column in (('остаток', columns['osn']),
+                                ('приход', columns['pri']),
+                                ('расход', columns['ras'])):
+                value = record[key]
+                cell = worksheet.cell(row, column)
+                if self._to_number(cell.value) != value:
+                    cell.value = value
+                    changed = True
+            if changed:
+                updated += 1
+
+        new_records = [record for record in records if not record['used']]
+        if new_records:
+            self._append_rows(worksheet, layout, new_records)
+
+        base_name = os.path.splitext(os.path.basename(path))[0]
+        output_path = os.path.join(self._output_dir(), f'{base_name}_ОБНОВЛЕНО.xlsx')
+        try:
+            workbook.calculation.fullCalcOnLoad = True
+        except Exception:
+            pass
+        workbook.save(output_path)
+
+        return {
+            'updated': updated,
+            'matched': matched,
+            'added': len(new_records),
+            'untouched': untouched,
+            'sheet': worksheet.title,
+            'path': output_path,
+        }
+
+    # ---------- запуск ----------
 
     def _process(self, instance):
         if not self.etalon_path or not self.edit_path:
             self._update_status('Ошибка: выберите оба файла')
             return
 
-        df_etalon = df_edit = None
-        sheet_etalon = sheet_edit = None
+        # Длинная операция: сначала даём интерфейсу перерисовать статус
+        self._update_status('Обрабатываю файлы…')
+        Clock.schedule_once(self._run_merge, 0.1)
+
+    def _run_merge(self, _dt):
         try:
-            df_etalon, sheet_etalon = self._read_etalon(self.etalon_path)
-            df_edit, sheet_edit = self._read_edit(self.edit_path)
-
-            # Ищем колонку с материалом в обоих файлах
-            etalon_material = self._find_material_column(df_etalon)
-            edit_material = self._find_material_column(df_edit)
-            if etalon_material is None:
-                raise ValueError('в эталоне не найдена колонка с материалом')
-            if edit_material is None:
-                raise ValueError('в файле периода не найдена колонка с материалом')
-
-            # Соответствие колонок: (что, колонка в отчёте, колонка в эталоне).
-            # Ищем по ключевым словам с обеих сторон, потому что после склейки
-            # двух строк шапки имена выглядят как 'ОстЗапНП ОстЗапНП'.
-            mapping = []
-            missing_etalon = []
-            missing_edit = []
-            for name, keys in METRIC_KEYWORDS.items():
-                target_col = self._find_metric_column(df_edit, keys)
-                source_col = self._find_metric_column(df_etalon, keys)
-                if source_col is None:
-                    missing_etalon.append(name)
-                if target_col is None:
-                    missing_edit.append(name)
-                if target_col is not None and source_col is not None:
-                    mapping.append((name, target_col, source_col))
-
-            if not mapping:
-                parts = []
-                if missing_etalon:
-                    parts.append('в эталоне — ' + ', '.join(missing_etalon))
-                if missing_edit:
-                    parts.append('в отчёте — ' + ', '.join(missing_edit))
-                raise ValueError('не найдены колонки: ' + '; '.join(parts))
-
-            # Числа в эталоне могут быть текстом («1 000,50»), чистим их.
-            for _, _, source_col in mapping:
-                df_etalon[source_col] = df_etalon[source_col].apply(self._clean_number)
-
-            df_etalon_i = df_etalon.set_index(etalon_material)
-            # Один материал в выгрузке 1С встречается несколько раз (склад, партия),
-            # поэтому остатки/приход/расход суммируем по материалу.
-            metric_cols = [source_col for _, _, source_col in mapping]
-            etalon_values = df_etalon_i[metric_cols].groupby(level=0).sum()
-            df_edit_i = df_edit.set_index(edit_material).copy()
-
-            # 1. Добавляем новые материалы из эталона в сентябрь.
-            new_materials = etalon_values.index.difference(df_edit_i.index)
-            if not new_materials.empty:
-                new_rows = pd.DataFrame(index=new_materials,
-                                        columns=list(df_edit_i.columns),
-                                        dtype=object)
-                for _, target_col, source_col in mapping:
-                    new_rows[target_col] = etalon_values.loc[new_materials, source_col].to_numpy()
-                # иначе при concat теряется имя колонки материала
-                new_rows.index = new_rows.index.rename(df_edit_i.index.name)
-                df_edit_i = pd.concat([df_edit_i, new_rows])
-
-            # 2. Обновляем данные для существующих материалов.
-            # Цену в отчёте НЕ ТРОГАЕМ: только остаток/приход/расход.
-            updated = 0
-            for _, target_col, source_col in mapping:
-                # map по индексу работает и при повторяющихся наименованиях
-                # в отчёте, поэтому используем его, а не .loc/позиции.
-                mapped = df_edit_i.index.to_series().map(etalon_values[source_col]).to_numpy()
-                mask = pd.notna(mapped)
-                if not mask.any():
-                    continue
-                values = df_edit_i[target_col].to_numpy().astype(object)
-                values[mask] = mapped[mask]
-                df_edit_i[target_col] = values
-                updated += 1
-
-            if updated == 0:
-                raise ValueError('в эталоне нет данных для обновления '
-                                 '(остаток/приход/расход пустые)')
-
-            # Сбрасываем индекс
-            result_df = df_edit_i.reset_index()
-
-            # Сохраняем результат
-            base_name = os.path.splitext(os.path.basename(self.edit_path))[0]
-            output_path = os.path.join(self._output_dir(), f'{base_name}_ОБНОВЛЕНО.xlsx')
-            result_df.to_excel(output_path, index=False)
-
-            self._update_status(
-                f'Готово! Добавлено: {len(new_materials)}, '
-                f'обновлено колонок: {updated}.\n'
-                f'Лист: {sheet_edit}\n'
-                f'Файл: {os.path.basename(output_path)}'
-            )
-
+            etalon = self._load_etalon(self.etalon_path)
+            result = self._merge_into_report(etalon)
+            message = (f'Готово! Строк с парой: {result["matched"]}, '
+                       f'изменено: {result["updated"]}, '
+                       f'добавлено: {result["added"]}.')
+            if result['untouched']:
+                message += f'\nБез пары в эталоне: {result["untouched"]}'
+            message += (f'\nЛист: {result["sheet"]}\n'
+                        f'Файл: {os.path.basename(result["path"])}')
+            self._update_status(message)
         except Exception as e:
             self._update_status(f'Ошибка: {e}\n'
                                 f'Подробности: excel_merger_diagnostics.txt')
-            self._write_diagnostics(e, sheet_etalon, df_etalon,
-                                    sheet_edit, df_edit)
+            self._write_diagnostics(e)
 
-    def _write_diagnostics(self, error, sheet_etalon, df_etalon,
-                           sheet_edit, df_edit):
-        """Пишем рядом с результатом список колонок — по нему видно, что не так."""
-        lines = ['Excel Merger — диагностика', f'Ошибка: {error}', '']
-
-        for title, sheet, df in (('ЭТАЛОН', sheet_etalon, df_etalon),
-                                 ('ФАЙЛ ПЕРИОДА', sheet_edit, df_edit)):
-            lines.append(f'=== {title} ===')
-            lines.append(f'Файл: {self.etalon_path if df is df_etalon else self.edit_path}')
-            lines.append(f'Лист: {sheet if sheet is not None else "(не определён)"}')
-            if df is not None:
-                lines.append(f'Колонок: {len(df.columns)}')
-                for i, col in enumerate(df.columns):
-                    lines.append(f'  [{i}] {col}')
-            lines.append('')
-
+    def _write_diagnostics(self, error):
+        """Пишем рядом с результатом расшифровку — по ней видно, что не так."""
+        lines = list(self._diag) + ['=== ОШИБКА ===', str(error)]
         try:
             path = os.path.join(self._output_dir(), 'excel_merger_diagnostics.txt')
             with open(path, 'w', encoding='utf-8') as f:

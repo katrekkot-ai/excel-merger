@@ -14,6 +14,7 @@ from kivy.core.window import Window
 from kivy.metrics import dp, sp
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
+from kivy.uix.checkbox import CheckBox
 from kivy.uix.filechooser import FileChooserListView
 from kivy.uix.label import Label
 from kivy.uix.popup import Popup
@@ -97,6 +98,7 @@ def _norm_name(value):
 # кнопка получается ~15 dp и текст в неё не влезает.
 BTN_HEIGHT = dp(52)
 BTN_FONT = sp(17)
+OPTION_FONT = sp(14)
 STATUS_FONT = sp(15)
 STATUS_MIN_HEIGHT = dp(72)
 STATUS_MAX_HEIGHT = dp(160)
@@ -139,6 +141,15 @@ class ExcelMergerApp(App):
         btn_edit.bind(on_press=self._select_file('edit'))
         layout.add_widget(btn_edit)
 
+        # Итоги отчёта должны совпадать с эталоном, поэтому по умолчанию
+        # строки без пары удаляются, а цена берётся из выгрузки 1С.
+        self.opt_prices = CheckBox(active=True, size_hint=(None, 1), width=dp(40))
+        layout.add_widget(self._option_row(
+            self.opt_prices, 'Цены брать из эталона (итоги по сумме сойдутся)'))
+        self.opt_drop = CheckBox(active=True, size_hint=(None, 1), width=dp(40))
+        layout.add_widget(self._option_row(
+            self.opt_drop, 'Удалять строки, которых нет в эталоне'))
+
         btn_run = Button(text='Объединить и сохранить', size_hint_y=None,
                          height=BTN_HEIGHT, font_size=BTN_FONT)
         btn_run.bind(on_press=self._process)
@@ -149,6 +160,28 @@ class ExcelMergerApp(App):
         layout.add_widget(Widget())
 
         return layout
+
+    def _option_row(self, checkbox, text):
+        """Строка «галочка + пояснение»; тап по тексту тоже переключает."""
+        row = BoxLayout(size_hint_y=None, height=dp(46), spacing=dp(4))
+        label = Label(text=text, font_size=OPTION_FONT, halign='left',
+                      valign='middle', color=(0.15, 0.15, 0.15, 1),
+                      padding=(dp(2), 0))
+
+        def sync_text_size(instance, size):
+            instance.text_size = (max(0, size[0] - dp(4)), None)
+
+        def on_touch(instance, touch):
+            if instance.collide_point(*touch.pos):
+                checkbox.active = not checkbox.active
+                return True
+            return False
+
+        label.bind(size=sync_text_size)
+        label.bind(on_touch_down=on_touch)
+        row.add_widget(checkbox)
+        row.add_widget(label)
+        return row
 
     def _sync_status_text_size(self, instance, size):
         instance.text_size = (max(0, size[0] - dp(8)), None)
@@ -696,6 +729,44 @@ class ExcelMergerApp(App):
                            end_row=max_row_ + count, end_column=max_col_)
 
     @staticmethod
+    def _delete_row(ws, row):
+        """Удаляет строку таблицы, подтягивая нижний блок вверх.
+
+        openpyxl.delete_rows теряет объединённые ячейки и высоты строк и ломает
+        формулы, поэтому сдвигаем вручную и правим ссылки.
+        """
+        max_row = ws.max_row
+        max_col = ws.max_column
+
+        merges = [(m.min_col, m.min_row, m.max_col, m.max_row)
+                  for m in ws.merged_cells.ranges if m.min_row > row]
+        for merge in list(ws.merged_cells.ranges):
+            if merge.min_row > row:
+                ws.unmerge_cells(str(merge))
+
+        for current in range(row, max_row):
+            for column in range(1, max_col + 1):
+                source = ws.cell(current + 1, column)
+                target = ws.cell(current, column)
+                target.value = source.value
+                if source.has_style:
+                    target._style = copy(source._style)
+                source.value = None
+            ws.row_dimensions[current].height = ws.row_dimensions[current + 1].height
+            ws.row_dimensions[current + 1].height = None
+
+        for min_col, min_row, max_col_, max_row_ in merges:
+            ws.merge_cells(start_row=min_row - 1, start_column=min_col,
+                           end_row=max_row_ - 1, end_column=max_col_)
+
+        # всё, что ниже удалённой строки, «поднялось» на одну строку
+        for current in range(row, ws.max_row + 1):
+            for cell in ws[current]:
+                if isinstance(cell.value, str) and cell.value.startswith('='):
+                    cell.value = ExcelMergerApp._shift_formula_rows(
+                        cell.value, row + 1, -1)
+
+    @staticmethod
     def _shift_formula_rows(formula, at, count):
         def replace(match):
             column, dollar, row = match.group(1), match.group(2), int(match.group(3))
@@ -816,7 +887,8 @@ class ExcelMergerApp(App):
                     ws.cell(row, column).value = self._retarget_formula(
                         formula, style_row, row)
 
-    def _merge_into_report(self, etalon):
+    def _merge_into_report(self, etalon, use_etalon_prices=True,
+                           drop_unmatched=True):
         path = self.edit_path
         extension = os.path.splitext(str(path))[1].lower()
         if extension not in ('.xlsx', '.xlsm'):
@@ -852,8 +924,10 @@ class ExcelMergerApp(App):
         warehouse = self._report_warehouse(worksheet)
         if warehouse is not None and 'warehouse' in etalon.columns:
             subset = etalon[etalon['warehouse'] == warehouse]
-            if not subset.empty:
-                etalon = subset
+            if subset.empty:
+                raise ValueError(f'в эталоне нет строк по складу {warehouse} — '
+                                 f'проверьте, что выгрузка сделана по нужному складу')
+            etalon = subset
         self._diag.append(f'Склад формы: {warehouse}; '
                           f'строк эталона после фильтра: {len(etalon)}')
         self._diag.append('')
@@ -893,6 +967,8 @@ class ExcelMergerApp(App):
         updated = 0
         untouched = 0
         matched = 0
+        prices = 0
+        unmatched_rows = []
         for row in rows:
             code = _norm_code(worksheet.cell(row, columns['code']).value) \
                 if columns.get('code') else ''
@@ -903,6 +979,7 @@ class ExcelMergerApp(App):
                 record = take(name, index_name)
             if record is None:
                 untouched += 1
+                unmatched_rows.append(row)
                 continue
 
             matched += 1
@@ -915,12 +992,61 @@ class ExcelMergerApp(App):
                 if self._to_number(cell.value) != value:
                     cell.value = value
                     changed = True
+
+            # суммы в форме считаются как количество * учётная цена (G),
+            # поэтому без цены из эталона итоги с эталоном не сойдутся
+            if use_etalon_prices and columns.get('price'):
+                cell = worksheet.cell(row, columns['price'])
+                current = self._to_number(cell.value) or 0
+                if abs(current - record['price']) > 0.005:
+                    cell.value = record['price']
+                    prices += 1
+                    changed = True
+
             if changed:
                 updated += 1
+
+        # строки, которых нет в эталоне (устаревшие/лишние), искажают итоги
+        deleted = 0
+        unmatched_share = (len(unmatched_rows) / len(rows)) if rows else 0
+        if drop_unmatched and unmatched_rows and unmatched_share <= 0.3:
+            for row in sorted(unmatched_rows, reverse=True):
+                self._delete_row(worksheet, row)
+            deleted = len(unmatched_rows)
+            removed = set(unmatched_rows)
+            rows = [row - sum(1 for gone in removed if gone < row)
+                    for row in rows if row not in removed]
+            layout = dict(layout, rows=rows)
+            if columns.get('seq') and rows:
+                for position, row in enumerate(rows, start=1):
+                    worksheet.cell(row, columns['seq']).value = position
+        elif drop_unmatched and unmatched_rows:
+            # так бывает, если выбран не тот склад: удалять почти всю таблицу нельзя
+            self._diag.append(f'Строки без пары не удалены: их слишком много '
+                              f'({len(unmatched_rows)} из {len(rows)})')
 
         new_records = [record for record in records if not record['used']]
         if new_records:
             self._append_rows(worksheet, layout, new_records)
+
+        totals = {}
+        if rows:
+            last_row = rows[-1] + len([record for record in records
+                                       if not record['used']])
+            totals = self._sheet_totals(worksheet, rows[0], last_row, columns)
+        expected = self._etalon_totals(records)
+        if totals:
+            self._diag += ['=== ИТОГИ (форма / эталон) ===']
+            for key, label in (('нач', 'нач кол-во'), ('нач_сумма', 'нач сумма'),
+                               ('приход', 'приход кол-во'),
+                               ('приход_сумма', 'приход сумма'),
+                               ('расход', 'расход кол-во'),
+                               ('расход_сумма', 'расход сумма'),
+                               ('конец', 'конец кол-во'),
+                               ('конец_сумма', 'конец сумма')):
+                self._diag.append(f'{label}: {self._fmt(totals[key])} / '
+                                  f'{self._fmt(expected[key])}')
+            self._diag.append('')
 
         base_name = os.path.splitext(os.path.basename(path))[0]
         output_path = os.path.join(self._output_dir(),
@@ -936,12 +1062,90 @@ class ExcelMergerApp(App):
         return {
             'updated': updated,
             'matched': matched,
+            'prices': prices,
             'added': len(new_records),
+            'deleted': deleted,
             'untouched': untouched,
             'sheet': worksheet.title,
             'path': output_path,
             'published': published,
+            'totals': totals,
+            'expected': expected,
         }
+
+    # ---------- контроль итогов ----------
+
+    @staticmethod
+    def _sheet_totals(ws, first, last, columns):
+        """Итоги по колонкам формы: количество и сумма (кол-во * цена)."""
+        totals = {'нач': 0.0, 'нач_сумма': 0.0, 'приход': 0.0,
+                  'приход_сумма': 0.0, 'расход': 0.0, 'расход_сумма': 0.0,
+                  'конец': 0.0, 'конец_сумма': 0.0}
+        price_col = columns.get('price')
+        for row in range(first, last + 1):
+            price = 0.0
+            if price_col:
+                price = ExcelMergerApp._to_number(ws.cell(row, price_col).value) or 0.0
+            osn = ExcelMergerApp._to_number(ws.cell(row, columns['osn']).value) or 0.0
+            pri = ExcelMergerApp._to_number(ws.cell(row, columns['pri']).value) or 0.0
+            ras = ExcelMergerApp._to_number(ws.cell(row, columns['ras']).value) or 0.0
+            konec = osn + pri - ras
+
+            totals['нач'] += osn
+            totals['нач_сумма'] += osn * price
+            totals['приход'] += pri
+            totals['приход_сумма'] += pri * price
+            totals['расход'] += ras
+            totals['расход_сумма'] += ras * price
+            totals['конец'] += konec
+            totals['конец_сумма'] += konec * price
+        return totals
+
+    @staticmethod
+    def _etalon_totals(records):
+        """Те же итоги, но посчитанные по выгрузке 1С."""
+        totals = {'нач': 0.0, 'нач_сумма': 0.0, 'приход': 0.0,
+                  'приход_сумма': 0.0, 'расход': 0.0, 'расход_сумма': 0.0,
+                  'конец': 0.0, 'конец_сумма': 0.0}
+        for record in records:
+            price = record.get('price') or 0.0
+            osn = record.get('остаток') or 0.0
+            pri = record.get('приход') or 0.0
+            ras = record.get('расход') or 0.0
+            konec = osn + pri - ras
+
+            totals['нач'] += osn
+            totals['нач_сумма'] += osn * price
+            totals['приход'] += pri
+            totals['приход_сумма'] += pri * price
+            totals['расход'] += ras
+            totals['расход_сумма'] += ras * price
+            totals['конец'] += konec
+            totals['конец_сумма'] += konec * price
+        return totals
+
+    @staticmethod
+    def _totals_problems(totals, expected):
+        """Список расхождений между формой и эталоном (пустой, если всё сошлось)."""
+        names = {'нач': 'остаток на начало, кол-во',
+                 'нач_сумма': 'остаток на начало, сумма',
+                 'приход': 'приход, кол-во',
+                 'приход_сумма': 'приход, сумма',
+                 'расход': 'расход, кол-во',
+                 'расход_сумма': 'расход, сумма',
+                 'конец': 'остаток на конец, кол-во',
+                 'конец_сумма': 'остаток на конец, сумма'}
+        problems = []
+        for key, label in names.items():
+            diff = totals.get(key, 0.0) - expected.get(key, 0.0)
+            if abs(diff) > 0.02:
+                problems.append(f'{label}: {ExcelMergerApp._fmt(diff)}')
+        return problems
+
+    @staticmethod
+    def _fmt(value):
+        """1234567.5 -> «1 234 567,50»."""
+        return f'{value:,.2f}'.replace(',', ' ').replace('.', ',')
 
     # ---------- запуск ----------
 
@@ -950,19 +1154,32 @@ class ExcelMergerApp(App):
             self._update_status('Ошибка: выберите оба файла')
             return
 
+        self._options = (bool(self.opt_prices.active),
+                         bool(self.opt_drop.active))
         # Длинная операция: сначала даём интерфейсу перерисовать статус
         self._update_status('Обрабатываю файлы…')
         Clock.schedule_once(self._run_merge, 0.1)
 
     def _run_merge(self, _dt):
         try:
+            use_etalon_prices, drop_unmatched = getattr(
+                self, '_options', (True, True))
             etalon = self._load_etalon(self.etalon_path)
-            result = self._merge_into_report(etalon)
+            result = self._merge_into_report(etalon, use_etalon_prices,
+                                             drop_unmatched)
             message = (f'Готово! Строк с парой: {result["matched"]}, '
                        f'изменено: {result["updated"]}, '
-                       f'добавлено: {result["added"]}.')
-            if result['untouched']:
-                message += f'\nБез пары в эталоне: {result["untouched"]}'
+                       f'цен: {result["prices"]}, '
+                       f'добавлено: {result["added"]}, '
+                       f'удалено: {result["deleted"]}.')
+
+            problems = self._totals_problems(result['totals'],
+                                             result['expected'])
+            if problems:
+                message += '\nИтоги расходятся с эталоном:\n' + '\n'.join(problems)
+            else:
+                message += '\nИтоги совпадают с эталоном ✓'
+
             message += (f'\nЛист: {result["sheet"]}\n'
                         f'Файл: {result["published"] or os.path.basename(result["path"])}')
             if result.get('published'):

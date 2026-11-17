@@ -2,6 +2,7 @@
 
 import os
 import re
+import shutil
 from collections import defaultdict
 from copy import copy
 
@@ -225,6 +226,71 @@ class ExcelMergerApp(App):
             except Exception:
                 continue
         return os.path.expanduser('~')
+
+    # MIME-тип книги Excel — нужен и «Загрузкам», и просмотрщику на телефоне.
+    XLSX_MIME = ('application/vnd.openxmlformats-officedocument'
+                 '.spreadsheetml.sheet')
+
+    def _publish_to_download(self, source_path):
+        """Кладёт результат в общую папку «Загрузки», чтобы его было где найти.
+
+        На Android 10+ прямая запись в /storage/emulated/0/Download запрещена,
+        поэтому файл добавляется через MediaStore. Возвращает описание места
+        сохранения или None, если не получилось (тогда файл остаётся в папке
+        приложения).
+        """
+        if platform != 'android':
+            return None
+
+        # уже сохранили прямо в «Загрузки» — второй копии не нужно
+        try:
+            download_dir = os.path.join(primary_external_storage_path(), 'Download')
+            if os.path.abspath(os.path.dirname(source_path)) == os.path.abspath(download_dir):
+                return source_path
+        except Exception:
+            pass
+
+        name = os.path.basename(source_path)
+        mime = self.XLSX_MIME if name.lower().endswith(('.xlsx', '.xlsm')) else 'text/plain'
+        try:
+            sdk = autoclass('android.os.Build$VERSION').SDK_INT
+        except Exception:
+            sdk = 0
+
+        if sdk >= 29:
+            try:
+                resolver = (autoclass('org.kivy.android.PythonActivity')
+                            .mActivity.getContentResolver())
+                MediaStore = autoclass('android.provider.MediaStore')
+                ContentValues = autoclass('android.content.ContentValues')
+                values = ContentValues()
+                values.put(MediaStore.MediaColumns.DISPLAY_NAME, name)
+                values.put(MediaStore.MediaColumns.MIME_TYPE, mime)
+                values.put(MediaStore.MediaColumns.RELATIVE_PATH, 'Download')
+                uri = resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, values)
+                if uri is None:
+                    return None
+                stream = resolver.openOutputStream(uri)
+                with open(source_path, 'rb') as source:
+                    while True:
+                        chunk = source.read(65536)
+                        if not chunk:
+                            break
+                        stream.write(bytearray(chunk))
+                stream.flush()
+                stream.close()
+                return 'Загрузки/' + name
+            except Exception:
+                return None
+
+        # Android 9 и ниже: разрешение WRITE_EXTERNAL_STORAGE позволяет писать напрямую
+        try:
+            folder = os.path.join(primary_external_storage_path(), 'Download')
+            os.makedirs(folder, exist_ok=True)
+            shutil.copyfile(source_path, os.path.join(folder, name))
+            return os.path.join(folder, name)
+        except Exception:
+            return None
 
     def _select_file(self, file_type):
         """Функция-обертка для вызова диалога."""
@@ -466,7 +532,9 @@ class ExcelMergerApp(App):
         for name in METRIC_KEYWORDS:
             column = metrics.get(name)
             data[name] = df[column].apply(self._clean_number) if column else 0
-        data['warehouse'] = df[warehouse_col] if warehouse_col else None
+        # склад и завод приводим к числам: 1С пишет их то числом, то текстом
+        data['warehouse'] = (df[warehouse_col].apply(self._to_number)
+                             if warehouse_col else None)
         data['plant'] = df[plant_col] if plant_col else None
 
         # строки без кода и названия не нужны
@@ -706,6 +774,8 @@ class ExcelMergerApp(App):
             plant_col = columns['seq'] + 1
         if plant_col:
             plant = ws.cell(style_row, plant_col).value
+        # в форме завод записан текстом ('4301'), а из эталона приходит числом
+        plant_as_text = isinstance(plant, str)
 
         for index, record in enumerate(records):
             row = at + index
@@ -714,7 +784,13 @@ class ExcelMergerApp(App):
             if columns.get('seq'):
                 ws.cell(row, columns['seq']).value = next_number + index
             if plant_col:
-                ws.cell(row, plant_col).value = record.get('plant') or plant
+                value = record.get('plant')
+                if value is None or (isinstance(value, float) and pd.isna(value)):
+                    value = plant
+                if plant_as_text and self._to_number(value) is not None:
+                    number = self._to_number(value)
+                    value = str(int(number)) if number.is_integer() else str(number)
+                ws.cell(row, plant_col).value = value
 
             ws.cell(row, columns['name']).value = record['raw_name']
             if columns.get('code'):
@@ -742,10 +818,11 @@ class ExcelMergerApp(App):
 
     def _merge_into_report(self, etalon):
         path = self.edit_path
-        if not str(path).lower().endswith(('.xlsx', '.xlsm')):
+        extension = os.path.splitext(str(path))[1].lower()
+        if extension not in ('.xlsx', '.xlsm'):
             raise ValueError('чтобы сохранить оформление, отчёт должен быть '
                              'в формате .xlsx — пересохраните его из Excel')
-        workbook = openpyxl.load_workbook(path)
+        workbook = openpyxl.load_workbook(path, keep_vba=(extension == '.xlsm'))
 
         worksheet = layout = None
         for sheet in workbook.worksheets:
@@ -846,12 +923,15 @@ class ExcelMergerApp(App):
             self._append_rows(worksheet, layout, new_records)
 
         base_name = os.path.splitext(os.path.basename(path))[0]
-        output_path = os.path.join(self._output_dir(), f'{base_name}_ОБНОВЛЕНО.xlsx')
+        output_path = os.path.join(self._output_dir(),
+                                   f'{base_name}_ОБНОВЛЕНО{extension}')
         try:
             workbook.calculation.fullCalcOnLoad = True
         except Exception:
             pass
         workbook.save(output_path)
+
+        published = self._publish_to_download(output_path)
 
         return {
             'updated': updated,
@@ -860,6 +940,7 @@ class ExcelMergerApp(App):
             'untouched': untouched,
             'sheet': worksheet.title,
             'path': output_path,
+            'published': published,
         }
 
     # ---------- запуск ----------
@@ -883,7 +964,9 @@ class ExcelMergerApp(App):
             if result['untouched']:
                 message += f'\nБез пары в эталоне: {result["untouched"]}'
             message += (f'\nЛист: {result["sheet"]}\n'
-                        f'Файл: {os.path.basename(result["path"])}')
+                        f'Файл: {result["published"] or os.path.basename(result["path"])}')
+            if result.get('published'):
+                message += '\nОткройте папку «Загрузки»'
             self._update_status(message)
         except Exception as e:
             self._update_status(f'Ошибка: {e}\n'
@@ -897,6 +980,7 @@ class ExcelMergerApp(App):
             path = os.path.join(self._output_dir(), 'excel_merger_diagnostics.txt')
             with open(path, 'w', encoding='utf-8') as f:
                 f.write('\n'.join(lines))
+            self._publish_to_download(path)
         except Exception:
             pass
 

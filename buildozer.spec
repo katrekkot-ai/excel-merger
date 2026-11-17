@@ -11,7 +11,7 @@ source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,json,ttf
 
 # Версия
-version = 0.1
+version = 0.2
 
 # Стек по умолчанию (Python 3.14 от p4a). pandas v3.1.1 — первая ветка с официальной
 # поддержкой Python 3.14; numpy v2.3.4 — минимально требуемая для 3.14 и с фиксом
@@ -26,7 +26,8 @@ requirements = python3,kivy==2.3.1,numpy==v2.3.4,pandas==v3.1.1,openpyxl,xlrd
 p4a.local_recipes = ./p4a-recipes
 
 orientation = portrait
-fullscreen = 0
+# Полноэкранный режим: без него SDL-окно может оказаться меньше экрана
+fullscreen = 1
 
 # compileSdk 35: Java-код SDL2 в p4a использует API 31+ (Manifest.permission.BLUETOOTH_CONNECT).
 # minapi остаётся 24 — старые телефоны поддерживаются.

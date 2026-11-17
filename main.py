@@ -1,13 +1,27 @@
 import os
+
 import pandas as pd
 from kivy.app import App
+from kivy.core.window import Window
+from kivy.metrics import dp, sp
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
+from kivy.uix.filechooser import FileChooserListView
 from kivy.uix.label import Label
 from kivy.uix.popup import Popup
-from kivy.uix.filechooser import FileChooserListView
+from kivy.uix.widget import Widget
 
 ANDROID = 'ANDROID_ARGUMENT' in os.environ
+
+STATUS_START = 'Загрузите эталон и файл для редактирования'
+
+# ВАЖНО: все размеры задаём в dp/sp, а не в пикселях. На телефоне с плотностью 3
+# «height=44» превращается в ~15 реальных dp, и текст в кнопку не влезает.
+BTN_HEIGHT = dp(52)
+BTN_FONT = sp(17)
+STATUS_FONT = sp(15)
+STATUS_MIN_HEIGHT = dp(72)
+STATUS_MAX_HEIGHT = dp(160)
 
 
 def _start_dir():
@@ -49,11 +63,13 @@ class FileChooserPopup(Popup):
     def __init__(self, callback, **kwargs):
         super().__init__(**kwargs)
         self.title = 'Выберите Excel файл'
-        self.size_hint = (0.9, 0.9)
+        self.size_hint = (0.95, 0.95)
         self.callback = callback
-        layout = BoxLayout(orientation='vertical')
+
+        layout = BoxLayout(orientation='vertical', spacing=dp(8), padding=dp(8))
         chooser = FileChooserListView(filters=['*.xlsx', '*.xls'], path=_start_dir())
-        btn_select = Button(text='Выбрать', size_hint_y=None, height=44)
+        btn_select = Button(text='Выбрать', size_hint_y=None, height=BTN_HEIGHT,
+                            font_size=BTN_FONT)
         btn_select.bind(on_press=lambda x: self._select(chooser.path, chooser.selection))
         layout.add_widget(chooser)
         layout.add_widget(btn_select)
@@ -70,25 +86,55 @@ class ExcelMergerApp(App):
         self.etalon_path = None
         self.edit_path = None
 
-        layout = BoxLayout(orientation='vertical', padding=10, spacing=10)
+        # Светлый фон: на чёрном подписи читались плохо
+        Window.clearcolor = (0.96, 0.96, 0.96, 1)
 
-        self.status = Label(text='Загрузите эталон и файл для редактирования',
-                            size_hint_y=None, height=44, halign='center')
-        layout.add_widget(self.status)
+        root = BoxLayout(orientation='vertical', padding=dp(16), spacing=dp(12))
 
-        btn_etalon = Button(text='1. Выбрать эталон', size_hint_y=None, height=44)
+        self.status = Label(
+            text=STATUS_START,
+            size_hint_y=None,
+            height=STATUS_MIN_HEIGHT,
+            halign='center',
+            valign='middle',
+            color=(0.12, 0.12, 0.12, 1),
+            font_size=STATUS_FONT,
+            padding=(dp(8), dp(8)),
+            markup=True,
+        )
+        # halign работает только вместе с text_size; высота подстраивается под текст
+        self.status.bind(size=self._sync_status_text_size)
+        self.status.bind(texture_size=self._sync_status_height)
+        root.add_widget(self.status)
+
+        btn_etalon = Button(text='1. Выбрать эталон', size_hint_y=None,
+                            height=BTN_HEIGHT, font_size=BTN_FONT)
         btn_etalon.bind(on_press=lambda x: self._open_chooser(self._set_etalon))
-        layout.add_widget(btn_etalon)
+        root.add_widget(btn_etalon)
 
-        btn_edit = Button(text='2. Выбрать файл для редактирования', size_hint_y=None, height=44)
+        btn_edit = Button(text='2. Выбрать файл для редактирования', size_hint_y=None,
+                          height=BTN_HEIGHT, font_size=BTN_FONT)
         btn_edit.bind(on_press=lambda x: self._open_chooser(self._set_edit))
-        layout.add_widget(btn_edit)
+        root.add_widget(btn_edit)
 
-        btn_run = Button(text='3. Объединить и сохранить', size_hint_y=None, height=44)
+        btn_run = Button(text='3. Объединить и сохранить', size_hint_y=None,
+                         height=BTN_HEIGHT, font_size=BTN_FONT)
         btn_run.bind(on_press=self._process)
-        layout.add_widget(btn_run)
+        root.add_widget(btn_run)
 
-        return layout
+        # Распорка. BoxLayout с orientation='vertical' укладывает детей от нижнего
+        # края вверх, поэтому без неё фиксированные по высоте кнопки «прилипают»
+        # к низу экрана. Эта распорка съедает остаток высоты и прижимает блок к верху.
+        root.add_widget(Widget())
+
+        return root
+
+    def _sync_status_text_size(self, instance, size):
+        instance.text_size = (max(0, size[0] - dp(8)), None)
+
+    def _sync_status_height(self, instance, texture_size):
+        height = texture_size[1] + dp(24)
+        instance.height = min(STATUS_MAX_HEIGHT, max(STATUS_MIN_HEIGHT, height))
 
     def _open_chooser(self, callback):
         self.chooser_popup = FileChooserPopup(callback)
@@ -96,16 +142,21 @@ class ExcelMergerApp(App):
 
     def _set_etalon(self, path):
         self.etalon_path = path
-        self.status.text = f'Эталон: {os.path.basename(path)}'
+        edit_name = os.path.basename(self.edit_path) if self.edit_path else 'не выбран'
+        self.status.text = (f'Эталон: [b]{os.path.basename(path)}[/b]\n'
+                            f'Редактируем: {edit_name}')
 
     def _set_edit(self, path):
         self.edit_path = path
-        self.status.text += f' | Редактируем: {os.path.basename(path)}'
+        etalon_name = os.path.basename(self.etalon_path) if self.etalon_path else 'не выбран'
+        self.status.text = (f'Эталон: {etalon_name}\n'
+                            f'Редактируем: [b]{os.path.basename(path)}[/b]')
 
     def _clean_number(self, value):
         if pd.isna(value):
             return 0
-        s = str(value).replace('₽', '').replace(' ', '').replace('\xa0', '').replace(',', '.')
+        s = (str(value).replace('₽', '').replace(' ', '')
+             .replace('\xa0', '').replace(',', '.'))
         try:
             if '.' in s:
                 return float(s)
@@ -169,11 +220,12 @@ class ExcelMergerApp(App):
 
             added_count = len(new_materials)
             updated_count = len(common_materials)
+            # Длинный путь в статус не влезет — показываем только имя файла
             self.status.text = (f'Готово! Добавлено: {added_count}, Обновлено: {updated_count}.\n'
-                                f'Файл: {output_path}')
+                                f'Файл: {os.path.basename(output_path)}')
 
         except Exception as e:
-            self.status.text = f'Ошибка: {str(e)}'
+            self.status.text = f'Ошибка: {e}'
 
 
 if __name__ == '__main__':

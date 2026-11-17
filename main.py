@@ -4,11 +4,14 @@ import re
 import pandas as pd
 from kivy.app import App
 from kivy.clock import Clock
+from kivy.core.window import Window
+from kivy.metrics import dp, sp
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.filechooser import FileChooserListView
 from kivy.uix.label import Label
 from kivy.uix.popup import Popup
+from kivy.uix.widget import Widget
 from kivy.utils import platform
 
 # Для работы с системным выбором файла
@@ -20,6 +23,14 @@ if platform == 'android':
 
 REQUEST_OPEN_DOCUMENT = 1001
 RESULT_OK = -1
+
+# ВАЖНО: размеры только в dp/sp. В пикселях (height=44) на телефоне с плотностью 3
+# кнопка получается ~15 dp и текст в неё не влезает.
+BTN_HEIGHT = dp(52)
+BTN_FONT = sp(17)
+STATUS_FONT = sp(15)
+STATUS_MIN_HEIGHT = dp(72)
+STATUS_MAX_HEIGHT = dp(160)
 
 
 class ExcelMergerApp(App):
@@ -35,24 +46,46 @@ class ExcelMergerApp(App):
             # Результат системного диалога выбора файла приходит сюда
             android_activity.bind(on_activity_result=self._on_activity_result)
 
-        layout = BoxLayout(orientation='vertical', padding=10, spacing=10)
+        layout = BoxLayout(orientation='vertical', padding=dp(16), spacing=dp(12))
 
-        self.status = Label(text='Загрузите эталон и файл для редактирования', size_hint_y=None, height=44)
+        Window.clearcolor = (0.96, 0.96, 0.96, 1)
+
+        self.status = Label(text='Загрузите эталон и файл для редактирования',
+                            size_hint_y=None, height=STATUS_MIN_HEIGHT,
+                            halign='center', valign='middle', font_size=STATUS_FONT,
+                            color=(0.12, 0.12, 0.12, 1), padding=(dp(8), dp(8)))
+        # halign работает только вместе с text_size; высота подстраивается под текст
+        self.status.bind(size=self._sync_status_text_size)
+        self.status.bind(texture_size=self._sync_status_height)
         layout.add_widget(self.status)
 
-        btn_etalon = Button(text='Выбрать эталон', size_hint_y=None, height=44)
+        btn_etalon = Button(text='Выбрать эталон', size_hint_y=None, height=BTN_HEIGHT,
+                            font_size=BTN_FONT)
         btn_etalon.bind(on_press=self._select_file('etalon'))
         layout.add_widget(btn_etalon)
 
-        btn_edit = Button(text='Выбрать файл для редактирования', size_hint_y=None, height=44)
+        btn_edit = Button(text='Выбрать файл для редактирования', size_hint_y=None,
+                          height=BTN_HEIGHT, font_size=BTN_FONT)
         btn_edit.bind(on_press=self._select_file('edit'))
         layout.add_widget(btn_edit)
 
-        btn_run = Button(text='Объединить и сохранить', size_hint_y=None, height=44)
+        btn_run = Button(text='Объединить и сохранить', size_hint_y=None,
+                         height=BTN_HEIGHT, font_size=BTN_FONT)
         btn_run.bind(on_press=self._process)
         layout.add_widget(btn_run)
 
+        # BoxLayout(vertical) укладывает детей от нижнего края вверх — без распорки
+        # фиксированные по высоте кнопки «прилипают» к низу экрана.
+        layout.add_widget(Widget())
+
         return layout
+
+    def _sync_status_text_size(self, instance, size):
+        instance.text_size = (max(0, size[0] - dp(8)), None)
+
+    def _sync_status_height(self, instance, texture_size):
+        height = texture_size[1] + dp(24)
+        instance.height = min(STATUS_MAX_HEIGHT, max(STATUS_MIN_HEIGHT, height))
 
     def _clean_number(self, value):
         """Очистка чисел."""
@@ -105,9 +138,10 @@ class ExcelMergerApp(App):
         def inner(instance):
             if platform != 'android':
                 # На ПК просто открываем старый FileChooser
-                chooser_popup = Popup(title='Выберите Excel файл')
+                chooser_popup = Popup(title='Выберите Excel файл', size_hint=(0.95, 0.95))
                 chooser = FileChooserListView(filters=['*.xlsx', '*.xls'])
-                btn_select = Button(text='Выбрать', size_hint_y=None, height=44)
+                btn_select = Button(text='Выбрать', size_hint_y=None, height=BTN_HEIGHT,
+                                    font_size=BTN_FONT)
 
                 def on_select(_):
                     if not chooser.selection:

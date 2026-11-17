@@ -11,12 +11,12 @@ source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,json,ttf
 
 # Версия
-version = 0.2
+version = 0.3
 
 # Стек по умолчанию (Python 3.14 от p4a). pandas v3.1.1 — первая ветка с официальной
 # поддержкой Python 3.14; numpy v2.3.4 — минимально требуемая для 3.14 и с фиксом
 # сборки unique.cpp. Теги указаны с "v", т.к. p4a делает `git checkout <версия>`.
-requirements = python3,kivy==2.3.1,numpy==v2.3.4,pandas==v3.1.1,openpyxl,xlrd
+requirements = python3,kivy==2.3.1,numpy==v2.3.4,pandas==v3.1.1,openpyxl,xlrd,android
 
 # Локальные рецепты (p4a.local_recipes):
 #   pandas — штатный рецепт p4a тянет v2.3.0, которая под Python 3.14 не компилируется,

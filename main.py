@@ -26,7 +26,8 @@ RESULT_OK = -1
 
 # Признаки строки шапки: ищем не по точному имени листа/строки, а по содержимому,
 # иначе любое переименование листа («Сентябрь_table_4») ломает всё приложение.
-MATERIAL_HEADER_PREFIXES = ('материал', 'наименование')
+MATERIAL_HEADER_PREFIXES = ('материал', 'наименование', 'краткий текст',
+                            'название', 'номенклатура')
 DATA_HEADER_PREFIXES = ('остаток', 'приход', 'расход', 'цена', 'количество', 'кол-во', 'ед.')
 
 # Что переносим из эталона в отчёт. Ключи идут по приоритету: сначала точные
@@ -39,6 +40,10 @@ METRIC_KEYWORDS = {
 
 # Колонка-единица измерения: «Ед.», «Ед. Unnamed: 2_level_1» и т.п.
 UNIT_TOKENS = {'ед', 'шт', 'кг', 'т', 'л', 'мл', 'м', 'уп', 'пач', 'рул'}
+
+# Как называется колонка с названием материала (по приоритету).
+MATERIAL_NAME_KEYWORDS = ('краткий текст материала', 'наименование',
+                          'название', 'номенклатура')
 
 
 def _is_unit_column(name):
@@ -63,7 +68,6 @@ class ExcelMergerApp(App):
     def build(self):
         self.etalon_path = None
         self.edit_path = None
-        self._last_sheet = '—'
 
         # Запрашиваем разрешения при запуске
         if platform == 'android':
@@ -141,6 +145,10 @@ class ExcelMergerApp(App):
         Ключи проверяются по очереди, поэтому 'остзапнп' важнее простого
         'остаток'. Колонки-единицы измерения («Ед.») пропускаются.
         """
+        return self._find_first_column(df, keywords)
+
+    def _find_first_column(self, df, keywords):
+        """Первая колонка, в заголовке которой есть один из ключей (по порядку)."""
         columns = [(str(col).strip().lower(), col) for col in df.columns]
         for key in keywords:
             for low, col in columns:
@@ -149,6 +157,18 @@ class ExcelMergerApp(App):
                 if key in low:
                     return col
         return None
+
+    def _find_material_column(self, df):
+        """Колонка с наименованием материала.
+
+        В выгрузках 1С колонка «Материал» — это код (000000000011316154),
+        а название лежит в «Краткий текст материала». Поэтому сначала ищем
+        человекочитаемое название и только потом падаем на код.
+        """
+        col = self._find_first_column(df, MATERIAL_NAME_KEYWORDS)
+        if col is not None:
+            return col
+        return self._find_first_column(df, ('материал',))
 
     def _output_dir(self):
         """Первая папка, в которую реально можно писать."""
@@ -317,97 +337,122 @@ class ExcelMergerApp(App):
             return row
         return 0
 
-    def _read_edit(self, path):
-        """Читаем отчёт: сами выбираем лист и шапку, не полагаясь на их названия."""
+    def _read_sheet(self, path, sheet):
+        """Читаем один лист, определяя строку шапки по содержимому."""
+        try:
+            raw = pd.read_excel(path, sheet_name=sheet, header=None)
+        except Exception:
+            return None
+        if raw.empty:
+            return None
+
+        header = self._detect_header(raw)
+        try:
+            df = pd.read_excel(path, sheet_name=sheet, header=header)
+        except Exception:
+            df = raw
+        return self._flatten_columns(df)
+
+    @staticmethod
+    def _sheet_order(sheets, exact=(), contains=()):
+        """Порядок листов: сначала точные имена, потом по слову, потом остальные."""
+        ordered = [s for s in sheets if str(s).strip() in exact]
+        for word in contains:
+            ordered += [s for s in sheets
+                        if word in str(s).lower() and s not in ordered]
+        ordered += [s for s in sheets if s not in ordered]
+        return ordered
+
+    def _read_table(self, path, exact=(), contains=()):
+        """Читаем Excel: сами выбираем лист и шапку, не полагаясь на их названия."""
         excel = pd.ExcelFile(path)
         sheets = list(excel.sheet_names)
 
-        preferred = [s for s in sheets if str(s).strip() == 'Сентябрь_table_4']
-        preferred += [s for s in sheets
-                      if 'сентябр' in str(s).lower() and s not in preferred]
-        ordered = preferred + [s for s in sheets if s not in preferred]
-
         fallback = None
-        for sheet in ordered:
-            try:
-                raw = pd.read_excel(path, sheet_name=sheet, header=None)
-            except Exception:
+        for sheet in self._sheet_order(sheets, exact, contains):
+            df = self._read_sheet(path, sheet)
+            if df is None:
                 continue
-
-            header = self._detect_header(raw)
-            try:
-                df = pd.read_excel(path, sheet_name=sheet, header=header)
-            except Exception:
-                df = raw
-            df = self._flatten_columns(df)
-
             if fallback is None:
-                fallback = (sheet, df)
+                fallback = (df, sheet)
+            # берём первый лист, где вообще есть колонка материала
+            if self._find_material_column(df) is not None:
+                return df, sheet
 
-            if (self._find_columns(df, ['материал']).get('материал')
-                    or self._find_columns(df, ['наименование']).get('наименование')):
-                self._last_sheet = sheet
-                return df
+        if fallback is None:
+            raise ValueError('в файле нет читаемых листов: '
+                             + ', '.join(str(s) for s in sheets))
+        return fallback
 
-        sheet, df = fallback
-        self._last_sheet = sheet
-        return df
+    def _read_edit(self, path):
+        return self._read_table(path, exact=('Сентябрь_table_4',),
+                                contains=('сентябр',))
 
     def _read_etalon(self, path):
-        try:
-            df = pd.read_excel(path, header=[0, 1])
-        except Exception:
-            df = pd.read_excel(path, header=0)
-        return self._flatten_columns(df)
+        return self._read_table(path)
 
     def _process(self, instance):
         if not self.etalon_path or not self.edit_path:
             self._update_status('Ошибка: выберите оба файла')
             return
 
+        df_etalon = df_edit = None
+        sheet_etalon = sheet_edit = None
         try:
-            df_etalon = self._read_etalon(self.etalon_path)
-            df_edit = self._read_edit(self.edit_path)
+            df_etalon, sheet_etalon = self._read_etalon(self.etalon_path)
+            df_edit, sheet_edit = self._read_edit(self.edit_path)
 
             # Ищем колонку с материалом в обоих файлах
-            etalon_material = self._find_columns(df_etalon, ['материал']).get('материал')
-            edit_material = (self._find_columns(df_edit, ['наименование']).get('наименование')
-                             or self._find_columns(df_edit, ['материал']).get('материал'))
-            if etalon_material is None or edit_material is None:
-                columns = ', '.join(str(c) for c in list(df_edit.columns)[:5])
-                raise ValueError(f'не найдена колонка с материалом ({columns})')
+            etalon_material = self._find_material_column(df_etalon)
+            edit_material = self._find_material_column(df_edit)
+            if etalon_material is None:
+                raise ValueError('в эталоне не найдена колонка с материалом')
+            if edit_material is None:
+                raise ValueError('в файле периода не найдена колонка с материалом')
 
             # Соответствие колонок: (что, колонка в отчёте, колонка в эталоне).
             # Ищем по ключевым словам с обеих сторон, потому что после склейки
             # двух строк шапки имена выглядят как 'ОстЗапНП ОстЗапНП'.
             mapping = []
+            missing_etalon = []
+            missing_edit = []
             for name, keys in METRIC_KEYWORDS.items():
                 target_col = self._find_metric_column(df_edit, keys)
                 source_col = self._find_metric_column(df_etalon, keys)
+                if source_col is None:
+                    missing_etalon.append(name)
+                if target_col is None:
+                    missing_edit.append(name)
                 if target_col is not None and source_col is not None:
                     mapping.append((name, target_col, source_col))
 
             if not mapping:
-                folder = ', '.join(str(c) for c in list(df_etalon.columns)[:6])
-                raise ValueError('не найдены колонки остатков/прихода/расхода '
-                                 f'(в эталоне: {folder})')
+                parts = []
+                if missing_etalon:
+                    parts.append('в эталоне — ' + ', '.join(missing_etalon))
+                if missing_edit:
+                    parts.append('в отчёте — ' + ', '.join(missing_edit))
+                raise ValueError('не найдены колонки: ' + '; '.join(parts))
 
             # Числа в эталоне могут быть текстом («1 000,50»), чистим их.
             for _, _, source_col in mapping:
                 df_etalon[source_col] = df_etalon[source_col].apply(self._clean_number)
 
             df_etalon_i = df_etalon.set_index(etalon_material)
-            df_etalon_i = df_etalon_i[~df_etalon_i.index.duplicated(keep='first')]
+            # Один материал в выгрузке 1С встречается несколько раз (склад, партия),
+            # поэтому остатки/приход/расход суммируем по материалу.
+            metric_cols = [source_col for _, _, source_col in mapping]
+            etalon_values = df_etalon_i[metric_cols].groupby(level=0).sum()
             df_edit_i = df_edit.set_index(edit_material).copy()
 
             # 1. Добавляем новые материалы из эталона в сентябрь.
-            new_materials = df_etalon_i.index.difference(df_edit_i.index)
+            new_materials = etalon_values.index.difference(df_edit_i.index)
             if not new_materials.empty:
                 new_rows = pd.DataFrame(index=new_materials,
                                         columns=list(df_edit_i.columns),
                                         dtype=object)
                 for _, target_col, source_col in mapping:
-                    new_rows[target_col] = df_etalon_i.loc[new_materials, source_col].to_numpy()
+                    new_rows[target_col] = etalon_values.loc[new_materials, source_col].to_numpy()
                 # иначе при concat теряется имя колонки материала
                 new_rows.index = new_rows.index.rename(df_edit_i.index.name)
                 df_edit_i = pd.concat([df_edit_i, new_rows])
@@ -418,7 +463,7 @@ class ExcelMergerApp(App):
             for _, target_col, source_col in mapping:
                 # map по индексу работает и при повторяющихся наименованиях
                 # в отчёте, поэтому используем его, а не .loc/позиции.
-                mapped = df_edit_i.index.to_series().map(df_etalon_i[source_col]).to_numpy()
+                mapped = df_edit_i.index.to_series().map(etalon_values[source_col]).to_numpy()
                 mask = pd.notna(mapped)
                 if not mask.any():
                     continue
@@ -442,12 +487,38 @@ class ExcelMergerApp(App):
             self._update_status(
                 f'Готово! Добавлено: {len(new_materials)}, '
                 f'обновлено колонок: {updated}.\n'
-                f'Лист: {self._last_sheet}\n'
+                f'Лист: {sheet_edit}\n'
                 f'Файл: {os.path.basename(output_path)}'
             )
 
         except Exception as e:
-            self._update_status(f'Ошибка: {e}')
+            self._update_status(f'Ошибка: {e}\n'
+                                f'Подробности: excel_merger_diagnostics.txt')
+            self._write_diagnostics(e, sheet_etalon, df_etalon,
+                                    sheet_edit, df_edit)
+
+    def _write_diagnostics(self, error, sheet_etalon, df_etalon,
+                           sheet_edit, df_edit):
+        """Пишем рядом с результатом список колонок — по нему видно, что не так."""
+        lines = ['Excel Merger — диагностика', f'Ошибка: {error}', '']
+
+        for title, sheet, df in (('ЭТАЛОН', sheet_etalon, df_etalon),
+                                 ('ФАЙЛ ПЕРИОДА', sheet_edit, df_edit)):
+            lines.append(f'=== {title} ===')
+            lines.append(f'Файл: {self.etalon_path if df is df_etalon else self.edit_path}')
+            lines.append(f'Лист: {sheet if sheet is not None else "(не определён)"}')
+            if df is not None:
+                lines.append(f'Колонок: {len(df.columns)}')
+                for i, col in enumerate(df.columns):
+                    lines.append(f'  [{i}] {col}')
+            lines.append('')
+
+        try:
+            path = os.path.join(self._output_dir(), 'excel_merger_diagnostics.txt')
+            with open(path, 'w', encoding='utf-8') as f:
+                f.write('\n'.join(lines))
+        except Exception:
+            pass
 
 
 if __name__ == '__main__':

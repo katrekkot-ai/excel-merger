@@ -11,7 +11,7 @@ source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,json,ttf
 
 # Версия
-version = 0.3
+version = 0.4
 
 # Стек по умолчанию (Python 3.14 от p4a). pandas v3.1.1 — первая ветка с официальной
 # поддержкой Python 3.14; numpy v2.3.4 — минимально требуемая для 3.14 и с фиксом

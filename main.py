@@ -14,7 +14,6 @@ from kivy.core.window import Window
 from kivy.metrics import dp, sp
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
-from kivy.uix.checkbox import CheckBox
 from kivy.uix.filechooser import FileChooserListView
 from kivy.uix.label import Label
 from kivy.uix.popup import Popup
@@ -32,7 +31,7 @@ REQUEST_OPEN_DOCUMENT = 1001
 RESULT_OK = -1
 
 # Версия приложения — видна в статусе, чтобы было понятно, какая сборка стоит.
-VERSION = '0.11'
+VERSION = '0.12'
 
 # ---------- правила разбора таблиц ----------
 
@@ -101,7 +100,6 @@ def _norm_name(value):
 # кнопка получается ~15 dp и текст в неё не влезает.
 BTN_HEIGHT = dp(52)
 BTN_FONT = sp(17)
-OPTION_FONT = sp(14)
 STATUS_FONT = sp(15)
 STATUS_MIN_HEIGHT = dp(72)
 STATUS_MAX_HEIGHT = dp(160)
@@ -145,15 +143,6 @@ class ExcelMergerApp(App):
         btn_edit.bind(on_press=self._select_file('edit'))
         layout.add_widget(btn_edit)
 
-        # Итоги отчёта должны совпадать с эталоном, поэтому по умолчанию
-        # строки без пары удаляются, а цена берётся из выгрузки 1С.
-        self.opt_prices = CheckBox(active=True, size_hint=(None, 1), width=dp(40))
-        layout.add_widget(self._option_row(
-            self.opt_prices, 'Цены брать из эталона (итоги по сумме сойдутся)'))
-        self.opt_drop = CheckBox(active=True, size_hint=(None, 1), width=dp(40))
-        layout.add_widget(self._option_row(
-            self.opt_drop, 'Удалять строки, которых нет в эталоне'))
-
         btn_run = Button(text='Объединить и сохранить', size_hint_y=None,
                          height=BTN_HEIGHT, font_size=BTN_FONT)
         btn_run.bind(on_press=self._process)
@@ -165,27 +154,6 @@ class ExcelMergerApp(App):
 
         return layout
 
-    def _option_row(self, checkbox, text):
-        """Строка «галочка + пояснение»; тап по тексту тоже переключает."""
-        row = BoxLayout(size_hint_y=None, height=dp(46), spacing=dp(4))
-        label = Label(text=text, font_size=OPTION_FONT, halign='left',
-                      valign='middle', color=(0.15, 0.15, 0.15, 1),
-                      padding=(dp(2), 0))
-
-        def sync_text_size(instance, size):
-            instance.text_size = (max(0, size[0] - dp(4)), None)
-
-        def on_touch(instance, touch):
-            if instance.collide_point(*touch.pos):
-                checkbox.active = not checkbox.active
-                return True
-            return False
-
-        label.bind(size=sync_text_size)
-        label.bind(on_touch_down=on_touch)
-        row.add_widget(checkbox)
-        row.add_widget(label)
-        return row
 
     def _sync_status_text_size(self, instance, size):
         instance.text_size = (max(0, size[0] - dp(8)), None)
@@ -961,12 +929,55 @@ class ExcelMergerApp(App):
             if record['name']:
                 index_name[record['name']].append(position)
 
-        def take(key, index):
-            for position in index.get(key, ()):
-                if not records[position]['used']:
-                    records[position]['used'] = True
-                    return records[position]
-            return None
+        # У одного материала в выгрузке бывает несколько партий с разными
+        # ценами и остатками (лом чёрных металлов, краска, кабель и т. п.).
+        # Строке формы должна достаться «своя» партия: иначе количество
+        # умножится на цену чужой партии и цена в отчёте будет не та.
+        def pair_score(record, form, by_name):
+            quantities = (abs(record['остаток'] - form['остаток'])
+                          + abs(record['приход'] - form['приход'])
+                          + abs(record['расход'] - form['расход']))
+            return (by_name, quantities, abs(record['price'] - form['price']))
+
+        candidates = []
+        for row in rows:
+            code = _norm_code(worksheet.cell(row, columns['code']).value) \
+                if columns.get('code') else ''
+            name = _norm_name(worksheet.cell(row, columns['name']).value)
+            form = {
+                'остаток': self._to_number(
+                    worksheet.cell(row, columns['osn']).value) or 0.0,
+                'приход': self._to_number(
+                    worksheet.cell(row, columns['pri']).value) or 0.0,
+                'расход': self._to_number(
+                    worksheet.cell(row, columns['ras']).value) or 0.0,
+                'price': 0.0,
+            }
+            if columns.get('price'):
+                form['price'] = self._to_number(
+                    worksheet.cell(row, columns['price']).value) or 0.0
+
+            if code:
+                for position in index_code.get(code, ()):
+                    candidates.append((pair_score(records[position], form, 0),
+                                       row, position))
+            if name:
+                for position in index_name.get(name, ()):
+                    record = records[position]
+                    if code and record['code'] == code:
+                        continue  # по коду эта пара уже добавлена
+                    candidates.append((pair_score(record, form, 1),
+                                       row, position))
+
+        # Раздаём пары от самых похожих к менее похожим: так каждой строке
+        # достаётся её собственная партия, а не первая попавшаяся.
+        candidates.sort(key=lambda item: item[0])
+        partners = {}
+        for _, row, position in candidates:
+            if row in partners or records[position]['used']:
+                continue
+            partners[row] = records[position]
+            records[position]['used'] = True
 
         updated = 0
         untouched = 0
@@ -974,13 +985,7 @@ class ExcelMergerApp(App):
         prices = 0
         unmatched_rows = []
         for row in rows:
-            code = _norm_code(worksheet.cell(row, columns['code']).value) \
-                if columns.get('code') else ''
-            name = _norm_name(worksheet.cell(row, columns['name']).value)
-
-            record = take(code, index_code) if code else None
-            if record is None and name:
-                record = take(name, index_name)
+            record = partners.get(row)
             if record is None:
                 untouched += 1
                 unmatched_rows.append(row)
@@ -1308,19 +1313,14 @@ class ExcelMergerApp(App):
             self._update_status('Ошибка: выберите оба файла')
             return
 
-        self._options = (bool(self.opt_prices.active),
-                         bool(self.opt_drop.active))
         # Длинная операция: сначала даём интерфейсу перерисовать статус
         self._update_status('Обрабатываю файлы…')
         Clock.schedule_once(self._run_merge, 0.1)
 
     def _run_merge(self, _dt):
         try:
-            use_etalon_prices, drop_unmatched = getattr(
-                self, '_options', (True, True))
             etalon = self._load_etalon(self.etalon_path)
-            result = self._merge_into_report(etalon, use_etalon_prices,
-                                             drop_unmatched)
+            result = self._merge_into_report(etalon)
             message = (f'Готово! Строк с парой: {result["matched"]}, '
                        f'изменено: {result["updated"]}, '
                        f'цен: {result["prices"]}, '

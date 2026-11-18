@@ -31,7 +31,7 @@ REQUEST_OPEN_DOCUMENT = 1001
 RESULT_OK = -1
 
 # Версия приложения — видна в статусе, чтобы было понятно, какая сборка стоит.
-VERSION = '0.12'
+VERSION = '0.13'
 
 # ---------- правила разбора таблиц ----------
 
@@ -859,7 +859,7 @@ class ExcelMergerApp(App):
                     ws.cell(row, column).value = self._retarget_formula(
                         formula, style_row, row)
 
-    def _merge_into_report(self, etalon, use_etalon_prices=True,
+    def _merge_into_report(self, etalon, use_etalon_prices=False,
                            drop_unmatched=True):
         path = self.edit_path
         extension = os.path.splitext(str(path))[1].lower()
@@ -1143,15 +1143,15 @@ class ExcelMergerApp(App):
 
     @staticmethod
     def _totals_problems(totals, expected):
-        """Список расхождений между формой и эталоном (пустой, если всё сошлось)."""
+        """Расхождения по количеству между формой и эталоном.
+
+        Суммы не сверяем: учётная цена остаётся из формы, поэтому суммы
+        отличаются от 1С на разницу цен — это нормально.
+        """
         names = {'нач': 'остаток на начало, кол-во',
-                 'нач_сумма': 'остаток на начало, сумма',
                  'приход': 'приход, кол-во',
-                 'приход_сумма': 'приход, сумма',
                  'расход': 'расход, кол-во',
-                 'расход_сумма': 'расход, сумма',
-                 'конец': 'остаток на конец, кол-во',
-                 'конец_сумма': 'остаток на конец, сумма'}
+                 'конец': 'остаток на конец, кол-во'}
         problems = []
         for key, label in names.items():
             diff = totals.get(key, 0.0) - expected.get(key, 0.0)
@@ -1323,16 +1323,16 @@ class ExcelMergerApp(App):
             result = self._merge_into_report(etalon)
             message = (f'Готово! Строк с парой: {result["matched"]}, '
                        f'изменено: {result["updated"]}, '
-                       f'цен: {result["prices"]}, '
                        f'добавлено: {result["added"]}, '
                        f'удалено: {result["deleted"]}.')
 
             problems = self._totals_problems(result['totals'],
                                              result['expected'])
             if problems:
-                message += '\nИтоги расходятся с эталоном:\n' + '\n'.join(problems)
+                message += ('\nКоличества расходятся с эталоном:\n'
+                            + '\n'.join(problems))
             else:
-                message += '\nИтоги совпадают с эталоном ✓'
+                message += '\nКоличества совпадают с эталоном ✓'
 
             message += (f'\nЛист: {result["sheet"]}\n'
                         f'Файл: {result["published"] or os.path.basename(result["path"])}')

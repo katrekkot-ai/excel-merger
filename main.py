@@ -31,6 +31,9 @@ if platform == 'android':
 REQUEST_OPEN_DOCUMENT = 1001
 RESULT_OK = -1
 
+# Версия приложения — видна в статусе, чтобы было понятно, какая сборка стоит.
+VERSION = '0.11'
+
 # ---------- правила разбора таблиц ----------
 
 # Название материала: в выгрузках 1С колонка «Материал» — это код,
@@ -122,7 +125,8 @@ class ExcelMergerApp(App):
 
         Window.clearcolor = (0.96, 0.96, 0.96, 1)
 
-        self.status = Label(text='Загрузите эталон и файл для редактирования',
+        self.status = Label(text=f'Excel Merger {VERSION}\n'
+                                 f'Загрузите эталон и файл для редактирования',
                             size_hint_y=None, height=STATUS_MIN_HEIGHT,
                             halign='center', valign='middle', font_size=STATUS_FONT,
                             color=(0.12, 0.12, 0.12, 1), padding=(dp(8), dp(8)))
@@ -525,7 +529,7 @@ class ExcelMergerApp(App):
         """Эталон -> таблица с колонками code/name/unit/price/остаток/приход/расход/конец."""
         df, sheet = self._read_table(path)
         self._diag = [
-            'Excel Merger — диагностика',
+            f'Excel Merger {VERSION} — диагностика',
             '',
             '=== ЭТАЛОН ===',
             f'Файл: {path}',
@@ -1029,14 +1033,14 @@ class ExcelMergerApp(App):
         if new_records:
             self._append_rows(worksheet, layout, new_records)
 
+        first_row = rows[0] if rows else None
+        last_row = (rows[-1] + len(new_records)) if rows else None
         totals = {}
         if rows:
-            last_row = rows[-1] + len([record for record in records
-                                       if not record['used']])
-            totals = self._sheet_totals(worksheet, rows[0], last_row, columns)
+            totals = self._sheet_totals(worksheet, first_row, last_row, columns)
         expected = self._etalon_totals(records)
         if totals:
-            self._diag += ['=== ИТОГИ (форма / эталон) ===']
+            self._diag.append('=== ИТОГИ (форма / эталон) ===')
             for key, label in (('нач', 'нач кол-во'), ('нач_сумма', 'нач сумма'),
                                ('приход', 'приход кол-во'),
                                ('приход_сумма', 'приход сумма'),
@@ -1048,6 +1052,12 @@ class ExcelMergerApp(App):
                                   f'{self._fmt(expected[key])}')
             self._diag.append('')
 
+        # формулы в форме должны показывать числа сразу, даже в просмотрщиках,
+        # которые не пересчитывают книгу при открытии
+        cached = {}
+        if rows:
+            cached = self._cached_values(worksheet, first_row, last_row, columns)
+
         base_name = os.path.splitext(os.path.basename(path))[0]
         output_path = os.path.join(self._output_dir(),
                                    f'{base_name}_ОБНОВЛЕНО{extension}')
@@ -1056,6 +1066,8 @@ class ExcelMergerApp(App):
         except Exception:
             pass
         workbook.save(output_path)
+        if cached:
+            self._fill_cached_values(output_path, worksheet.title, cached)
 
         published = self._publish_to_download(output_path)
 
@@ -1146,6 +1158,148 @@ class ExcelMergerApp(App):
     def _fmt(value):
         """1234567.5 -> «1 234 567,50»."""
         return f'{value:,.2f}'.replace(',', ' ').replace('.', ',')
+
+    # ---------- значения формул (кэш) ----------
+
+    LINEAR_FORMULA = re.compile(
+        r'^=[A-Z]{1,3}\d+(?:[+-](?:[A-Z]{1,3}\d+|\d+(?:\.\d+)?))*$')
+    CELL_XML = re.compile(
+        r'<c r="([A-Z]+)(\d+)"([^>]*?)>(<f[^>]*>.*?</f>)(?:<v\s*/>|<v>.*?</v>)?</c>',
+        re.S)
+
+    def _cached_values(self, ws, first_row, last_row, columns):
+        """Значения всех формул таблицы: их же Excel запишет при пересчёте.
+
+        openpyxl сохраняет только текст формулы, поэтому в файле нет готовых
+        чисел, и просмотрщики без пересчёта показывают нули.
+        """
+        cached = {}
+        price_col = columns.get('price')
+
+        for row in range(first_row, last_row + 1):
+            price = 0.0
+            if price_col:
+                price = self._to_number(ws.cell(row, price_col).value) or 0.0
+            osn = self._to_number(ws.cell(row, columns['osn']).value) or 0.0
+            pri = self._to_number(ws.cell(row, columns['pri']).value) or 0.0
+            ras = self._to_number(ws.cell(row, columns['ras']).value) or 0.0
+            konec = osn + pri - ras
+
+            cached[f'I{row}'] = osn * price
+            cached[f'K{row}'] = pri * price
+            cached[f'M{row}'] = ras * price
+            cached[f'N{row}'] = konec
+            cached[f'O{row}'] = konec * price
+
+        # строка итогов: в ней должны быть формулы SUM по таблице
+        total_row = last_row + 1
+        marker = ws.cell(total_row, columns['osn']).value
+        if not (isinstance(marker, str) and marker.startswith('=')):
+            return cached
+
+        sums = {column: 0.0 for column in 'HIJKLMNO'}
+        for row in range(first_row, last_row + 1):
+            for column in 'HIJKLMNO':
+                value = cached.get(f'{column}{row}')
+                if value is None:
+                    value = self._to_number(
+                        ws.cell(row, ws[f'{column}1'].column).value) or 0.0
+                sums[column] += value
+        for column in 'HIJKLMNO':
+            cached[f'{column}{total_row}'] = sums[column]
+
+        # ниже итогов бывают контрольные строки вида =I171+K171-M171
+        for row in range(total_row + 1, ws.max_row + 1):
+            for cell in ws[row]:
+                formula = cell.value
+                if not (isinstance(formula, str) and formula.startswith('=')):
+                    continue
+                if not self.LINEAR_FORMULA.match(formula):
+                    continue
+                value = self._eval_linear(formula, cached, ws)
+                if value is not None:
+                    cached[cell.coordinate] = value
+        return cached
+
+    def _eval_linear(self, formula, cached, ws):
+        """Считает простую формулу из ссылок и чисел (=I171+K171-M171)."""
+        def lookup(match):
+            coordinate = match.group(0)
+            if coordinate in cached:
+                return repr(cached[coordinate])
+            column_letter = re.match(r'[A-Z]+', coordinate).group(0)
+            row = int(coordinate[len(column_letter):])
+            column = ws[f'{column_letter}1'].column
+            value = self._to_number(ws.cell(row, column).value)
+            if value is None:
+                return 'nan'
+            return repr(value)
+
+        expression = re.sub(r'[A-Z]{1,3}\d+', lookup, formula[1:])
+        if 'nan' in expression:
+            return None
+        try:
+            return eval(expression, {'__builtins__': {}}, {})
+        except Exception:
+            return None
+
+    def _fill_cached_values(self, path, sheet_title, values):
+        """Вписывает в готовый xlsx значения формул (<v> рядом с <f>)."""
+        try:
+            import zipfile
+            from xml.etree import ElementTree
+
+            with zipfile.ZipFile(path) as archive:
+                workbook_xml = archive.read('xl/workbook.xml')
+                rels_xml = archive.read('xl/_rels/workbook.xml.rels')
+
+            ns_main = '{http://schemas.openxmlformats.org/spreadsheetml/2006/main}'
+            ns_rel = ('{http://schemas.openxmlformats.org/officeDocument/2006/'
+                      'relationships}')
+
+            target_id = None
+            for sheet in ElementTree.fromstring(workbook_xml).iter(ns_main + 'sheet'):
+                if sheet.get('name') == sheet_title:
+                    target_id = sheet.get(ns_rel + 'id')
+                    break
+            if target_id is None:
+                return
+
+            target = None
+            for relation in ElementTree.fromstring(rels_xml):
+                if relation.get('Id') == target_id:
+                    target = relation.get('Target')
+                    break
+            if not target:
+                return
+            target = target.lstrip('/')
+            if not target.startswith('xl/'):
+                target = 'xl/' + target
+
+            def replace(match):
+                column, row, attributes, formula = match.groups()
+                value = values.get(f'{column}{row}')
+                if value is None:
+                    return match.group(0)
+                attributes = re.sub(r'\s+t="[^"]*"', '', attributes)
+                number = f'{value:.10g}' if isinstance(value, float) else str(value)
+                return (f'<c r="{column}{row}"{attributes}>'
+                        f'{formula}<v>{number}</v></c>')
+
+            temporary = path + '.tmp'
+            with zipfile.ZipFile(path) as source:
+                with zipfile.ZipFile(temporary, 'w', zipfile.ZIP_DEFLATED) as result:
+                    for item in source.infolist():
+                        data = source.read(item.filename)
+                        if item.filename == target:
+                            text = data.decode('utf-8')
+                            text = self.CELL_XML.sub(replace, text)
+                            data = text.encode('utf-8')
+                        result.writestr(item, data)
+            os.replace(temporary, path)
+        except Exception:
+            # не смогли — не страшно: Excel всё равно пересчитает при открытии
+            pass
 
     # ---------- запуск ----------
 
